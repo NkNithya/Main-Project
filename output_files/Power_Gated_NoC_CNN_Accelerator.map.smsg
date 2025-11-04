@@ -1,0 +1,4 @@
+Warning (10268): Verilog HDL information at router_weight.sv(59): always construct contains both blocking and non-blocking assignments File: /home/abhiram/Projects/Main-Project/rtl/router_weight.sv Line: 59
+Warning (10268): Verilog HDL information at router_iact.sv(58): always construct contains both blocking and non-blocking assignments File: /home/abhiram/Projects/Main-Project/rtl/router_iact.sv Line: 58
+Warning (10268): Verilog HDL information at PE.sv(100): always construct contains both blocking and non-blocking assignments File: /home/abhiram/Projects/Main-Project/rtl/PE.sv Line: 100
+Warning (10268): Verilog HDL information at MAC.sv(34): always construct contains both blocking and non-blocking assignments File: /home/abhiram/Projects/Main-Project/rtl/MAC.sv Line: 34
