@@ -2,7 +2,1716 @@
 	"partitions" : [
 		{
 			"name" : "Top",
-			"pins" : []
+			"pins" : [
+				{
+					"name" : "compute_done",
+					"strict" : false
+				},
+				{
+					"name" : "load_done",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_west_0[0]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_west_0[1]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_west_0[2]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_west_0[3]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_west_0[4]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_west_0[5]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_west_0[6]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_west_0[7]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_west_0[8]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_west_0[9]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_west_0[10]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_west_0[11]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_west_0[12]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_west_0[13]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_west_0[14]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_west_0[15]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_west_1[0]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_west_1[1]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_west_1[2]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_west_1[3]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_west_1[4]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_west_1[5]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_west_1[6]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_west_1[7]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_west_1[8]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_west_1[9]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_west_1[10]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_west_1[11]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_west_1[12]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_west_1[13]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_west_1[14]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_west_1[15]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_east_0[0]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_east_0[1]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_east_0[2]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_east_0[3]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_east_0[4]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_east_0[5]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_east_0[6]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_east_0[7]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_east_0[8]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_east_0[9]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_east_0[10]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_east_0[11]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_east_0[12]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_east_0[13]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_east_0[14]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_east_0[15]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_east_1[0]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_east_1[1]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_east_1[2]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_east_1[3]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_east_1[4]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_east_1[5]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_east_1[6]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_east_1[7]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_east_1[8]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_east_1[9]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_east_1[10]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_east_1[11]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_east_1[12]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_east_1[13]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_east_1[14]",
+					"strict" : false
+				},
+				{
+					"name" : "r_data_psum_east_1[15]",
+					"strict" : false
+				},
+				{
+					"name" : "clk",
+					"strict" : false
+				},
+				{
+					"name" : "start",
+					"strict" : false
+				},
+				{
+					"name" : "reset",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_west_0[6]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_west_0[7]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_west_0[0]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_west_0[1]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_west_0[5]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_west_0[4]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_west_0[2]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_west_0[3]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_west_0[9]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_west_0[8]",
+					"strict" : false
+				},
+				{
+					"name" : "r_req_psum_west_0",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_west_1[6]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_west_1[7]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_west_1[0]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_west_1[1]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_west_1[5]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_west_1[4]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_west_1[2]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_west_1[3]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_west_1[9]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_west_1[8]",
+					"strict" : false
+				},
+				{
+					"name" : "r_req_psum_west_1",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_east_0[6]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_east_0[7]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_east_0[0]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_east_0[1]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_east_0[5]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_east_0[4]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_east_0[2]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_east_0[3]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_east_0[9]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_east_0[8]",
+					"strict" : false
+				},
+				{
+					"name" : "r_req_psum_east_0",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_east_1[6]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_east_1[7]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_east_1[0]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_east_1[1]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_east_1[5]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_east_1[4]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_east_1[2]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_east_1[3]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_east_1[9]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_east_1[8]",
+					"strict" : false
+				},
+				{
+					"name" : "r_req_psum_east_1",
+					"strict" : false
+				},
+				{
+					"name" : "west_enable_i_west_0_iact",
+					"strict" : false
+				},
+				{
+					"name" : "router_mode_east_0_iact[0]",
+					"strict" : false
+				},
+				{
+					"name" : "router_mode_east_0_iact[1]",
+					"strict" : false
+				},
+				{
+					"name" : "router_mode_east_0_iact[2]",
+					"strict" : false
+				},
+				{
+					"name" : "router_mode_east_0_iact[3]",
+					"strict" : false
+				},
+				{
+					"name" : "router_mode_west_1_iact[0]",
+					"strict" : false
+				},
+				{
+					"name" : "router_mode_west_1_iact[1]",
+					"strict" : false
+				},
+				{
+					"name" : "router_mode_west_1_iact[2]",
+					"strict" : false
+				},
+				{
+					"name" : "router_mode_west_1_iact[3]",
+					"strict" : false
+				},
+				{
+					"name" : "west_enable_i_west_0_wght",
+					"strict" : false
+				},
+				{
+					"name" : "router_mode_east_0_wght[0]",
+					"strict" : false
+				},
+				{
+					"name" : "router_mode_east_0_wght[1]",
+					"strict" : false
+				},
+				{
+					"name" : "router_mode_east_0_wght[2]",
+					"strict" : false
+				},
+				{
+					"name" : "router_mode_east_0_wght[3]",
+					"strict" : false
+				},
+				{
+					"name" : "router_mode_west_1_wght[0]",
+					"strict" : false
+				},
+				{
+					"name" : "router_mode_west_1_wght[1]",
+					"strict" : false
+				},
+				{
+					"name" : "router_mode_west_1_wght[2]",
+					"strict" : false
+				},
+				{
+					"name" : "router_mode_west_1_wght[3]",
+					"strict" : false
+				},
+				{
+					"name" : "router_mode_west_0_psum[2]",
+					"strict" : false
+				},
+				{
+					"name" : "router_mode_west_0_psum[0]",
+					"strict" : false
+				},
+				{
+					"name" : "router_mode_west_0_psum[3]",
+					"strict" : false
+				},
+				{
+					"name" : "router_mode_west_1_psum[2]",
+					"strict" : false
+				},
+				{
+					"name" : "router_mode_west_1_psum[0]",
+					"strict" : false
+				},
+				{
+					"name" : "router_mode_west_1_psum[3]",
+					"strict" : false
+				},
+				{
+					"name" : "router_mode_west_0_psum[1]",
+					"strict" : false
+				},
+				{
+					"name" : "router_mode_east_0_psum[2]",
+					"strict" : false
+				},
+				{
+					"name" : "router_mode_east_0_psum[0]",
+					"strict" : false
+				},
+				{
+					"name" : "router_mode_east_0_psum[3]",
+					"strict" : false
+				},
+				{
+					"name" : "router_mode_east_1_psum[2]",
+					"strict" : false
+				},
+				{
+					"name" : "router_mode_east_1_psum[0]",
+					"strict" : false
+				},
+				{
+					"name" : "router_mode_east_1_psum[3]",
+					"strict" : false
+				},
+				{
+					"name" : "router_mode_east_0_psum[1]",
+					"strict" : false
+				},
+				{
+					"name" : "r_req_psum_inter_west_0",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_inter_west_0[9]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_inter_west_0[6]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_inter_west_0[5]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_inter_west_0[4]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_inter_west_0[7]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_inter_west_0[8]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_inter_west_0[1]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_inter_west_0[3]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_inter_west_0[2]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_inter_west_0[0]",
+					"strict" : false
+				},
+				{
+					"name" : "r_req_psum_inter_west_1",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_inter_west_1[9]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_inter_west_1[6]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_inter_west_1[5]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_inter_west_1[4]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_inter_west_1[7]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_inter_west_1[8]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_inter_west_1[1]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_inter_west_1[3]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_inter_west_1[2]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_inter_west_1[0]",
+					"strict" : false
+				},
+				{
+					"name" : "r_req_psum_inter_east_0",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_inter_east_0[9]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_inter_east_0[6]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_inter_east_0[5]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_inter_east_0[4]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_inter_east_0[7]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_inter_east_0[8]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_inter_east_0[1]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_inter_east_0[3]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_inter_east_0[2]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_inter_east_0[0]",
+					"strict" : false
+				},
+				{
+					"name" : "r_req_psum_inter_east_1",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_inter_east_1[9]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_inter_east_1[6]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_inter_east_1[5]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_inter_east_1[4]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_inter_east_1[7]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_inter_east_1[8]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_inter_east_1[1]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_inter_east_1[3]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_inter_east_1[2]",
+					"strict" : false
+				},
+				{
+					"name" : "r_addr_psum_inter_east_1[0]",
+					"strict" : false
+				},
+				{
+					"name" : "west_enable_i_west_1_iact",
+					"strict" : false
+				},
+				{
+					"name" : "router_mode_east_1_iact[0]",
+					"strict" : false
+				},
+				{
+					"name" : "router_mode_east_1_iact[1]",
+					"strict" : false
+				},
+				{
+					"name" : "router_mode_east_1_iact[2]",
+					"strict" : false
+				},
+				{
+					"name" : "router_mode_east_1_iact[3]",
+					"strict" : false
+				},
+				{
+					"name" : "router_mode_west_0_iact[0]",
+					"strict" : false
+				},
+				{
+					"name" : "router_mode_west_0_iact[1]",
+					"strict" : false
+				},
+				{
+					"name" : "router_mode_west_0_iact[2]",
+					"strict" : false
+				},
+				{
+					"name" : "router_mode_west_0_iact[3]",
+					"strict" : false
+				},
+				{
+					"name" : "west_enable_i_west_1_wght",
+					"strict" : false
+				},
+				{
+					"name" : "router_mode_east_1_wght[0]",
+					"strict" : false
+				},
+				{
+					"name" : "router_mode_east_1_wght[1]",
+					"strict" : false
+				},
+				{
+					"name" : "router_mode_east_1_wght[2]",
+					"strict" : false
+				},
+				{
+					"name" : "router_mode_east_1_wght[3]",
+					"strict" : false
+				},
+				{
+					"name" : "router_mode_west_0_wght[0]",
+					"strict" : false
+				},
+				{
+					"name" : "router_mode_west_0_wght[1]",
+					"strict" : false
+				},
+				{
+					"name" : "router_mode_west_0_wght[2]",
+					"strict" : false
+				},
+				{
+					"name" : "router_mode_west_0_wght[3]",
+					"strict" : false
+				},
+				{
+					"name" : "west_enable_i_east_0_iact",
+					"strict" : false
+				},
+				{
+					"name" : "west_enable_i_east_0_wght",
+					"strict" : false
+				},
+				{
+					"name" : "west_enable_i_east_1_iact",
+					"strict" : false
+				},
+				{
+					"name" : "west_enable_i_east_1_wght",
+					"strict" : false
+				},
+				{
+					"name" : "write_en_iact_west_1",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_west_1[0]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_iact_west_1[0]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_iact_west_1[1]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_iact_west_1[2]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_iact_west_1[3]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_iact_west_1[4]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_iact_west_1[5]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_iact_west_1[6]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_iact_west_1[7]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_iact_west_1[8]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_iact_west_1[9]",
+					"strict" : false
+				},
+				{
+					"name" : "write_en_wght_west_1",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_west_1[0]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_wght_west_1[0]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_wght_west_1[1]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_wght_west_1[2]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_wght_west_1[3]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_wght_west_1[4]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_wght_west_1[5]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_wght_west_1[6]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_wght_west_1[7]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_wght_west_1[8]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_wght_west_1[9]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_west_1[1]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_west_1[1]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_west_1[2]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_west_1[2]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_west_1[3]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_west_1[3]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_west_1[4]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_west_1[4]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_west_1[5]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_west_1[5]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_west_1[6]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_west_1[6]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_west_1[7]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_west_1[7]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_west_1[8]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_west_1[8]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_west_1[9]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_west_1[9]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_west_1[10]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_west_1[10]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_west_1[11]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_west_1[11]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_west_1[12]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_west_1[12]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_west_1[13]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_west_1[13]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_west_1[14]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_west_1[14]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_west_1[15]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_west_1[15]",
+					"strict" : false
+				},
+				{
+					"name" : "write_en_iact_east_0",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_east_0[0]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_iact_east_0[0]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_iact_east_0[1]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_iact_east_0[2]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_iact_east_0[3]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_iact_east_0[4]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_iact_east_0[5]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_iact_east_0[6]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_iact_east_0[7]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_iact_east_0[8]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_iact_east_0[9]",
+					"strict" : false
+				},
+				{
+					"name" : "write_en_wght_east_0",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_east_0[0]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_wght_east_0[0]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_wght_east_0[1]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_wght_east_0[2]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_wght_east_0[3]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_wght_east_0[4]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_wght_east_0[5]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_wght_east_0[6]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_wght_east_0[7]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_wght_east_0[8]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_wght_east_0[9]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_east_0[1]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_east_0[1]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_east_0[2]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_east_0[2]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_east_0[3]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_east_0[3]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_east_0[4]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_east_0[4]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_east_0[5]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_east_0[5]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_east_0[6]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_east_0[6]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_east_0[7]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_east_0[7]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_east_0[8]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_east_0[8]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_east_0[9]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_east_0[9]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_east_0[10]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_east_0[10]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_east_0[11]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_east_0[11]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_east_0[12]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_east_0[12]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_east_0[13]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_east_0[13]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_east_0[14]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_east_0[14]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_east_0[15]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_east_0[15]",
+					"strict" : false
+				},
+				{
+					"name" : "write_en_iact_west_0",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_west_0[0]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_iact_west_0[0]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_iact_west_0[1]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_iact_west_0[2]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_iact_west_0[3]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_iact_west_0[4]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_iact_west_0[5]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_iact_west_0[6]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_iact_west_0[7]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_iact_west_0[8]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_iact_west_0[9]",
+					"strict" : false
+				},
+				{
+					"name" : "write_en_wght_west_0",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_west_0[0]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_wght_west_0[0]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_wght_west_0[1]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_wght_west_0[2]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_wght_west_0[3]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_wght_west_0[4]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_wght_west_0[5]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_wght_west_0[6]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_wght_west_0[7]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_wght_west_0[8]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_wght_west_0[9]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_west_0[1]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_west_0[1]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_west_0[2]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_west_0[2]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_west_0[3]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_west_0[3]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_west_0[4]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_west_0[4]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_west_0[5]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_west_0[5]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_west_0[6]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_west_0[6]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_west_0[7]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_west_0[7]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_west_0[8]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_west_0[8]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_west_0[9]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_west_0[9]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_west_0[10]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_west_0[10]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_west_0[11]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_west_0[11]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_west_0[12]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_west_0[12]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_west_0[13]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_west_0[13]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_west_0[14]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_west_0[14]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_west_0[15]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_west_0[15]",
+					"strict" : false
+				},
+				{
+					"name" : "write_en_iact_east_1",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_east_1[0]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_iact_east_1[0]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_iact_east_1[1]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_iact_east_1[2]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_iact_east_1[3]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_iact_east_1[4]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_iact_east_1[5]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_iact_east_1[6]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_iact_east_1[7]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_iact_east_1[8]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_iact_east_1[9]",
+					"strict" : false
+				},
+				{
+					"name" : "write_en_wght_east_1",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_east_1[0]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_wght_east_1[0]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_wght_east_1[1]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_wght_east_1[2]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_wght_east_1[3]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_wght_east_1[4]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_wght_east_1[5]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_wght_east_1[6]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_wght_east_1[7]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_wght_east_1[8]",
+					"strict" : false
+				},
+				{
+					"name" : "w_addr_wght_east_1[9]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_east_1[1]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_east_1[1]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_east_1[2]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_east_1[2]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_east_1[3]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_east_1[3]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_east_1[4]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_east_1[4]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_east_1[5]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_east_1[5]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_east_1[6]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_east_1[6]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_east_1[7]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_east_1[7]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_east_1[8]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_east_1[8]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_east_1[9]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_east_1[9]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_east_1[10]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_east_1[10]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_east_1[11]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_east_1[11]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_east_1[12]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_east_1[12]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_east_1[13]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_east_1[13]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_east_1[14]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_east_1[14]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_iact_east_1[15]",
+					"strict" : false
+				},
+				{
+					"name" : "w_data_wght_east_1[15]",
+					"strict" : false
+				}
+			]
 		}
 	]
 }

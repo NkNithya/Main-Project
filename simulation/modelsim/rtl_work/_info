@@ -1,0 +1,525 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/home/abhiram/Projects/Main-Project/simulation/modelsim
+vGLB_cluster_wpsum
+Z1 !s110 1762309256
+!i10b 1
+!s100 Ia`SO6l=zCCdZZERCCANz3
+Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
+I?[MoBKAizzY3^9m09El1^0
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z4 w1762185587
+8/home/abhiram/Projects/Main-Project/rtl/GLB_cluster_wpsum.v
+F/home/abhiram/Projects/Main-Project/rtl/GLB_cluster_wpsum.v
+!i122 5
+L0 3 109
+Z5 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z6 !s108 1762309256.000000
+!s107 /home/abhiram/Projects/Main-Project/rtl/GLB_cluster_wpsum.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/abhiram/Projects/Main-Project/rtl|/home/abhiram/Projects/Main-Project/rtl/GLB_cluster_wpsum.v|
+!i113 1
+Z7 o-vlog01compat -work work
+Z8 !s92 -vlog01compat -work work +incdir+/home/abhiram/Projects/Main-Project/rtl
+Z9 tCvgOpt 0
+n@g@l@b_cluster_wpsum
+vglb_iact
+R1
+!i10b 1
+!s100 FoGikLd`=I11CDR]fUMiz3
+R2
+ImfX>L7chF?dE6nYaf`X:O2
+R3
+R0
+R4
+8/home/abhiram/Projects/Main-Project/rtl/glb_iact.v
+F/home/abhiram/Projects/Main-Project/rtl/glb_iact.v
+!i122 4
+L0 3 41
+R5
+r1
+!s85 0
+31
+R6
+!s107 /home/abhiram/Projects/Main-Project/rtl/glb_iact.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/abhiram/Projects/Main-Project/rtl|/home/abhiram/Projects/Main-Project/rtl/glb_iact.v|
+!i113 1
+R7
+R8
+R9
+vglb_psum
+Z10 !s110 1762309255
+!i10b 1
+!s100 0F^o^OkA4i?]Z^zg5KJQG1
+R2
+ITY55m5IM]8iX=VaK@V86J3
+R3
+R0
+R4
+8/home/abhiram/Projects/Main-Project/rtl/glb_psum.v
+F/home/abhiram/Projects/Main-Project/rtl/glb_psum.v
+!i122 3
+L0 4 92
+R5
+r1
+!s85 0
+31
+Z11 !s108 1762309255.000000
+!s107 /home/abhiram/Projects/Main-Project/rtl/glb_psum.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/abhiram/Projects/Main-Project/rtl|/home/abhiram/Projects/Main-Project/rtl/glb_psum.v|
+!i113 1
+R7
+R8
+R9
+vglb_weight
+R10
+!i10b 1
+!s100 3F<>A2lgWodGa31lQDDdK3
+R2
+I[<g<CNJm@``^;4ADd9<_U3
+R3
+R0
+R4
+8/home/abhiram/Projects/Main-Project/rtl/glb_weight.v
+F/home/abhiram/Projects/Main-Project/rtl/glb_weight.v
+!i122 2
+L0 4 41
+R5
+r1
+!s85 0
+31
+R11
+!s107 /home/abhiram/Projects/Main-Project/rtl/glb_weight.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/abhiram/Projects/Main-Project/rtl|/home/abhiram/Projects/Main-Project/rtl/glb_weight.v|
+!i113 1
+R7
+R8
+R9
+vHMNOC_1cluster_wpsum
+R10
+!i10b 1
+!s100 ?K[iGi]f_C^=knnz:Ok@F1
+R2
+ImPOInli`3lfg51X>jES2G3
+R3
+R0
+R4
+8/home/abhiram/Projects/Main-Project/rtl/HMNOC_1cluster_wpsum.v
+F/home/abhiram/Projects/Main-Project/rtl/HMNOC_1cluster_wpsum.v
+!i122 1
+L0 3 345
+R5
+r1
+!s85 0
+31
+R11
+!s107 /home/abhiram/Projects/Main-Project/rtl/HMNOC_1cluster_wpsum.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/abhiram/Projects/Main-Project/rtl|/home/abhiram/Projects/Main-Project/rtl/HMNOC_1cluster_wpsum.v|
+!i113 1
+R7
+R8
+R9
+n@h@m@n@o@c_1cluster_wpsum
+vHMNOC_1cluster_wpsum_tb
+Z12 !s110 1762309257
+!i10b 1
+!s100 3j3^mF<<XAi6ML?861n9j0
+R2
+I?XBl1oc2k1Vd;[=h0B;Zi1
+R3
+R0
+R4
+8/home/abhiram/Projects/Main-Project/testbench/HMNOC_1cluster_wpsum_tb.v
+F/home/abhiram/Projects/Main-Project/testbench/HMNOC_1cluster_wpsum_tb.v
+!i122 18
+L0 3 404
+R5
+r1
+!s85 0
+31
+Z13 !s108 1762309257.000000
+!s107 /home/abhiram/Projects/Main-Project/testbench/HMNOC_1cluster_wpsum_tb.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/abhiram/Projects/Main-Project/testbench|/home/abhiram/Projects/Main-Project/testbench/HMNOC_1cluster_wpsum_tb.v|
+!i113 1
+R7
+Z14 !s92 -vlog01compat -work work +incdir+/home/abhiram/Projects/Main-Project/testbench
+R9
+n@h@m@n@o@c_1cluster_wpsum_tb
+vHMNOC_4cluster_wpsum
+R10
+!i10b 1
+!s100 ?UnNbX:PSJ]A=za<GIPW@1
+R2
+Ijbj80dQdNXF:[CLH9U[VB1
+R3
+R0
+R4
+8/home/abhiram/Projects/Main-Project/rtl/HMNOC_4cluster_wpsum.v
+F/home/abhiram/Projects/Main-Project/rtl/HMNOC_4cluster_wpsum.v
+!i122 0
+L0 3 581
+R5
+r1
+!s85 0
+31
+R11
+!s107 /home/abhiram/Projects/Main-Project/rtl/HMNOC_4cluster_wpsum.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/abhiram/Projects/Main-Project/rtl|/home/abhiram/Projects/Main-Project/rtl/HMNOC_4cluster_wpsum.v|
+!i113 1
+R7
+R8
+R9
+n@h@m@n@o@c_4cluster_wpsum
+vHMNOC_4cluster_wpsum_mf_tb
+R12
+!i10b 1
+!s100 ;=E04R_6:f]cYT:2PB0L71
+R2
+IgUz?k9S0KAaGGMdThPaW_2
+R3
+R0
+R4
+8/home/abhiram/Projects/Main-Project/testbench/HMNOC_4cluster_wpsum_mf_tb.v
+F/home/abhiram/Projects/Main-Project/testbench/HMNOC_4cluster_wpsum_mf_tb.v
+!i122 19
+L0 3 663
+R5
+r1
+!s85 0
+31
+R13
+!s107 /home/abhiram/Projects/Main-Project/testbench/HMNOC_4cluster_wpsum_mf_tb.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/abhiram/Projects/Main-Project/testbench|/home/abhiram/Projects/Main-Project/testbench/HMNOC_4cluster_wpsum_mf_tb.v|
+!i113 1
+R7
+R14
+R9
+n@h@m@n@o@c_4cluster_wpsum_mf_tb
+vHMNOC_4cluster_wpsum_tb
+R12
+!i10b 1
+!s100 i5n2=2MjXCQ:]_Wz>IXJ60
+R2
+ILKYDJ:[FBe6TE7JZfe_4[1
+R3
+R0
+R4
+8/home/abhiram/Projects/Main-Project/testbench/HMNOC_4cluster_wpsum_tb.v
+F/home/abhiram/Projects/Main-Project/testbench/HMNOC_4cluster_wpsum_tb.v
+!i122 20
+L0 3 626
+R5
+r1
+!s85 0
+31
+R13
+!s107 /home/abhiram/Projects/Main-Project/testbench/HMNOC_4cluster_wpsum_tb.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/abhiram/Projects/Main-Project/testbench|/home/abhiram/Projects/Main-Project/testbench/HMNOC_4cluster_wpsum_tb.v|
+!i113 1
+R7
+R14
+R9
+n@h@m@n@o@c_4cluster_wpsum_tb
+vMAC
+R12
+!i10b 1
+!s100 ;d8jO>G@TV=F0SN_VT_o@3
+R2
+I;i39g59PHR8JT>D1@UAG>3
+R3
+R0
+R4
+8/home/abhiram/Projects/Main-Project/rtl/MAC.v
+F/home/abhiram/Projects/Main-Project/rtl/MAC.v
+!i122 17
+L0 3 19
+R5
+r1
+!s85 0
+31
+R13
+!s107 /home/abhiram/Projects/Main-Project/rtl/MAC.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/abhiram/Projects/Main-Project/rtl|/home/abhiram/Projects/Main-Project/rtl/MAC.v|
+!i113 1
+R7
+R8
+R9
+n@m@a@c
+vmux2
+R12
+!i10b 1
+!s100 fIbK@gd7dOe<;W`lPJ=_g1
+R2
+I;XLK3TY`iDP6Vz>IWTb]02
+R3
+R0
+R4
+8/home/abhiram/Projects/Main-Project/rtl/mux2.v
+F/home/abhiram/Projects/Main-Project/rtl/mux2.v
+!i122 16
+L0 3 11
+R5
+r1
+!s85 0
+31
+R13
+!s107 /home/abhiram/Projects/Main-Project/rtl/mux2.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/abhiram/Projects/Main-Project/rtl|/home/abhiram/Projects/Main-Project/rtl/mux2.v|
+!i113 1
+R7
+R8
+R9
+vPE_cluster_new
+R12
+!i10b 1
+!s100 @KPBG2ziATNk`icDWW?H;1
+R2
+IIBiPkeL<ig>9SBd4BWz]h0
+R3
+R0
+R4
+8/home/abhiram/Projects/Main-Project/rtl/PE_cluster_new.v
+F/home/abhiram/Projects/Main-Project/rtl/PE_cluster_new.v
+!i122 15
+L0 3 149
+R5
+r1
+!s85 0
+31
+R6
+!s107 /home/abhiram/Projects/Main-Project/rtl/PE_cluster_new.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/abhiram/Projects/Main-Project/rtl|/home/abhiram/Projects/Main-Project/rtl/PE_cluster_new.v|
+!i113 1
+R7
+R8
+R9
+n@p@e_cluster_new
+vPE_new
+R1
+!i10b 1
+!s100 gbAl78lR]3^gCN7FOA?0g0
+R2
+IQ:I[[0]T]zb[4a4gTKz5<3
+R3
+R0
+R4
+8/home/abhiram/Projects/Main-Project/rtl/PE_new.v
+F/home/abhiram/Projects/Main-Project/rtl/PE_new.v
+!i122 14
+L0 3 259
+R5
+r1
+!s85 0
+31
+R6
+!s107 /home/abhiram/Projects/Main-Project/rtl/PE_new.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/abhiram/Projects/Main-Project/rtl|/home/abhiram/Projects/Main-Project/rtl/PE_new.v|
+!i113 1
+R7
+R8
+R9
+n@p@e_new
+vrouter_cluster_wpsum
+R1
+!i10b 1
+!s100 z8o@0U<6ecM?TB:HizoR>0
+R2
+I7EUEQ=gR;BiXL[A]?n8=I1
+R3
+R0
+R4
+8/home/abhiram/Projects/Main-Project/rtl/router_cluster_wpsum.v
+F/home/abhiram/Projects/Main-Project/rtl/router_cluster_wpsum.v
+!i122 13
+L0 4 291
+R5
+r1
+!s85 0
+31
+R6
+!s107 /home/abhiram/Projects/Main-Project/rtl/router_cluster_wpsum.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/abhiram/Projects/Main-Project/rtl|/home/abhiram/Projects/Main-Project/rtl/router_cluster_wpsum.v|
+!i113 1
+R7
+R8
+R9
+vrouter_iact
+R1
+!i10b 1
+!s100 WWUNPSP685@1iaf;[I2ED2
+R2
+IN?7EIA8IX1704WeXVb_JN1
+R3
+R0
+R4
+8/home/abhiram/Projects/Main-Project/rtl/router_iact.v
+F/home/abhiram/Projects/Main-Project/rtl/router_iact.v
+!i122 12
+Z15 L0 3 90
+R5
+r1
+!s85 0
+31
+R6
+!s107 /home/abhiram/Projects/Main-Project/rtl/router_iact.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/abhiram/Projects/Main-Project/rtl|/home/abhiram/Projects/Main-Project/rtl/router_iact.v|
+!i113 1
+R7
+R8
+R9
+vrouter_psum
+R1
+!i10b 1
+!s100 [N0U;JhKzmfKekC<P[f6P2
+R2
+IIIz]Hh]U?X9]IQJSTKBoB1
+R3
+R0
+R4
+8/home/abhiram/Projects/Main-Project/rtl/router_psum.v
+F/home/abhiram/Projects/Main-Project/rtl/router_psum.v
+!i122 11
+L0 3 103
+R5
+r1
+!s85 0
+31
+R6
+!s107 /home/abhiram/Projects/Main-Project/rtl/router_psum.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/abhiram/Projects/Main-Project/rtl|/home/abhiram/Projects/Main-Project/rtl/router_psum.v|
+!i113 1
+R7
+R8
+R9
+vrouter_weight
+R1
+!i10b 1
+!s100 z0DFTWBGA<;o2azPM930Q3
+R2
+I`SJBJbElYonTiQe;`^LF32
+R3
+R0
+R4
+8/home/abhiram/Projects/Main-Project/rtl/router_weight.v
+F/home/abhiram/Projects/Main-Project/rtl/router_weight.v
+!i122 10
+R15
+R5
+r1
+!s85 0
+31
+R6
+!s107 /home/abhiram/Projects/Main-Project/rtl/router_weight.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/abhiram/Projects/Main-Project/rtl|/home/abhiram/Projects/Main-Project/rtl/router_weight.v|
+!i113 1
+R7
+R8
+R9
+vrouter_west_iact
+R1
+!i10b 1
+!s100 5]2lNIdCY[Rz0Mca[fH:M2
+R2
+I4m8PLTff80ncBYPN<aUJi2
+R3
+R0
+R4
+8/home/abhiram/Projects/Main-Project/rtl/router_west_iact.v
+F/home/abhiram/Projects/Main-Project/rtl/router_west_iact.v
+!i122 9
+L0 3 327
+R5
+r1
+!s85 0
+31
+R6
+!s107 /home/abhiram/Projects/Main-Project/rtl/router_west_iact.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/abhiram/Projects/Main-Project/rtl|/home/abhiram/Projects/Main-Project/rtl/router_west_iact.v|
+!i113 1
+R7
+R8
+R9
+vrouter_west_psum
+R1
+!i10b 1
+!s100 [B1hW]U:bn;k2z8D]8l6I1
+R2
+IR9k1YT_0JMUzC[j`S:j0G0
+R3
+R0
+R4
+8/home/abhiram/Projects/Main-Project/rtl/router_west_psum.v
+F/home/abhiram/Projects/Main-Project/rtl/router_west_psum.v
+!i122 8
+L0 3 124
+R5
+r1
+!s85 0
+31
+R6
+!s107 /home/abhiram/Projects/Main-Project/rtl/router_west_psum.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/abhiram/Projects/Main-Project/rtl|/home/abhiram/Projects/Main-Project/rtl/router_west_psum.v|
+!i113 1
+R7
+R8
+R9
+vrouter_west_wght
+R1
+!i10b 1
+!s100 >_?fQQcZZRg5G:83dXDVU1
+R2
+Ib>0EN31nC`03YCmk9I>:e0
+R3
+R0
+R4
+8/home/abhiram/Projects/Main-Project/rtl/router_west_wght.v
+F/home/abhiram/Projects/Main-Project/rtl/router_west_wght.v
+!i122 7
+L0 3 332
+R5
+r1
+!s85 0
+31
+R6
+!s107 /home/abhiram/Projects/Main-Project/rtl/router_west_wght.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/abhiram/Projects/Main-Project/rtl|/home/abhiram/Projects/Main-Project/rtl/router_west_wght.v|
+!i113 1
+R7
+R8
+R9
+vSPad
+R1
+!i10b 1
+!s100 LW^1OFz@zH125h=PTVFn83
+R2
+I0SbKH_OWjE1?GVJ5z`2MM3
+R3
+R0
+R4
+8/home/abhiram/Projects/Main-Project/rtl/SPad.v
+F/home/abhiram/Projects/Main-Project/rtl/SPad.v
+!i122 6
+L0 3 67
+R5
+r1
+!s85 0
+31
+R6
+!s107 /home/abhiram/Projects/Main-Project/rtl/SPad.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/abhiram/Projects/Main-Project/rtl|/home/abhiram/Projects/Main-Project/rtl/SPad.v|
+!i113 1
+R7
+R8
+R9
+n@s@pad
