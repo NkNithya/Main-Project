@@ -1,5 +1,5 @@
 Flow report for Power_Gated_NoC_CNN_Accelerator
-Wed Nov  5 07:42:53 2025
+Thu Nov 13 21:23:35 2025
 Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 
 
@@ -41,7 +41,7 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Wed Nov  5 07:42:48 2025       ;
+; Flow Status                        ; Successful - Thu Nov 13 21:23:31 2025       ;
 ; Quartus Prime Version              ; 20.1.0 Build 711 06/05/2020 SJ Lite Edition ;
 ; Revision Name                      ; Power_Gated_NoC_CNN_Accelerator             ;
 ; Top-level Entity Name              ; HMNOC_4cluster_wpsum                        ;
@@ -65,36 +65,44 @@ https://fpgasoftware.intel.com/eula.
 +-------------------+---------------------------------+
 ; Option            ; Setting                         ;
 +-------------------+---------------------------------+
-; Start date & time ; 11/05/2025 07:31:20             ;
+; Start date & time ; 11/13/2025 21:11:36             ;
 ; Main task         ; Compilation                     ;
 ; Revision Name     ; Power_Gated_NoC_CNN_Accelerator ;
 +-------------------+---------------------------------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Flow Non-Default Global Settings                                                                                                                                          ;
-+-------------------------------------+----------------------------------------+---------------------------------+----------------------+-----------------------------------+
-; Assignment Name                     ; Value                                  ; Default Value                   ; Entity Name          ; Section Id                        ;
-+-------------------------------------+----------------------------------------+---------------------------------+----------------------+-----------------------------------+
-; COMPILER_SIGNATURE_ID               ; 22072698863269.176230808033307         ; --                              ; --                   ; --                                ;
-; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --                              ; --                   ; eda_board_design_timing           ;
-; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --                              ; --                   ; eda_board_design_boundary_scan    ;
-; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --                              ; --                   ; eda_board_design_signal_integrity ;
-; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --                              ; --                   ; eda_board_design_symbol           ;
-; EDA_OUTPUT_DATA_FORMAT              ; Systemverilog Hdl                      ; --                              ; --                   ; eda_simulation                    ;
-; EDA_SIMULATION_TOOL                 ; ModelSim-Altera (SystemVerilog)        ; <None>                          ; --                   ; --                                ;
-; EDA_TIME_SCALE                      ; 1 ps                                   ; --                              ; --                   ; eda_simulation                    ;
-; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --                              ; --                   ; --                                ;
-; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --                              ; --                   ; --                                ;
-; NOMINAL_CORE_SUPPLY_VOLTAGE         ; 1.2V                                   ; --                              ; --                   ; --                                ;
-; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --                              ; HMNOC_4cluster_wpsum ; Top                               ;
-; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family) ; --                              ; HMNOC_4cluster_wpsum ; Top                               ;
-; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family) ; --                              ; HMNOC_4cluster_wpsum ; Top                               ;
-; POWER_BOARD_THERMAL_MODEL           ; None (CONSERVATIVE)                    ; --                              ; --                   ; --                                ;
-; POWER_PRESET_COOLING_SOLUTION       ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW  ; --                              ; --                   ; --                                ;
-; PROJECT_OUTPUT_DIRECTORY            ; output_files                           ; --                              ; --                   ; --                                ;
-; TOP_LEVEL_ENTITY                    ; HMNOC_4cluster_wpsum                   ; Power_Gated_NoC_CNN_Accelerator ; --                   ; --                                ;
-+-------------------------------------+----------------------------------------+---------------------------------+----------------------+-----------------------------------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                                                                           ;
++--------------------------------------+----------------------------------------+---------------------------------+----------------------+-----------------------------------+
+; Assignment Name                      ; Value                                  ; Default Value                   ; Entity Name          ; Section Id                        ;
++--------------------------------------+----------------------------------------+---------------------------------+----------------------+-----------------------------------+
+; COMPILER_SIGNATURE_ID                ; 22072698863269.176304849618821         ; --                              ; --                   ; --                                ;
+; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --                              ; --                   ; HMNOC_4cluster_wpsum_mf_tb        ;
+; EDA_GENERATE_FUNCTIONAL_NETLIST      ; Off                                    ; --                              ; --                   ; eda_board_design_timing           ;
+; EDA_GENERATE_FUNCTIONAL_NETLIST      ; Off                                    ; --                              ; --                   ; eda_board_design_boundary_scan    ;
+; EDA_GENERATE_FUNCTIONAL_NETLIST      ; Off                                    ; --                              ; --                   ; eda_board_design_signal_integrity ;
+; EDA_GENERATE_FUNCTIONAL_NETLIST      ; Off                                    ; --                              ; --                   ; eda_board_design_symbol           ;
+; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; HMNOC_4cluster_wpsum_mf_tb             ; --                              ; --                   ; eda_simulation                    ;
+; EDA_OUTPUT_DATA_FORMAT               ; Systemverilog Hdl                      ; --                              ; --                   ; eda_simulation                    ;
+; EDA_SIMULATION_TOOL                  ; ModelSim-Altera (SystemVerilog)        ; <None>                          ; --                   ; --                                ;
+; EDA_TEST_BENCH_ENABLE_STATUS         ; TEST_BENCH_MODE                        ; --                              ; --                   ; eda_simulation                    ;
+; EDA_TEST_BENCH_FILE                  ; testbench/HMNOC_1cluster_wpsum_tb.v    ; --                              ; --                   ; HMNOC_4cluster_wpsum_mf_tb        ;
+; EDA_TEST_BENCH_FILE                  ; testbench/HMNOC_4cluster_wpsum_mf_tb.v ; --                              ; --                   ; HMNOC_4cluster_wpsum_mf_tb        ;
+; EDA_TEST_BENCH_FILE                  ; testbench/HMNOC_4cluster_wpsum_tb.v    ; --                              ; --                   ; HMNOC_4cluster_wpsum_mf_tb        ;
+; EDA_TEST_BENCH_MODULE_NAME           ; HMNOC_4cluster_wpsum_mf_tb             ; --                              ; --                   ; HMNOC_4cluster_wpsum_mf_tb        ;
+; EDA_TEST_BENCH_NAME                  ; HMNOC_4cluster_wpsum_mf_tb             ; --                              ; --                   ; eda_simulation                    ;
+; EDA_TIME_SCALE                       ; 1 ps                                   ; --                              ; --                   ; eda_simulation                    ;
+; MAX_CORE_JUNCTION_TEMP               ; 85                                     ; --                              ; --                   ; --                                ;
+; MIN_CORE_JUNCTION_TEMP               ; 0                                      ; --                              ; --                   ; --                                ;
+; NOMINAL_CORE_SUPPLY_VOLTAGE          ; 1.2V                                   ; --                              ; --                   ; --                                ;
+; PARTITION_COLOR                      ; -- (Not supported for targeted family) ; --                              ; HMNOC_4cluster_wpsum ; Top                               ;
+; PARTITION_FITTER_PRESERVATION_LEVEL  ; -- (Not supported for targeted family) ; --                              ; HMNOC_4cluster_wpsum ; Top                               ;
+; PARTITION_NETLIST_TYPE               ; -- (Not supported for targeted family) ; --                              ; HMNOC_4cluster_wpsum ; Top                               ;
+; POWER_BOARD_THERMAL_MODEL            ; None (CONSERVATIVE)                    ; --                              ; --                   ; --                                ;
+; POWER_PRESET_COOLING_SOLUTION        ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW  ; --                              ; --                   ; --                                ;
+; PROJECT_OUTPUT_DIRECTORY             ; output_files                           ; --                              ; --                   ; --                                ;
+; TOP_LEVEL_ENTITY                     ; HMNOC_4cluster_wpsum                   ; Power_Gated_NoC_CNN_Accelerator ; --                   ; --                                ;
++--------------------------------------+----------------------------------------+---------------------------------+----------------------+-----------------------------------+
 
 
 +--------------------------------------------------------------------------------------------------------------------------+
@@ -102,8 +110,8 @@ https://fpgasoftware.intel.com/eula.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:10:55     ; 1.0                     ; 1195 MB             ; 00:10:43                           ;
-; Total                ; 00:10:55     ; --                      ; --                  ; 00:10:43                           ;
+; Analysis & Synthesis ; 00:11:26     ; 1.0                     ; 1264 MB             ; 00:11:21                           ;
+; Total                ; 00:11:26     ; --                      ; --                  ; 00:11:21                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
