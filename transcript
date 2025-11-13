@@ -1,229 +1,35 @@
-# do Power_Gated_NoC_CNN_Accelerator_run_msim_rtl_verilog.do
-# if {[file exists rtl_work]} {
-# 	vdel -lib rtl_work -all
-# }
-# vlib rtl_work
-# vmap work rtl_work
-# Model Technology ModelSim - Intel FPGA Edition vmap 2020.1 Lib Mapping Utility 2020.02 Feb 28 2020
-# vmap work rtl_work 
-# Copying /home/abhiram/intelFPGA_lite/20.1/modelsim_ase/linuxaloem/../modelsim.ini to modelsim.ini
-# Modifying modelsim.ini
-# 
-# vlog -vlog01compat -work work +incdir+/home/abhiram/Projects/Main-Project/rtl {/home/abhiram/Projects/Main-Project/rtl/HMNOC_4cluster_wpsum.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 00:10:29 on Nov 14,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/abhiram/Projects/Main-Project/rtl" /home/abhiram/Projects/Main-Project/rtl/HMNOC_4cluster_wpsum.v 
-# -- Compiling module HMNOC_4cluster_wpsum
-# 
-# Top level modules:
-# 	HMNOC_4cluster_wpsum
-# End time: 00:10:29 on Nov 14,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+/home/abhiram/Projects/Main-Project/rtl {/home/abhiram/Projects/Main-Project/rtl/HMNOC_1cluster_wpsum.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 00:10:29 on Nov 14,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/abhiram/Projects/Main-Project/rtl" /home/abhiram/Projects/Main-Project/rtl/HMNOC_1cluster_wpsum.v 
-# -- Compiling module HMNOC_1cluster_wpsum
-# 
-# Top level modules:
-# 	HMNOC_1cluster_wpsum
-# End time: 00:10:29 on Nov 14,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+/home/abhiram/Projects/Main-Project/rtl {/home/abhiram/Projects/Main-Project/rtl/glb_weight.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 00:10:29 on Nov 14,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/abhiram/Projects/Main-Project/rtl" /home/abhiram/Projects/Main-Project/rtl/glb_weight.v 
-# -- Compiling module glb_weight
-# 
-# Top level modules:
-# 	glb_weight
-# End time: 00:10:29 on Nov 14,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+/home/abhiram/Projects/Main-Project/rtl {/home/abhiram/Projects/Main-Project/rtl/glb_psum.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 00:10:29 on Nov 14,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/abhiram/Projects/Main-Project/rtl" /home/abhiram/Projects/Main-Project/rtl/glb_psum.v 
-# -- Compiling module glb_psum
-# 
-# Top level modules:
-# 	glb_psum
-# End time: 00:10:29 on Nov 14,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+/home/abhiram/Projects/Main-Project/rtl {/home/abhiram/Projects/Main-Project/rtl/glb_iact.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 00:10:29 on Nov 14,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/abhiram/Projects/Main-Project/rtl" /home/abhiram/Projects/Main-Project/rtl/glb_iact.v 
-# -- Compiling module glb_iact
-# 
-# Top level modules:
-# 	glb_iact
-# End time: 00:10:29 on Nov 14,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+/home/abhiram/Projects/Main-Project/rtl {/home/abhiram/Projects/Main-Project/rtl/GLB_cluster_wpsum.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 00:10:29 on Nov 14,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/abhiram/Projects/Main-Project/rtl" /home/abhiram/Projects/Main-Project/rtl/GLB_cluster_wpsum.v 
-# -- Compiling module GLB_cluster_wpsum
-# 
-# Top level modules:
-# 	GLB_cluster_wpsum
-# End time: 00:10:29 on Nov 14,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+/home/abhiram/Projects/Main-Project/rtl {/home/abhiram/Projects/Main-Project/rtl/SPad.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 00:10:29 on Nov 14,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/abhiram/Projects/Main-Project/rtl" /home/abhiram/Projects/Main-Project/rtl/SPad.v 
-# -- Compiling module SPad
-# 
-# Top level modules:
-# 	SPad
-# End time: 00:10:29 on Nov 14,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+/home/abhiram/Projects/Main-Project/rtl {/home/abhiram/Projects/Main-Project/rtl/router_west_wght.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 00:10:29 on Nov 14,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/abhiram/Projects/Main-Project/rtl" /home/abhiram/Projects/Main-Project/rtl/router_west_wght.v 
-# -- Compiling module router_west_wght
-# 
-# Top level modules:
-# 	router_west_wght
-# End time: 00:10:29 on Nov 14,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+/home/abhiram/Projects/Main-Project/rtl {/home/abhiram/Projects/Main-Project/rtl/router_west_psum.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 00:10:29 on Nov 14,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/abhiram/Projects/Main-Project/rtl" /home/abhiram/Projects/Main-Project/rtl/router_west_psum.v 
-# -- Compiling module router_west_psum
-# 
-# Top level modules:
-# 	router_west_psum
-# End time: 00:10:29 on Nov 14,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+/home/abhiram/Projects/Main-Project/rtl {/home/abhiram/Projects/Main-Project/rtl/router_west_iact.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 00:10:29 on Nov 14,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/abhiram/Projects/Main-Project/rtl" /home/abhiram/Projects/Main-Project/rtl/router_west_iact.v 
-# -- Compiling module router_west_iact
-# 
-# Top level modules:
-# 	router_west_iact
-# End time: 00:10:29 on Nov 14,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+/home/abhiram/Projects/Main-Project/rtl {/home/abhiram/Projects/Main-Project/rtl/router_weight.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 00:10:29 on Nov 14,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/abhiram/Projects/Main-Project/rtl" /home/abhiram/Projects/Main-Project/rtl/router_weight.v 
-# -- Compiling module router_weight
-# 
-# Top level modules:
-# 	router_weight
-# End time: 00:10:29 on Nov 14,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+/home/abhiram/Projects/Main-Project/rtl {/home/abhiram/Projects/Main-Project/rtl/router_psum.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 00:10:29 on Nov 14,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/abhiram/Projects/Main-Project/rtl" /home/abhiram/Projects/Main-Project/rtl/router_psum.v 
-# -- Compiling module router_psum
-# 
-# Top level modules:
-# 	router_psum
-# End time: 00:10:29 on Nov 14,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+/home/abhiram/Projects/Main-Project/rtl {/home/abhiram/Projects/Main-Project/rtl/router_iact.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 00:10:29 on Nov 14,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/abhiram/Projects/Main-Project/rtl" /home/abhiram/Projects/Main-Project/rtl/router_iact.v 
-# -- Compiling module router_iact
-# 
-# Top level modules:
-# 	router_iact
-# End time: 00:10:29 on Nov 14,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+/home/abhiram/Projects/Main-Project/rtl {/home/abhiram/Projects/Main-Project/rtl/router_cluster_wpsum.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 00:10:29 on Nov 14,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/abhiram/Projects/Main-Project/rtl" /home/abhiram/Projects/Main-Project/rtl/router_cluster_wpsum.v 
-# -- Compiling module router_cluster_wpsum
-# 
-# Top level modules:
-# 	router_cluster_wpsum
-# End time: 00:10:30 on Nov 14,2025, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+/home/abhiram/Projects/Main-Project/rtl {/home/abhiram/Projects/Main-Project/rtl/PE_new.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 00:10:30 on Nov 14,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/abhiram/Projects/Main-Project/rtl" /home/abhiram/Projects/Main-Project/rtl/PE_new.v 
-# -- Compiling module PE_new
-# 
-# Top level modules:
-# 	PE_new
-# End time: 00:10:30 on Nov 14,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+/home/abhiram/Projects/Main-Project/rtl {/home/abhiram/Projects/Main-Project/rtl/PE_cluster_new.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 00:10:30 on Nov 14,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/abhiram/Projects/Main-Project/rtl" /home/abhiram/Projects/Main-Project/rtl/PE_cluster_new.v 
-# -- Compiling module PE_cluster_new
-# 
-# Top level modules:
-# 	PE_cluster_new
-# End time: 00:10:30 on Nov 14,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+/home/abhiram/Projects/Main-Project/rtl {/home/abhiram/Projects/Main-Project/rtl/mux2.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 00:10:30 on Nov 14,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/abhiram/Projects/Main-Project/rtl" /home/abhiram/Projects/Main-Project/rtl/mux2.v 
-# -- Compiling module mux2
-# 
-# Top level modules:
-# 	mux2
-# End time: 00:10:30 on Nov 14,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+/home/abhiram/Projects/Main-Project/rtl {/home/abhiram/Projects/Main-Project/rtl/MAC.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 00:10:30 on Nov 14,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/abhiram/Projects/Main-Project/rtl" /home/abhiram/Projects/Main-Project/rtl/MAC.v 
-# -- Compiling module MAC
-# 
-# Top level modules:
-# 	MAC
-# End time: 00:10:30 on Nov 14,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# 
-# vlog -vlog01compat -work work +incdir+/home/abhiram/Projects/Main-Project/testbench {/home/abhiram/Projects/Main-Project/testbench/HMNOC_1cluster_wpsum_tb.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 00:10:30 on Nov 14,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/abhiram/Projects/Main-Project/testbench" /home/abhiram/Projects/Main-Project/testbench/HMNOC_1cluster_wpsum_tb.v 
-# -- Compiling module HMNOC_1cluster_wpsum_tb
-# 
-# Top level modules:
-# 	HMNOC_1cluster_wpsum_tb
-# End time: 00:10:30 on Nov 14,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+/home/abhiram/Projects/Main-Project/testbench {/home/abhiram/Projects/Main-Project/testbench/HMNOC_4cluster_wpsum_mf_tb.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 00:10:30 on Nov 14,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/abhiram/Projects/Main-Project/testbench" /home/abhiram/Projects/Main-Project/testbench/HMNOC_4cluster_wpsum_mf_tb.v 
-# -- Compiling module HMNOC_4cluster_wpsum_mf_tb
-# 
-# Top level modules:
-# 	HMNOC_4cluster_wpsum_mf_tb
-# End time: 00:10:30 on Nov 14,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# vlog -vlog01compat -work work +incdir+/home/abhiram/Projects/Main-Project/testbench {/home/abhiram/Projects/Main-Project/testbench/HMNOC_4cluster_wpsum_tb.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 00:10:30 on Nov 14,2025
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/abhiram/Projects/Main-Project/testbench" /home/abhiram/Projects/Main-Project/testbench/HMNOC_4cluster_wpsum_tb.v 
-# -- Compiling module HMNOC_4cluster_wpsum_tb
-# 
-# Top level modules:
-# 	HMNOC_4cluster_wpsum_tb
-# End time: 00:10:30 on Nov 14,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# 
-# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneive_ver -L rtl_work -L work -voptargs="+acc"  HMNOC_4cluster_wpsum_mf_tb
-# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneive_ver -L rtl_work -L work -voptargs=""+acc"" HMNOC_4cluster_wpsum_mf_tb 
-# Start time: 00:10:30 on Nov 14,2025
+# Project file /home/abhiram/Projects/Test_NoC.mpf was not found.
+# Unable to open project.
+# Loading project NoC_ModelSim
+# Compile of GLB_cluster_wpsum.v was successful.
+# Compile of glb_iact.v was successful.
+# Compile of glb_psum.v was successful.
+# Compile of glb_weight.v was successful.
+# Compile of HMNOC_1cluster_wpsum.v was successful.
+# Compile of HMNOC_4cluster_wpsum.v was successful.
+# Compile of MAC.v was successful.
+# Compile of mux2.v was successful.
+# Compile of PE_cluster_new.v was successful.
+# Compile of PE_new.v was successful.
+# Compile of router_cluster_wpsum.v was successful.
+# Compile of router_iact.v was successful.
+# Compile of router_psum.v was successful.
+# Compile of router_weight.v was successful.
+# Compile of router_west_iact.v was successful.
+# Compile of router_west_psum.v was successful.
+# Compile of router_west_wght.v was successful.
+# Compile of SPad.v was successful.
+# Compile of uart_bram_interface.v was successful.
+# Compile of uart_rx.v was successful.
+# Compile of uart_tx.v was successful.
+# Compile of HMNOC_1cluster_wpsum_tb.v was successful.
+# Compile of HMNOC_4cluster_wpsum_mf_tb.v was successful.
+# Compile of HMNOC_4cluster_wpsum_tb.v was successful.
+# Compile of tb_uart_bram_interface.v was successful.
+# 25 compiles, 0 failed with no errors.
+vsim work.HMNOC_4cluster_wpsum_mf_tb
+# vsim work.HMNOC_4cluster_wpsum_mf_tb 
+# Start time: 00:33:46 on Nov 14,2025
 # Loading work.HMNOC_4cluster_wpsum_mf_tb
 # Loading work.HMNOC_4cluster_wpsum
 # Loading work.HMNOC_1cluster_wpsum
@@ -243,13 +49,8 @@
 # Loading work.SPad
 # Loading work.MAC
 # Loading work.mux2
-# 
-# add wave *
-# view structure
-# .main_pane.structure.interior.cs.body.struct
-# view signals
-# .main_pane.objects.interior.cs.body.tree
-# run -all
+run
+run -all
 # 
 # 
 # Loading Begins: Weights.....
@@ -484326,10 +484127,37 @@
 # 0000011011011110
 # 0000010101011100
 # 	Total #cycles taken:         210
-# ** Note: $stop    : /home/abhiram/Projects/Main-Project/testbench/HMNOC_4cluster_wpsum_mf_tb.v(649)
+# ** Note: $stop    : /home/abhiram/Projects/Noc_ModelSim/HMNOC_4cluster_wpsum_mf_tb.v(649)
 #    Time: 15389255 ns  Iteration: 0  Instance: /HMNOC_4cluster_wpsum_mf_tb
-# Break in Module HMNOC_4cluster_wpsum_mf_tb at /home/abhiram/Projects/Main-Project/testbench/HMNOC_4cluster_wpsum_mf_tb.v line 649
-# 
-# stdin: <EOF>
-# End time: 00:27:22 on Nov 14,2025, Elapsed time: 0:16:52
-# Errors: 0, Warnings: 0
+# Break in Module HMNOC_4cluster_wpsum_mf_tb at /home/abhiram/Projects/Noc_ModelSim/HMNOC_4cluster_wpsum_mf_tb.v line 649
+# Compile of GLB_cluster_wpsum.v was successful.
+# Compile of glb_iact.v was successful.
+# Compile of glb_psum.v was successful.
+# Compile of glb_weight.v was successful.
+# Compile of HMNOC_1cluster_wpsum.v was successful.
+# Compile of HMNOC_4cluster_wpsum.v was successful.
+# Compile of MAC.v was successful.
+# Compile of mux2.v was successful.
+# Compile of PE_cluster_new.v was successful.
+# Compile of PE_new.v was successful.
+# Compile of router_cluster_wpsum.v was successful.
+# Compile of router_iact.v was successful.
+# Compile of router_psum.v was successful.
+# Compile of router_weight.v was successful.
+# Compile of router_west_iact.v was successful.
+# Compile of router_west_psum.v was successful.
+# Compile of router_west_wght.v was successful.
+# Compile of SPad.v was successful.
+# Compile of uart_bram_interface.v was successful.
+# Compile of uart_rx.v was successful.
+# Compile of uart_tx.v was successful.
+# Compile of HMNOC_1cluster_wpsum_tb.v was successful.
+# Compile of HMNOC_4cluster_wpsum_mf_tb.v was successful.
+# Compile of HMNOC_4cluster_wpsum_tb.v was successful.
+# Compile of tb_uart_bram_interface.v was successful.
+# 25 compiles, 0 failed with no errors.
+run -all
+# Break key hit
+# Simulation stop requested.
+# End time: 00:47:47 on Nov 14,2025, Elapsed time: 0:14:01
+# Errors: 0, Warnings: 8

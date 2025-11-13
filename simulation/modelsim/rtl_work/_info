@@ -10,7 +10,7 @@ z2
 cModel Technology
 Z0 d/home/abhiram/Projects/Main-Project/simulation/modelsim
 vGLB_cluster_wpsum
-Z1 !s110 1763054475
+Z1 !s110 1763059229
 !i10b 1
 !s100 Ia`SO6l=zCCdZZERCCANz3
 Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
@@ -26,7 +26,7 @@ Z5 OV;L;2020.1;71
 r1
 !s85 0
 31
-Z6 !s108 1763054475.000000
+Z6 !s108 1763059229.000000
 !s107 /home/abhiram/Projects/Main-Project/rtl/GLB_cluster_wpsum.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/abhiram/Projects/Main-Project/rtl|/home/abhiram/Projects/Main-Project/rtl/GLB_cluster_wpsum.v|
 !i113 1
@@ -99,7 +99,7 @@ R5
 r1
 !s85 0
 31
-Z10 !s108 1763054474.000000
+R6
 !s107 /home/abhiram/Projects/Main-Project/rtl/glb_weight.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/abhiram/Projects/Main-Project/rtl|/home/abhiram/Projects/Main-Project/rtl/glb_weight.v|
 !i113 1
@@ -107,7 +107,7 @@ R7
 R8
 R9
 vHMNOC_1cluster_wpsum
-Z11 !s110 1763054474
+R1
 !i10b 1
 !s100 ?K[iGi]f_C^=knnz:Ok@F1
 R2
@@ -123,7 +123,7 @@ R5
 r1
 !s85 0
 31
-R10
+R6
 !s107 /home/abhiram/Projects/Main-Project/rtl/HMNOC_1cluster_wpsum.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/abhiram/Projects/Main-Project/rtl|/home/abhiram/Projects/Main-Project/rtl/HMNOC_1cluster_wpsum.v|
 !i113 1
@@ -132,7 +132,7 @@ R8
 R9
 n@h@m@n@o@c_1cluster_wpsum
 vHMNOC_1cluster_wpsum_tb
-Z12 !s110 1763054476
+Z10 !s110 1763059230
 !i10b 1
 !s100 3j3^mF<<XAi6ML?861n9j0
 R2
@@ -148,16 +148,16 @@ R5
 r1
 !s85 0
 31
-R6
+Z11 !s108 1763059230.000000
 !s107 /home/abhiram/Projects/Main-Project/testbench/HMNOC_1cluster_wpsum_tb.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/abhiram/Projects/Main-Project/testbench|/home/abhiram/Projects/Main-Project/testbench/HMNOC_1cluster_wpsum_tb.v|
 !i113 1
 R7
-Z13 !s92 -vlog01compat -work work +incdir+/home/abhiram/Projects/Main-Project/testbench
+Z12 !s92 -vlog01compat -work work +incdir+/home/abhiram/Projects/Main-Project/testbench
 R9
 n@h@m@n@o@c_1cluster_wpsum_tb
 vHMNOC_4cluster_wpsum
-R11
+R1
 !i10b 1
 !s100 ?UnNbX:PSJ]A=za<GIPW@1
 R2
@@ -173,7 +173,7 @@ R5
 r1
 !s85 0
 31
-R10
+R6
 !s107 /home/abhiram/Projects/Main-Project/rtl/HMNOC_4cluster_wpsum.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/abhiram/Projects/Main-Project/rtl|/home/abhiram/Projects/Main-Project/rtl/HMNOC_4cluster_wpsum.v|
 !i113 1
@@ -182,7 +182,7 @@ R8
 R9
 n@h@m@n@o@c_4cluster_wpsum
 vHMNOC_4cluster_wpsum_mf_tb
-R12
+R10
 !i10b 1
 !s100 [cKmVDZWGad@5;jM5[11O2
 R2
@@ -198,16 +198,16 @@ R5
 r1
 !s85 0
 31
-Z14 !s108 1763054476.000000
+R11
 !s107 /home/abhiram/Projects/Main-Project/testbench/HMNOC_4cluster_wpsum_mf_tb.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/abhiram/Projects/Main-Project/testbench|/home/abhiram/Projects/Main-Project/testbench/HMNOC_4cluster_wpsum_mf_tb.v|
 !i113 1
 R7
-R13
+R12
 R9
 n@h@m@n@o@c_4cluster_wpsum_mf_tb
 vHMNOC_4cluster_wpsum_tb
-R12
+R10
 !i10b 1
 !s100 i5n2=2MjXCQ:]_Wz>IXJ60
 R2
@@ -223,16 +223,16 @@ R5
 r1
 !s85 0
 31
-R14
+R11
 !s107 /home/abhiram/Projects/Main-Project/testbench/HMNOC_4cluster_wpsum_tb.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/abhiram/Projects/Main-Project/testbench|/home/abhiram/Projects/Main-Project/testbench/HMNOC_4cluster_wpsum_tb.v|
 !i113 1
 R7
-R13
+R12
 R9
 n@h@m@n@o@c_4cluster_wpsum_tb
 vMAC
-R1
+R10
 !i10b 1
 !s100 ;d8jO>G@TV=F0SN_VT_o@3
 R2
@@ -248,7 +248,7 @@ R5
 r1
 !s85 0
 31
-R6
+R11
 !s107 /home/abhiram/Projects/Main-Project/rtl/MAC.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/abhiram/Projects/Main-Project/rtl|/home/abhiram/Projects/Main-Project/rtl/MAC.v|
 !i113 1
@@ -257,7 +257,7 @@ R8
 R9
 n@m@a@c
 vmux2
-R1
+R10
 !i10b 1
 !s100 fIbK@gd7dOe<;W`lPJ=_g1
 R2
@@ -273,7 +273,7 @@ R5
 r1
 !s85 0
 31
-R6
+R11
 !s107 /home/abhiram/Projects/Main-Project/rtl/mux2.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/abhiram/Projects/Main-Project/rtl|/home/abhiram/Projects/Main-Project/rtl/mux2.v|
 !i113 1
@@ -281,7 +281,7 @@ R7
 R8
 R9
 vPE_cluster_new
-R1
+R10
 !i10b 1
 !s100 @KPBG2ziATNk`icDWW?H;1
 R2
@@ -297,7 +297,7 @@ R5
 r1
 !s85 0
 31
-R6
+R11
 !s107 /home/abhiram/Projects/Main-Project/rtl/PE_cluster_new.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/abhiram/Projects/Main-Project/rtl|/home/abhiram/Projects/Main-Project/rtl/PE_cluster_new.v|
 !i113 1
@@ -306,7 +306,7 @@ R8
 R9
 n@p@e_cluster_new
 vPE_new
-R1
+R10
 !i10b 1
 !s100 gbAl78lR]3^gCN7FOA?0g0
 R2
@@ -322,7 +322,7 @@ R5
 r1
 !s85 0
 31
-R6
+R11
 !s107 /home/abhiram/Projects/Main-Project/rtl/PE_new.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/abhiram/Projects/Main-Project/rtl|/home/abhiram/Projects/Main-Project/rtl/PE_new.v|
 !i113 1
@@ -366,7 +366,7 @@ R4
 8/home/abhiram/Projects/Main-Project/rtl/router_iact.v
 F/home/abhiram/Projects/Main-Project/rtl/router_iact.v
 !i122 12
-Z15 L0 3 90
+Z13 L0 3 90
 R5
 r1
 !s85 0
@@ -414,7 +414,7 @@ R4
 8/home/abhiram/Projects/Main-Project/rtl/router_weight.v
 F/home/abhiram/Projects/Main-Project/rtl/router_weight.v
 !i122 10
-R15
+R13
 R5
 r1
 !s85 0
