@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Power_Gated_NoC_CNN_Accelerator
-Wed Nov  5 07:42:53 2025
+Thu Nov 13 21:23:35 2025
 Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 
 
@@ -443,7 +443,7 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Wed Nov  5 07:42:46 2025       ;
+; Analysis & Synthesis Status        ; Successful - Thu Nov 13 21:23:29 2025       ;
 ; Quartus Prime Version              ; 20.1.0 Build 711 06/05/2020 SJ Lite Edition ;
 ; Revision Name                      ; Power_Gated_NoC_CNN_Accelerator             ;
 ; Top-level Entity Name              ; HMNOC_4cluster_wpsum                        ;
@@ -561,7 +561,7 @@ https://fpgasoftware.intel.com/eula.
 ;     Processor 1            ; 100.0%      ;
 ;     Processor 2            ;   0.6%      ;
 ;     Processor 3            ;   0.4%      ;
-;     Processor 4            ;   0.4%      ;
+;     Processor 4            ;   0.3%      ;
 +----------------------------+-------------+
 
 
@@ -13119,7 +13119,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:10:17     ;
+; Top            ; 00:10:56     ;
 +----------------+--------------+
 
 
@@ -13129,7 +13129,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
-    Info: Processing started: Wed Nov  5 07:31:19 2025
+    Info: Processing started: Thu Nov 13 21:11:35 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Power_Gated_NoC_CNN_Accelerator -c Power_Gated_NoC_CNN_Accelerator
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -14194,10 +14194,10 @@ Info (21057): Implemented 169583 device resources after synthesis - the final re
     Info (21064): Implemented 704 RAM segments
     Info (21062): Implemented 72 DSP elements
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 204 warnings
-    Info: Peak virtual memory: 1195 megabytes
-    Info: Processing ended: Wed Nov  5 07:42:53 2025
-    Info: Elapsed time: 00:11:34
-    Info: Total CPU time (on all processors): 00:11:19
+    Info: Peak virtual memory: 1264 megabytes
+    Info: Processing ended: Thu Nov 13 21:23:36 2025
+    Info: Elapsed time: 00:12:01
+    Info: Total CPU time (on all processors): 00:11:55
 
 
 +------------------------------------------+

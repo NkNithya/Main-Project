@@ -364,13 +364,13 @@ module HMNOC_4cluster_wpsum_mf_tb();
 		
 
 		#100;
-		$readmemb("F:\\study_files\\Master\\low power design\\eyeriss\\lena_pixel.txt",mem);
+		$readmemb("/home/abhiram/Projects/Main-Project/simulation/lena_pixel.txt",mem);
 		// $display("memory 0 is %b",mem[0]);
-		// $readmemb("..\\lena_pixel.txt",mem);
-		handle_west_0=$fopen("..\\lena_mf_west_0.txt");
-		handle_west_1=$fopen("..\\lena_mf_west_1.txt");
-		handle_east_0=$fopen("..\\lena_mf_east_0.txt");
-		handle_east_1=$fopen("..\\lena_mf_east_1.txt");
+		// $readmemb("./lena_pixel.txt",mem);
+		handle_west_0=$fopen("../lena_mf_west_0.txt");
+		handle_west_1=$fopen("../lena_mf_west_1.txt");
+		handle_east_0=$fopen("../lena_mf_east_0.txt");
+		handle_east_1=$fopen("../lena_mf_east_1.txt");
 		desc_west_0=handle_west_0|1;
 		desc_west_1=handle_west_1|1;
 		desc_east_0=handle_east_0|1;
