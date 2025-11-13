@@ -26,7 +26,7 @@ def prepare_image_from_camera(im_path):
     Verilog_flag = 0
     img = cv2.imread(im_path)
     if img is None:
-        raise FileNotFoundError(f"❌ Image not found at {im_path}")
+        raise FileNotFoundError(f"Image not found at {im_path}")
     print(f"Read image: {im_path}, Shape: {img.shape}")
 
     # Resize to 510x510
@@ -85,7 +85,7 @@ def main():
                 if i > 0 and j > 0 and i < image_binary.shape[0]-1 and j < image_binary.shape[1]-1:
                     pixel_mf[i, j] = np.mean(image[(i-1):(i+2), (j-1):(j+2)])
                 file.write('{:016b}\n'.format(pixel))
-    print(f"✅ Pixel data written to {verilog_path}")
+    print(f"Pixel data written to {verilog_path}")
 
     # Normalize mean-filter output to 0–255
     pixel_mf_norm = pixel_mf - pixel_mf.min()
@@ -95,7 +95,7 @@ def main():
 
     # Save as JPG
     cv2.imwrite(out_image_path, pixel_mf_norm)
-    print(f"✅ Mean-filtered image saved as {out_image_path}")
+    print(f" Mean-filtered image saved as {out_image_path}")
 
     # Display debug info
     print("pixel_mf range:", pixel_mf.min(), "→", pixel_mf.max())
