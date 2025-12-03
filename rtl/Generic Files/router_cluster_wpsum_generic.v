@@ -41,17 +41,19 @@ module router_generic_wpsum
     output reg [DATA_BITWIDTH*X_dim-1:0] south_data_o,
     output reg                           south_enable_o,
 
-    output     [DATA_BITWIDTH*X_dim-1:0] west_data_o,
+    // PSUM write (WEST output)
+    output     [DATA_BITWIDTH-1:0]       west_data_o,
     output                                west_enable_o,
 
     output reg [DATA_BITWIDTH*X_dim-1:0] east_data_o,
     output reg                           east_enable_o,
 
-    // PSUM Write Address (neutral name)
     output [ADDR_BITWIDTH_GLB-1:0] psum_write_addr
 );
 
+    // -----------------------------
     // Mode Encoding
+    // -----------------------------
     localparam ALL        = 0;
     localparam NORTH      = 1;
     localparam SOUTH      = 2;
@@ -65,65 +67,62 @@ module router_generic_wpsum
     localparam WESTEAST   = 10;
     localparam CLOSED     = 11;
 
-    //-------------------------------------------------------
-    // 1) DIRECTIONAL INPUT ARBITER (priority: N → S → W → E)
-    //-------------------------------------------------------
+    // -----------------------------
+    // 1) Input Arbiter
+    // -----------------------------
     reg [DATA_BITWIDTH*X_dim-1:0] data_out;
-    reg load_spad_ctrl_c;
+    reg source_valid_c;
 
     always @(*) begin
         if (north_enable_i) begin
             data_out = north_data_i;
-            load_spad_ctrl_c = 1;
+            source_valid_c = 1'b1;
         end
         else if (south_enable_i) begin
             data_out = south_data_i;
-            load_spad_ctrl_c = 1;
+            source_valid_c = 1'b1;
         end
         else if (west_enable_i) begin
             data_out = west_data_i;
-            load_spad_ctrl_c = 1;
+            source_valid_c = 1'b1;
         end
         else if (east_enable_i) begin
             data_out = east_data_i;
-            load_spad_ctrl_c = 1;
+            source_valid_c = 1'b1;
         end
         else begin
             data_out = {DATA_BITWIDTH*X_dim{1'b0}};
-            load_spad_ctrl_c = 0;
+            source_valid_c = 1'b0;
         end
     end
 
-    //-------------------------------------------------------
-    // 2) LOAD_SPAD CTRL PULSE GENERATOR (edge detect)
-    //-------------------------------------------------------
-    reg load_spad_ctrl_0, load_spad_ctrl_1;
-    wire load_spad_ctrl;
-    assign load_spad_ctrl = load_spad_ctrl_0 & (~load_spad_ctrl_1);
+    // -----------------------------
+    // 2) Synchronous level (VALID) → write_psum_ctrl
+    // -----------------------------
+    reg source_valid_d;
 
     always @(posedge clk) begin
-        if (reset) begin
-            load_spad_ctrl_0 <= 0;
-            load_spad_ctrl_1 <= 0;
-        end else begin
-            load_spad_ctrl_0 <= load_spad_ctrl_c;
-            load_spad_ctrl_1 <= load_spad_ctrl_0;
-        end
+        if (reset)
+            source_valid_d <= 1'b0;
+        else
+            source_valid_d <= source_valid_c;
     end
 
-    //-------------------------------------------------------
-    // 3) UNDERLYING PSUM LOADER (router_psum)
-    //-------------------------------------------------------
+    // -----------------------------
+    // 3) router_psum
+    // -----------------------------
+    wire [DATA_BITWIDTH-1:0]      w_data_psum;
+    wire                          write_en_psum;
+    wire [ADDR_BITWIDTH_GLB-1:0]  w_addr_psum;
+
     router_psum #(
         .DATA_BITWIDTH(DATA_BITWIDTH),
         .ADDR_BITWIDTH_GLB(ADDR_BITWIDTH_GLB),
         .ADDR_BITWIDTH_SPAD(ADDR_BITWIDTH_SPAD),
-
         .X_dim(X_dim),
         .Y_dim(Y_dim),
         .kernel_size(kernel_size),
         .act_size(act_size),
-
         .PSUM_READ_ADDR(PSUM_READ_ADDR),
         .PSUM_LOAD_ADDR(PSUM_LOAD_ADDR)
     )
@@ -131,24 +130,26 @@ module router_generic_wpsum
         .clk(clk),
         .reset(reset),
 
-        .r_data_glb_psum(data_out),      // selected input data
+        .r_data_spad_psum(data_out),
+        .w_addr_glb_psum(w_addr_psum),
+        .write_en_glb_psum(write_en_psum),
+        .w_data_glb_psum(w_data_psum),
 
-        .w_addr_glb_psum(psum_write_addr),
-
-        // loader outputs drive the WEST SPAD interface
-        .w_data_spad(west_data_o),
-        .load_en_spad(west_enable_o),
-
-        .load_spad_ctrl(load_spad_ctrl)
+        // FIXED CONTROL: sampled level instead of edge pulse
+        .write_psum_ctrl(source_valid_d)
     );
 
-    //-------------------------------------------------------
-    // 4) OUTPUT ROUTING BASED ON MODE
-    //-------------------------------------------------------
+    assign psum_write_addr = w_addr_psum;
+    assign west_data_o     = w_data_psum;
+    assign west_enable_o   = write_en_psum;
+
+    // -----------------------------
+    // 4) Output Routing Logic (unchanged)
+    // -----------------------------
     always @(*) begin
-        north_data_o   = {DATA_BITWIDTH*X_dim{1'b0}};
-        south_data_o   = {DATA_BITWIDTH*X_dim{1'b0}};
-        east_data_o    = {DATA_BITWIDTH*X_dim{1'b0}};
+        north_data_o   = 0;
+        south_data_o   = 0;
+        east_data_o    = 0;
 
         north_enable_o = 0;
         south_enable_o = 0;
@@ -166,68 +167,59 @@ module router_generic_wpsum
             end
 
             NORTH: begin
-                north_data_o = data_out;
+                north_data_o   = data_out;
                 north_enable_o = 1;
             end
 
             SOUTH: begin
-                south_data_o = data_out;
+                south_data_o   = data_out;
                 south_enable_o = 1;
             end
 
-            WEST: begin
-                // west is handled internally by router_psum
-            end
-
             EAST: begin
-                east_data_o = data_out;
+                east_data_o   = data_out;
                 east_enable_o = 1;
             end
 
+            // WEST handled only by router_psum (write_en_psum)
+            WEST: begin end
+
             EASTNORTH: begin
-                east_data_o  = data_out;
-                north_data_o = data_out;
+                east_data_o    = data_out;
+                north_data_o   = data_out;
                 east_enable_o  = 1;
                 north_enable_o = 1;
             end
 
             EASTSOUTH: begin
-                east_data_o  = data_out;
-                south_data_o = data_out;
+                east_data_o    = data_out;
+                south_data_o   = data_out;
                 east_enable_o  = 1;
                 south_enable_o = 1;
             end
 
             EASTWEST: begin
-                // west handled internally
-                east_data_o = data_out;
+                east_data_o   = data_out;
                 east_enable_o = 1;
             end
 
             WESTNORTH: begin
-                north_data_o = data_out;
+                north_data_o   = data_out;
                 north_enable_o = 1;
             end
 
             WESTSOUTH: begin
-                south_data_o = data_out;
+                south_data_o   = data_out;
                 south_enable_o = 1;
             end
 
             WESTEAST: begin
-                east_data_o  = data_out;
+                east_data_o   = data_out;
                 east_enable_o = 1;
             end
 
-            CLOSED: begin
-                // everything remains 0
-            end
-
-            default: begin
-                // defaults already applied
-            end
+            CLOSED: begin end
         endcase
     end
 
 endmodule
-

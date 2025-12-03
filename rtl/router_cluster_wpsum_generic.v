@@ -1,312 +1,225 @@
-`timescale 1ns/1ps
+`timescale 1ns / 1ps
 
+module router_generic_wpsum
+#(
+    parameter DATA_BITWIDTH      = 16,
+    parameter ADDR_BITWIDTH_GLB  = 10,
+    parameter ADDR_BITWIDTH_SPAD = 9,
 
-module router_cluster_wpsum
-	#(
-		// parameter DATA_BITWIDTH = 16,
-		parameter DATA_BITWIDTH = 16,
-		parameter ADDR_BITWIDTH = 10,
-		parameter ADDR_BITWIDTH_GLB = 10,
-		parameter ADDR_BITWIDTH_SPAD = 9,
-		parameter A_READ_ADDR = 100,
-		parameter A_LOAD_ADDR = 0,
-		parameter X_dim = 5,
-        parameter Y_dim = 3,
-        parameter kernel_size = 3,
-        parameter act_size = 5,
-		
-		parameter W_READ_ADDR = 0, 
-        
-        parameter W_LOAD_ADDR = 0,
-        parameter PSUM_READ_ADDR = 0,
-        parameter PSUM_LOAD_ADDR = 0
-        )
-	(
-	input clk,
-	input reset,
+    parameter X_dim       = 5,
+    parameter Y_dim       = 3,
+    parameter kernel_size = 3,
+    parameter act_size    = 5,
 
+    parameter PSUM_READ_ADDR = 0,
+    parameter PSUM_LOAD_ADDR = 0
+)
+(
+    input clk,
+    input reset,
 
+    // Mode control
+    input [3:0] router_mode,
 
-	///////////////      ROUTER IACT      ///////////////////////////////////
-	/*			Interface with West			*/
-	output [ADDR_BITWIDTH_GLB-1:0] west_addr_read_iact,
-	output west_req_read_iact,
-	input [3:0] router_mode_west_iact,
-	//Source ports
-	input [DATA_BITWIDTH-1:0] west_data_i_iact,
-	input west_enable_i_iact,
-	//Destination ports
-	output [DATA_BITWIDTH-1:0] west_data_o_iact,
-	output west_enable_o_iact,
+    // Directional Inputs
+    input  [DATA_BITWIDTH*X_dim-1:0] north_data_i,
+    input                            north_enable_i,
 
-	/*			Interface with East			*/
-	output [ADDR_BITWIDTH_GLB-1:0] east_addr_read_iact,
-	output east_req_read_iact,
-	input [3:0] router_mode_east_iact,
-	//Source ports
-	input [DATA_BITWIDTH-1:0] east_data_i_iact,
-	input east_enable_i_iact,
-	//Destination ports
-	output [DATA_BITWIDTH-1:0] east_data_o_iact,
-	output east_enable_o_iact,
+    input  [DATA_BITWIDTH*X_dim-1:0] south_data_i,
+    input                            south_enable_i,
 
-	/*			Interface with North			*/
-	output [ADDR_BITWIDTH_GLB-1:0] north_addr_read_iact,
-	output north_req_read_iact,
-	input [3:0] router_mode_north_iact,
-	//Source ports
-	input [DATA_BITWIDTH-1:0] north_data_i_iact,
-	input north_enable_i_iact,
-	//Destination ports
-	output [DATA_BITWIDTH-1:0] north_data_o_iact,
-	output north_enable_o_iact,
+    input  [DATA_BITWIDTH*X_dim-1:0] west_data_i,
+    input                            west_enable_i,
 
-	/*			Interface with South			*/
-	output [ADDR_BITWIDTH_GLB-1:0] south_addr_read_iact,
-	output south_req_read_iact,
-	input [3:0] router_mode_south_iact,
-	//Source ports
-	input [DATA_BITWIDTH-1:0] south_data_i_iact,
-	input south_enable_i_iact,
-	//Destination ports
-	output [DATA_BITWIDTH-1:0] south_data_o_iact,
-	output south_enable_o_iact,
+    input  [DATA_BITWIDTH*X_dim-1:0] east_data_i,
+    input                            east_enable_i,
 
+    // Directional Outputs
+    output reg [DATA_BITWIDTH*X_dim-1:0] north_data_o,
+    output reg                           north_enable_o,
 
-	///////////////      ROUTER WGHT      ///////////////////////////////////
-	/*			West Interface 			*/
-	output [ADDR_BITWIDTH_GLB-1:0] west_addr_read_wght,
-	output west_req_read_wght,
-	input [3:0] router_mode_west_wght,	
-	//Source ports
-	input [DATA_BITWIDTH-1:0] west_data_i_wght,
-	input west_enable_i_wght,
-	
-	//Destination ports
-	output [DATA_BITWIDTH-1:0] west_data_o_wght,
-	output west_enable_o_wght,
+    output reg [DATA_BITWIDTH*X_dim-1:0] south_data_o,
+    output reg                           south_enable_o,
 
-	/*			East Interface 			*/
-	output [ADDR_BITWIDTH_GLB-1:0] east_addr_read_wght,
-	output east_req_read_wght,
-	input [3:0] router_mode_east_wght,	
-	//Source ports
-	input [DATA_BITWIDTH-1:0] east_data_i_wght,
-	input east_enable_i_wght,
-	
-	//Destination ports
-	output [DATA_BITWIDTH-1:0] east_data_o_wght,
-	output east_enable_o_wght,
+    // PSUM write (WEST output)
+    output     [DATA_BITWIDTH-1:0]       west_data_o,
+    output                                west_enable_o,
 
-	/*			North Interface 			*/
-	output [ADDR_BITWIDTH_GLB-1:0] north_addr_read_wght,
-	output north_req_read_wght,
-	input [3:0] router_mode_north_wght,	
-	//Source ports
-	input [DATA_BITWIDTH-1:0] north_data_i_wght,
-	input north_enable_i_wght,
-	
-	//Destination ports
-	output [DATA_BITWIDTH-1:0] north_data_o_wght,
-	output north_enable_o_wght,
+    output reg [DATA_BITWIDTH*X_dim-1:0] east_data_o,
+    output reg                           east_enable_o,
 
-	/*			South Interface 			*/
-	output [ADDR_BITWIDTH_GLB-1:0] south_addr_read_wght,
-	output south_req_read_wght,
-	input [3:0] router_mode_south_wght,	
-	//Source ports
-	input [DATA_BITWIDTH-1:0] south_data_i_wght,
-	input south_enable_i_wght,
-	
-	//Destination ports
-	output [DATA_BITWIDTH-1:0] south_data_o_wght,
-	output south_enable_o_wght,
+    output [ADDR_BITWIDTH_GLB-1:0] psum_write_addr
+);
 
-// ========== ROUTER PSUM INTERFACE ==========
-    // Mode controls per direction
-    input  [3:0] router_mode_north_psum,
-    input  [3:0] router_mode_south_psum,
-    input  [3:0] router_mode_east_psum,
-    input  [3:0] router_mode_west_psum,
+    // -----------------------------
+    // Mode Encoding
+    // -----------------------------
+    localparam ALL        = 0;
+    localparam NORTH      = 1;
+    localparam SOUTH      = 2;
+    localparam WEST       = 3;
+    localparam EAST       = 4;
+    localparam EASTNORTH  = 5;
+    localparam EASTSOUTH  = 6;
+    localparam EASTWEST   = 7;
+    localparam WESTNORTH  = 8;
+    localparam WESTSOUTH  = 9;
+    localparam WESTEAST   = 10;
+    localparam CLOSED     = 11;
 
-    // North
-    input  [DATA_BITWIDTH*X_dim-1:0] north_data_i_psum,
-    input                            north_enable_i_psum,
-    output [DATA_BITWIDTH*X_dim-1:0] north_data_o_psum,
-    output                           north_enable_o_psum,
+    // -----------------------------
+    // 1) Input Arbiter
+    // -----------------------------
+    reg [DATA_BITWIDTH*X_dim-1:0] data_out;
+    reg source_valid_c;
 
-    // South
-    input  [DATA_BITWIDTH*X_dim-1:0] south_data_i_psum,
-    input                            south_enable_i_psum,
-    output [DATA_BITWIDTH*X_dim-1:0] south_data_o_psum,
-    output                           south_enable_o_psum,
+    always @(*) begin
+        if (north_enable_i) begin
+            data_out = north_data_i;
+            source_valid_c = 1'b1;
+        end
+        else if (south_enable_i) begin
+            data_out = south_data_i;
+            source_valid_c = 1'b1;
+        end
+        else if (west_enable_i) begin
+            data_out = west_data_i;
+            source_valid_c = 1'b1;
+        end
+        else if (east_enable_i) begin
+            data_out = east_data_i;
+            source_valid_c = 1'b1;
+        end
+        else begin
+            data_out = {DATA_BITWIDTH*X_dim{1'b0}};
+            source_valid_c = 1'b0;
+        end
+    end
 
-    // East
-    input  [DATA_BITWIDTH*X_dim-1:0] east_data_i_psum,
-    input                            east_enable_i_psum,
-    output [DATA_BITWIDTH*X_dim-1:0] east_data_o_psum,
-    output                           east_enable_o_psum,
+    // -----------------------------
+    // 2) Synchronous level (VALID) → write_psum_ctrl
+    // -----------------------------
+    reg source_valid_d;
 
-    // West
-    input  [DATA_BITWIDTH*X_dim-1:0] west_data_i_psum,
-    input                            west_enable_i_psum,
-    output [DATA_BITWIDTH*X_dim-1:0] west_data_o_psum,
-    output                           west_enable_o_psum,
+    always @(posedge clk) begin
+        if (reset)
+            source_valid_d <= 1'b0;
+        else
+            source_valid_d <= source_valid_c;
+    end
 
-    // Optional: address output for psum writes
-    output [ADDR_BITWIDTH-1:0] psum_write_addr
+    // -----------------------------
+    // 3) router_psum
+    // -----------------------------
+    wire [DATA_BITWIDTH-1:0]      w_data_psum;
+    wire                          write_en_psum;
+    wire [ADDR_BITWIDTH_GLB-1:0]  w_addr_psum;
 
+    router_psum #(
+        .DATA_BITWIDTH(DATA_BITWIDTH),
+        .ADDR_BITWIDTH_GLB(ADDR_BITWIDTH_GLB),
+        .ADDR_BITWIDTH_SPAD(ADDR_BITWIDTH_SPAD),
+        .X_dim(X_dim),
+        .Y_dim(Y_dim),
+        .kernel_size(kernel_size),
+        .act_size(act_size),
+        .PSUM_READ_ADDR(PSUM_READ_ADDR),
+        .PSUM_LOAD_ADDR(PSUM_LOAD_ADDR)
+    )
+    router_psum_0 (
+        .clk(clk),
+        .reset(reset),
 
-		);
-	router_west_iact
-		#(
-			.DATA_BITWIDTH(DATA_BITWIDTH),
-			.ADDR_BITWIDTH_GLB(ADDR_BITWIDTH_GLB),
-			.ADDR_BITWIDTH_SPAD(ADDR_BITWIDTH_SPAD),
-			
-			.X_dim(X_dim),
-		    .Y_dim(Y_dim),
-		    .kernel_size(kernel_size),
-		    .act_size(act_size),
-			
-			.A_READ_ADDR(A_READ_ADDR), 
-		    .A_LOAD_ADDR(A_LOAD_ADDR)
-		)
-	router_west_0_iact
-		(
-			.clk(clk),
-			.reset(reset),
-			.west_req_read(west_0_req_read_iact),
-			.west_addr_read(west_0_addr_read_iact),
-			.router_mode(router_mode_west_0_iact),
-			// .load_ctrl_state(load_ctrl_state_west_0),
-			
-			//Interface with North
-			//Source ports
-			.north_data_i(north_data_i_iact),
-			.north_enable_i(north_enable_i_iact),
-			
-			//Destination ports
-			.north_data_o(north_data_o_iact),
-			.north_enable_o(north_enable_o_iact),
-			
-			//Interface with South
-			//Source ports
-			.south_data_i(south_data_i_iact),
-			.south_enable_i(south_enable_i_iact),
-			
-			//Destination ports
-			.south_data_o(south_data_o_iact),
-			.south_enable_o(south_enable_o_iact),
-			
-			
-			//Interface with West
-			//Source ports
-			.west_data_i(west_data_i_west_0_iact),
-			.west_enable_i(west_enable_i_west_0_iact),
-			
-			//Destination ports
-			.west_data_o(west_data_o_west_0_iact),
-			.west_enable_o(west_enable_o_west_0_iact),
-			
-			
-			//Interface with East
-			//Source ports
-			.east_data_i(east_data_i_iact),
-			.east_enable_i(east_enable_i_iact),
-	        
-			//Destination ports
-	        .east_data_o(east_data_o_iact),
-            .east_enable_o(east_enable_o_iact)
-		);
-	router_west_wght 
-		#(
-			.DATA_BITWIDTH(DATA_BITWIDTH),
-			.ADDR_BITWIDTH_GLB(ADDR_BITWIDTH_GLB),
-			.ADDR_BITWIDTH_SPAD(ADDR_BITWIDTH_SPAD),
-			
-			.X_dim(X_dim),
-		    .Y_dim(Y_dim),
-		    .kernel_size(kernel_size),
-		    .act_size(act_size),
-			
-			.W_READ_ADDR(W_READ_ADDR), 
-		    .W_LOAD_ADDR(W_LOAD_ADDR)
-		)
-	router_west_0_wght(
-		.clk(clk),
-		.reset(reset),
-		.west_req_read(west_0_req_read_wght),
-		.west_addr_read(west_0_addr_read_wght),
-		.router_mode(router_mode_west_0_wght),
-		// .load_ctrl_state(load_ctrl_state_west_0),
-		
-		//Interface with North
-		//Source ports
-		.north_data_i(north_data_i_wght),
-		.north_enable_i(north_enable_i_wght),
-		
-		//Destination ports
-		.north_data_o(north_data_o_wght),
-		.north_enable_o(north_enable_o_wght),
-		
-		//Interface with South
-		//Source ports
-		.south_data_i(south_data_i_wght),
-		.south_enable_i(south_enable_i_wght),
-		
-		//Destination ports
-		.south_data_o(south_data_o_wght),
-		.south_enable_o(south_enable_o_wght),
-		
-		
-		//Interface with West
-		//Source ports
-		.west_data_i(west_data_i_west_0_wght),
-		.west_enable_i(west_enable_i_west_0_wght),
-		
-		//Destination ports
-		.west_data_o(west_data_o_west_0_wght),
-		.west_enable_o(west_enable_o_west_0_wght),
-		
-		
-		//Interface with East
-		//Source ports
-		.east_data_i(east_data_i_wght),
-		.east_enable_i(east_enable_i_wght),
-        
-		//Destination ports
-        .east_data_o(east_data_o_wght),
-        .east_enable_o(east_enable_o_wght)
-		);
-	router_west_psum
-	#(
-		.DATA_BITWIDTH(DATA_BITWIDTH),
-		.ADDR_BITWIDTH_GLB(ADDR_BITWIDTH_GLB),
-		.ADDR_BITWIDTH_SPAD(ADDR_BITWIDTH_SPAD),
-		.PSUM_READ_ADDR(PSUM_READ_ADDR),
-		.PSUM_LOAD_ADDR(PSUM_LOAD_ADDR),
-		.X_dim(X_dim),
-	    .Y_dim(Y_dim),
-	    .kernel_size(kernel_size),
-	    .act_size(act_size)
-		)
-	router_west_0_psum(
-		.clk(clk),
-		.reset(reset),
-		.router_mode(router_mode_west_0_psum),
-		.north_data_i(north_data_i_psum),
-		.north_enable_i(north_enable_i_psum),
-		.south_data_o(south_data_o_psum),
-		.south_enable_o(south_enable_o_psum),
-		.west_data_i(west_data_i_west_0_psum),
-		.west_enable_i(west_enable_i_west_0_psum),
-		.west_data_o(west_data_o_west_0_psum),
-		.west_enable_o(west_enable_o_west_0_psum),
-		.east_data_i(east_data_i_west_0_psum),
-		.east_enable_i(east_enable_i_west_0_psum),
-		.east_data_o(east_data_o_west_0_psum),
-		// .east_enable_o(east_enable_o_west_0_psum),
-		.w_addr_glb_psum(west_addr_o_west_0_psum)
-		);
-	endmodule
+        .r_data_spad_psum(data_out),
+        .w_addr_glb_psum(w_addr_psum),
+        .write_en_glb_psum(write_en_psum),
+        .w_data_glb_psum(w_data_psum),
+
+        // FIXED CONTROL: sampled level instead of edge pulse
+        .write_psum_ctrl(source_valid_d)
+    );
+
+    assign psum_write_addr = w_addr_psum;
+    assign west_data_o     = w_data_psum;
+    assign west_enable_o   = write_en_psum;
+
+    // -----------------------------
+    // 4) Output Routing Logic (unchanged)
+    // -----------------------------
+    always @(*) begin
+        north_data_o   = 0;
+        south_data_o   = 0;
+        east_data_o    = 0;
+
+        north_enable_o = 0;
+        south_enable_o = 0;
+        east_enable_o  = 0;
+
+        case (router_mode)
+            ALL: begin
+                north_data_o = data_out;
+                south_data_o = data_out;
+                east_data_o  = data_out;
+
+                north_enable_o = 1;
+                south_enable_o = 1;
+                east_enable_o  = 1;
+            end
+
+            NORTH: begin
+                north_data_o   = data_out;
+                north_enable_o = 1;
+            end
+
+            SOUTH: begin
+                south_data_o   = data_out;
+                south_enable_o = 1;
+            end
+
+            EAST: begin
+                east_data_o   = data_out;
+                east_enable_o = 1;
+            end
+
+            // WEST handled only by router_psum (write_en_psum)
+            WEST: begin end
+
+            EASTNORTH: begin
+                east_data_o    = data_out;
+                north_data_o   = data_out;
+                east_enable_o  = 1;
+                north_enable_o = 1;
+            end
+
+            EASTSOUTH: begin
+                east_data_o    = data_out;
+                south_data_o   = data_out;
+                east_enable_o  = 1;
+                south_enable_o = 1;
+            end
+
+            EASTWEST: begin
+                east_data_o   = data_out;
+                east_enable_o = 1;
+            end
+
+            WESTNORTH: begin
+                north_data_o   = data_out;
+                north_enable_o = 1;
+            end
+
+            WESTSOUTH: begin
+                south_data_o   = data_out;
+                south_enable_o = 1;
+            end
+
+            WESTEAST: begin
+                east_data_o   = data_out;
+                east_enable_o = 1;
+            end
+
+            CLOSED: begin end
+        endcase
+    end
+
+endmodule

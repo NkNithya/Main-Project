@@ -41,14 +41,15 @@ module router_generic_psum
     output reg [DATA_BITWIDTH*X_dim-1:0] south_data_o,
     output reg                           south_enable_o,
 
-    output     [DATA_BITWIDTH*X_dim-1:0] west_data_o,
-    output                              west_enable_o,
+    // **ADJUSTED**: west is a _narrow_ DATA_BITWIDTH bus because router_psum writes one element at a time
+    output [DATA_BITWIDTH-1:0] west_data_o,
+    output                      west_enable_o,
 
     output reg [DATA_BITWIDTH*X_dim-1:0] east_data_o,
     output reg                           east_enable_o,
 
-    // Optional: address output for psum writes (neutral name)
-    output [ADDR_BITWIDTH-1:0] psum_write_addr
+    // psum write address uses the GLB width parameter (matches router_psum)
+    output [ADDR_BITWIDTH_GLB-1:0] psum_write_addr
 );
 
     // Mode encoding (same as other routers)
@@ -107,9 +108,21 @@ module router_generic_psum
         end
     end
 
-    // 3) Instantiate the PSUM loader (router_psum)
-    //    We assume router_psum follows the pattern of accepting a wide data input,
-    //    generating a psum write address, and driving a local "west" write interface.
+    // ------------------------------------------------------------
+    // 3) Connect to external router_psum (keep external dependency)
+    //
+    // According to the router_psum.v you provided, its port list is:
+    // ( clk, reset,
+    //   input [DATA_BITWIDTH*X_dim-1:0] r_data_spad_psum,
+    //   output reg [ADDR_BITWIDTH_GLB-1:0] w_addr_glb_psum,
+    //   output reg write_en_glb_psum,
+    //   output reg [DATA_BITWIDTH-1:0] w_data_glb_psum,
+    //   input write_psum_ctrl )
+    // ------------------------------------------------------------
+    wire [DATA_BITWIDTH-1:0] w_data_glb_psum_from_psum;
+    wire write_en_glb_psum_from_psum;
+    wire [ADDR_BITWIDTH_GLB-1:0] w_addr_glb_psum_from_psum;
+
     router_psum #(
         .DATA_BITWIDTH(DATA_BITWIDTH),
         .ADDR_BITWIDTH_GLB(ADDR_BITWIDTH_GLB),
@@ -122,31 +135,33 @@ module router_generic_psum
 
         .PSUM_READ_ADDR(PSUM_READ_ADDR),
         .PSUM_LOAD_ADDR(PSUM_LOAD_ADDR)
-    )
-    router_psum_0 (
+    ) router_psum_0 (
         .clk(clk),
         .reset(reset),
 
-        // data from selected direction fed to PSUM loader
-        .r_data_glb_psum(data_out),
+        // feed the selected wide data into the psum module (names match router_psum.v)
+        .r_data_spad_psum(data_out),
 
-        // psum loader outputs a write address (neutral)
-        .w_addr_glb_psum(psum_write_addr),
+        // outputs from router_psum
+        .w_addr_glb_psum(w_addr_glb_psum_from_psum),
+        .write_en_glb_psum(write_en_glb_psum_from_psum),
+        .w_data_glb_psum(w_data_glb_psum_from_psum),
 
-        // loader drives local west-facing psum write interface (kept as west_* for compatibility)
-        .w_data_spad(west_data_o),
-        .load_en_spad(west_enable_o),
-
-        // pulse to trigger loader activity
-        .load_spad_ctrl(load_spad_ctrl)
+        // trigger from this module
+        .write_psum_ctrl(load_spad_ctrl)
     );
+
+    // expose router_psum outputs as this module's ports (names/widths now match router_psum.v)
+    assign psum_write_addr = w_addr_glb_psum_from_psum;
+    assign west_data_o     = w_data_glb_psum_from_psum;
+    assign west_enable_o   = write_en_glb_psum_from_psum;
 
     // 4) Output routing logic: decide which directions receive the selected wide data
     always @(*) begin
         // default outputs
-        north_data_o  = {DATA_BITWIDTH*X_dim{1'b0}};
-        south_data_o  = {DATA_BITWIDTH*X_dim{1'b0}};
-        east_data_o   = {DATA_BITWIDTH*X_dim{1'b0}};
+        north_data_o   = {DATA_BITWIDTH*X_dim{1'b0}};
+        south_data_o   = {DATA_BITWIDTH*X_dim{1'b0}};
+        east_data_o    = {DATA_BITWIDTH*X_dim{1'b0}};
         north_enable_o = 0;
         south_enable_o = 0;
         east_enable_o  = 0;
@@ -226,4 +241,3 @@ module router_generic_psum
     end
 
 endmodule
-

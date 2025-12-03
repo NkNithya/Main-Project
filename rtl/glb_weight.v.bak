@@ -1,4 +1,4 @@
-//s`timescale 1ns / 1ps
+`timescale 1ns / 1ps
 
 
 module glb_weight #( parameter DATA_BITWIDTH = 16,
