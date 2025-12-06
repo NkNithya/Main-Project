@@ -1,38 +1,39 @@
 `timescale 1ns / 1ps
 
 module router_psum #( parameter DATA_BITWIDTH = 16,
-						parameter ADDR_BITWIDTH_GLB = 10,
-						parameter ADDR_BITWIDTH_SPAD = 9,
+		      parameter ADDR_BITWIDTH_GLB = 10,
+		      parameter ADDR_BITWIDTH_SPAD = 9,
 						
-						parameter X_dim = 5,
-                        parameter Y_dim = 3,
-                        parameter kernel_size = 3,
-                        parameter act_size = 5,
+		      parameter X_dim = 5,
+                      parameter Y_dim = 3,
+                      parameter kernel_size = 3,
+                      parameter act_size = 5,
 						
-//						parameter A_READ_ADDR =100, 
+//		      parameter A_READ_ADDR =100, 
                         
-//                        parameter A_LOAD_ADDR = 0,
+//                    parameter A_LOAD_ADDR = 0,
 						
-						parameter PSUM_READ_ADDR = 0,
-						parameter PSUM_LOAD_ADDR = 0
-					)
+		      parameter PSUM_READ_ADDR = 0,
+		      parameter PSUM_LOAD_ADDR = 0
+		     )
 					
-					(	input clk,
-						input reset,
+		     (	
+		      input clk,
+		      input reset,
 						
-						//for writing and reading glb
-						input [DATA_BITWIDTH*X_dim-1 : 0] r_data_spad_psum,
-						output reg [ADDR_BITWIDTH_GLB-1 : 0] w_addr_glb_psum,
-						output reg write_en_glb_psum,
+		      //for writing and reading glb
+		      input [DATA_BITWIDTH*X_dim-1 : 0] r_data_spad_psum,
+		      output reg [ADDR_BITWIDTH_GLB-1 : 0] w_addr_glb_psum,
+		      output reg write_en_glb_psum,
 						
-						//for writing to spad
-						output reg [DATA_BITWIDTH-1 : 0] w_data_glb_psum,
-//						output reg load_en_spad,
+		      //for writing to spad
+		      output reg [DATA_BITWIDTH-1 : 0] w_data_glb_psum,
+//		      output reg load_en_spad,
 						
-						//Input from PE cluster to write psums to glb
-						input write_psum_ctrl
+		      //Input from PE cluster to write psums to glb
+		      input write_psum_ctrl
 			
-					);
+		     );
 				
 					
 		// enum reg [2:0] {IDLE=3'b000, WRITE_GLB=3'b001, READ_PSUM=3'b010} state;

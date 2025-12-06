@@ -12,13 +12,17 @@ module router_generic_psum
     parameter act_size    = 5,
 
     parameter PSUM_READ_ADDR = 0,
-    parameter PSUM_LOAD_ADDR = 0
+    parameter PSUM_LOAD_ADDR = 0,
+
+    // Select compute/PSUM direction:
+    // 0 = NORTH, 1 = SOUTH, 2 = WEST, 3 = EAST
+    parameter integer COMPUTE_DIR = 2
 )
 (
-    input clk,
-    input reset,
+    input  clk,
+    input  reset,
 
-    // Mode controls (per-instance)
+    // Mode control
     input  [3:0] router_mode,
 
     // Directional inputs (wide vectors: DATA_BITWIDTH * X_dim)
@@ -34,25 +38,29 @@ module router_generic_psum
     input  [DATA_BITWIDTH*X_dim-1:0] east_data_i,
     input                            east_enable_i,
 
-    // Directional outputs (wide vectors)
+    // Directional wide outputs (for routing / broadcast)
     output reg [DATA_BITWIDTH*X_dim-1:0] north_data_o,
     output reg                           north_enable_o,
 
     output reg [DATA_BITWIDTH*X_dim-1:0] south_data_o,
     output reg                           south_enable_o,
 
-    // **ADJUSTED**: west is a _narrow_ DATA_BITWIDTH bus because router_psum writes one element at a time
-    output [DATA_BITWIDTH-1:0] west_data_o,
-    output                      west_enable_o,
-
     output reg [DATA_BITWIDTH*X_dim-1:0] east_data_o,
     output reg                           east_enable_o,
 
-    // psum write address uses the GLB width parameter (matches router_psum)
+    // NOTE: We keep a wide west output for compatibility with routing fanout.
+    // PSUM write data is narrow (DATA_BITWIDTH) and provided separately as psum_data_o.
+    output reg [DATA_BITWIDTH*X_dim-1:0] west_data_o_wide,
+    output reg                           west_enable_o_wide,
+
+    // --- PSUM outputs (narrow) ---
+    // These are the actual outputs from the PSUM FSM (one element at a time).
+    output [DATA_BITWIDTH-1:0] psum_data_o,
+    output                     psum_enable_o,
     output [ADDR_BITWIDTH_GLB-1:0] psum_write_addr
 );
 
-    // Mode encoding (same as other routers)
+    // Mode encoding (match other routers if needed)
     localparam ALL        = 0;
     localparam NORTH      = 1;
     localparam SOUTH      = 2;
@@ -66,42 +74,44 @@ module router_generic_psum
     localparam WESTEAST   = 10;
     localparam CLOSED     = 11;
 
-    // 1) Select active wide input (priority: north, south, west, east)
+    // ------------------------------------------------------------
+    // 1) Select active wide input for routing fanout (priority: north, south, west, east)
+    //    BUT DO NOT FEED the PSUM FSM with this generic selected value.
+    //    The PSUM FSM gets the selected direction explicitly below.
+    // ------------------------------------------------------------
     reg [DATA_BITWIDTH*X_dim-1:0] data_out;
-    reg load_spad_ctrl_c;
+    reg load_spad_ctrl_c; // used only for indicating presence of an active input for pulse gen (not for PSUM trigger)
 
     always @(*) begin
         if (north_enable_i) begin
             data_out = north_data_i;
             load_spad_ctrl_c = 1;
-        end
-        else if (south_enable_i) begin
+        end else if (south_enable_i) begin
             data_out = south_data_i;
             load_spad_ctrl_c = 1;
-        end
-        else if (west_enable_i) begin
+        end else if (west_enable_i) begin
             data_out = west_data_i;
             load_spad_ctrl_c = 1;
-        end
-        else if (east_enable_i) begin
+        end else if (east_enable_i) begin
             data_out = east_data_i;
             load_spad_ctrl_c = 1;
-        end
-        else begin
+        end else begin
             data_out = {DATA_BITWIDTH*X_dim{1'b0}};
             load_spad_ctrl_c = 0;
         end
     end
 
-    // 2) Pulse generator for load_spad_ctrl (edge detect)
+    // ------------------------------------------------------------
+    // 2) One-shot pulse generator for general load_spad_ctrl (kept for compatibility)
+    // ------------------------------------------------------------
     reg load_spad_ctrl_0, load_spad_ctrl_1;
     wire load_spad_ctrl;
     assign load_spad_ctrl = load_spad_ctrl_0 & (~load_spad_ctrl_1);
 
     always @(posedge clk) begin
         if (reset) begin
-            load_spad_ctrl_0 <= 0;
-            load_spad_ctrl_1 <= 0;
+            load_spad_ctrl_0 <= 1'b0;
+            load_spad_ctrl_1 <= 1'b0;
         end else begin
             load_spad_ctrl_0 <= load_spad_ctrl_c;
             load_spad_ctrl_1 <= load_spad_ctrl_0;
@@ -109,135 +119,138 @@ module router_generic_psum
     end
 
     // ------------------------------------------------------------
-    // 3) Connect to external router_psum (keep external dependency)
+    // 3) Select PSUM source and trigger based on COMPUTE_DIR
+    //    Only the chosen direction's wide data and enable are passed to router_psum.
+    // ------------------------------------------------------------
+    wire [DATA_BITWIDTH*X_dim-1:0] psum_source_wide;
+    wire                          psum_trigger; // single-cycle enable to router_psum
+    // default
+    assign psum_source_wide = (COMPUTE_DIR == 0) ? north_data_i :
+                              (COMPUTE_DIR == 1) ? south_data_i :
+                              (COMPUTE_DIR == 2) ? west_data_i  :
+                                                   east_data_i;
+    assign psum_trigger     = (COMPUTE_DIR == 0) ? north_enable_i :
+                              (COMPUTE_DIR == 1) ? south_enable_i :
+                              (COMPUTE_DIR == 2) ? west_enable_i  :
+                                                   east_enable_i;
+
+    // ------------------------------------------------------------
+    // 4) Instantiate router_psum (your existing module)
     //
-    // According to the router_psum.v you provided, its port list is:
-    // ( clk, reset,
-    //   input [DATA_BITWIDTH*X_dim-1:0] r_data_spad_psum,
-    //   output reg [ADDR_BITWIDTH_GLB-1:0] w_addr_glb_psum,
-    //   output reg write_en_glb_psum,
-    //   output reg [DATA_BITWIDTH-1:0] w_data_glb_psum,
-    //   input write_psum_ctrl )
+    //    router_psum expects: r_data_spad_psum (wide), and outputs
+    //    w_addr_glb_psum, write_en_glb_psum, w_data_glb_psum (narrow).
     // ------------------------------------------------------------
     wire [DATA_BITWIDTH-1:0] w_data_glb_psum_from_psum;
-    wire write_en_glb_psum_from_psum;
+    wire                     write_en_glb_psum_from_psum;
     wire [ADDR_BITWIDTH_GLB-1:0] w_addr_glb_psum_from_psum;
 
     router_psum #(
         .DATA_BITWIDTH(DATA_BITWIDTH),
         .ADDR_BITWIDTH_GLB(ADDR_BITWIDTH_GLB),
         .ADDR_BITWIDTH_SPAD(ADDR_BITWIDTH_SPAD),
-
         .X_dim(X_dim),
         .Y_dim(Y_dim),
         .kernel_size(kernel_size),
         .act_size(act_size),
-
         .PSUM_READ_ADDR(PSUM_READ_ADDR),
         .PSUM_LOAD_ADDR(PSUM_LOAD_ADDR)
     ) router_psum_0 (
         .clk(clk),
         .reset(reset),
 
-        // feed the selected wide data into the psum module (names match router_psum.v)
-        .r_data_spad_psum(data_out),
+        // feed only the selected direction's wide vector into the psum module:
+        .r_data_spad_psum(psum_source_wide),
 
         // outputs from router_psum
         .w_addr_glb_psum(w_addr_glb_psum_from_psum),
         .write_en_glb_psum(write_en_glb_psum_from_psum),
         .w_data_glb_psum(w_data_glb_psum_from_psum),
 
-        // trigger from this module
-        .write_psum_ctrl(load_spad_ctrl)
+        // trigger from the selected compute direction
+        .write_psum_ctrl(psum_trigger)
     );
 
-    // expose router_psum outputs as this module's ports (names/widths now match router_psum.v)
-    assign psum_write_addr = w_addr_glb_psum_from_psum;
-    assign west_data_o     = w_data_glb_psum_from_psum;
-    assign west_enable_o   = write_en_glb_psum_from_psum;
+    // Expose PSUM outputs (narrow) to top-level (user can connect them to whichever direction they want)
+    assign psum_data_o      = w_data_glb_psum_from_psum;
+    assign psum_enable_o    = write_en_glb_psum_from_psum;
+    assign psum_write_addr  = w_addr_glb_psum_from_psum;
 
-    // 4) Output routing logic: decide which directions receive the selected wide data
+    // ------------------------------------------------------------
+    // 5) Routing fanout: distribute `data_out` to neighbor wide outputs
+    //    IMPORTANT: never assign to the compute direction's wide outputs
+    //               (those are reserved for PSUM FSM usage).
+    // ------------------------------------------------------------
     always @(*) begin
-        // default outputs
-        north_data_o   = {DATA_BITWIDTH*X_dim{1'b0}};
-        south_data_o   = {DATA_BITWIDTH*X_dim{1'b0}};
-        east_data_o    = {DATA_BITWIDTH*X_dim{1'b0}};
-        north_enable_o = 0;
-        south_enable_o = 0;
-        east_enable_o  = 0;
+        // default zeros
+        north_data_o   = {DATA_BITWIDTH*X_dim{1'b0}}; north_enable_o = 1'b0;
+        south_data_o   = {DATA_BITWIDTH*X_dim{1'b0}}; south_enable_o = 1'b0;
+        east_data_o    = {DATA_BITWIDTH*X_dim{1'b0}}; east_enable_o  = 1'b0;
+        west_data_o_wide= {DATA_BITWIDTH*X_dim{1'b0}}; west_enable_o_wide = 1'b0;
 
         case (router_mode)
             ALL: begin
-                north_data_o   = data_out;
-                south_data_o   = data_out;
-                east_data_o    = data_out;
-                north_enable_o = 1;
-                south_enable_o = 1;
-                east_enable_o  = 1;
+                // assign to all directions *except* the compute direction
+                if (COMPUTE_DIR != 0) begin north_data_o   = data_out; north_enable_o = 1'b1; end
+                if (COMPUTE_DIR != 1) begin south_data_o   = data_out; south_enable_o = 1'b1; end
+                if (COMPUTE_DIR != 3) begin east_data_o    = data_out; east_enable_o  = 1'b1; end
+                if (COMPUTE_DIR != 2) begin west_data_o_wide= data_out; west_enable_o_wide = 1'b1; end
             end
 
             NORTH: begin
-                north_data_o   = data_out;
-                north_enable_o = 1;
+                if (COMPUTE_DIR != 0) begin north_data_o = data_out; north_enable_o = 1'b1; end
             end
 
             SOUTH: begin
-                south_data_o   = data_out;
-                south_enable_o = 1;
-            end
-
-            WEST: begin
-                // west write is handled by router_psum (west_data_o / west_enable_o)
+                if (COMPUTE_DIR != 1) begin south_data_o = data_out; south_enable_o = 1'b1; end
             end
 
             EAST: begin
-                east_data_o    = data_out;
-                east_enable_o  = 1;
+                if (COMPUTE_DIR != 3) begin east_data_o = data_out; east_enable_o = 1'b1; end
+            end
+
+            WEST: begin
+                if (COMPUTE_DIR != 2) begin west_data_o_wide = data_out; west_enable_o_wide = 1'b1; end
             end
 
             EASTNORTH: begin
-                east_data_o     = data_out;
-                north_data_o    = data_out;
-                east_enable_o   = 1;
-                north_enable_o  = 1;
+                if (COMPUTE_DIR != 3) begin east_data_o     = data_out; east_enable_o   = 1'b1; end
+                if (COMPUTE_DIR != 0) begin north_data_o    = data_out; north_enable_o  = 1'b1; end
             end
 
             EASTSOUTH: begin
-                east_data_o     = data_out;
-                south_data_o    = data_out;
-                east_enable_o   = 1;
-                south_enable_o  = 1;
+                if (COMPUTE_DIR != 3) begin east_data_o     = data_out; east_enable_o   = 1'b1; end
+                if (COMPUTE_DIR != 1) begin south_data_o    = data_out; south_enable_o  = 1'b1; end
             end
 
             EASTWEST: begin
-                // west handled by router_psum
-                east_data_o     = data_out;
-                east_enable_o   = 1;
+                if (COMPUTE_DIR != 3) begin east_data_o     = data_out; east_enable_o   = 1'b1; end
+                if (COMPUTE_DIR != 2) begin west_data_o_wide = data_out; west_enable_o_wide = 1'b1; end
             end
 
             WESTNORTH: begin
-                north_data_o    = data_out;
-                north_enable_o  = 1;
+                if (COMPUTE_DIR != 2) begin west_data_o_wide = data_out; west_enable_o_wide = 1'b1; end
+                if (COMPUTE_DIR != 0) begin north_data_o    = data_out; north_enable_o  = 1'b1; end
             end
 
             WESTSOUTH: begin
-                south_data_o    = data_out;
-                south_enable_o  = 1;
+                if (COMPUTE_DIR != 2) begin west_data_o_wide = data_out; west_enable_o_wide = 1'b1; end
+                if (COMPUTE_DIR != 1) begin south_data_o    = data_out; south_enable_o  = 1'b1; end
             end
 
             WESTEAST: begin
-                east_data_o     = data_out;
-                east_enable_o   = 1;
+                if (COMPUTE_DIR != 2) begin west_data_o_wide = data_out; west_enable_o_wide = 1'b1; end
+                if (COMPUTE_DIR != 3) begin east_data_o     = data_out; east_enable_o   = 1'b1; end
             end
 
             CLOSED: begin
-                // all zeroed
+                // all zero (defaults cover this)
             end
 
             default: begin
-                // defaults already assigned
+                // defaults already applied
             end
         endcase
     end
 
 endmodule
+

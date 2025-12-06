@@ -1,2 +1,0 @@
-Warning (10268): Verilog HDL information at PE_new.v(100): always construct contains both blocking and non-blocking assignments File: /home/abhiram/Projects/Main-Project/rtl/PE_new.v Line: 100
-Warning (10268): Verilog HDL information at MAC.v(14): always construct contains both blocking and non-blocking assignments File: /home/abhiram/Projects/Main-Project/rtl/MAC.v Line: 14
