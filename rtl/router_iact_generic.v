@@ -15,6 +15,7 @@ module router_generic_iact
     parameter A_LOAD_ADDR = 0,
 
     // Select which direction connects to the SPAD
+    // NOTE: many tools accept string params; if not, switch to integer encodings.
     parameter COMPUTE_DIR = "WEST"       // "NORTH", "SOUTH", "EAST", "WEST"
 )
 (
@@ -24,7 +25,7 @@ module router_generic_iact
     // Router mode
     input [3:0] router_mode,
 
-    // GLB read interface
+    // GLB read interface (from router_iact)
     output [ADDR_BITWIDTH_GLB-1:0] glb_addr_read,
     output                         glb_req_read,
 
@@ -43,23 +44,23 @@ module router_generic_iact
 
     // Directional output ports
     output reg [DATA_BITWIDTH-1:0] north_data_o,
-    output reg                      north_enable_o,
+    output reg                     north_enable_o,
 
     output reg [DATA_BITWIDTH-1:0] south_data_o,
-    output reg                      south_enable_o,
+    output reg                     south_enable_o,
 
     output reg [DATA_BITWIDTH-1:0] west_data_o,
-    output reg                      west_enable_o,
+    output reg                     west_enable_o,
 
     output reg [DATA_BITWIDTH-1:0] east_data_o,
-    output reg                      east_enable_o
+    output reg                     east_enable_o
 );
 
     //------------------------------------------------------
     // 1. Input direction priority selection
     //------------------------------------------------------
     reg [DATA_BITWIDTH-1:0] data_out;
-    reg load_spad_ctrl_c;
+    reg                     load_spad_ctrl_c;
 
     always @(*) begin
         if (north_enable_i) begin
@@ -79,7 +80,7 @@ module router_generic_iact
             load_spad_ctrl_c = 1;
         end
         else begin
-            data_out         = 0;
+            data_out         = {DATA_BITWIDTH{1'b0}};
             load_spad_ctrl_c = 0;
         end
     end
@@ -128,51 +129,21 @@ module router_generic_iact
         .clk(clk),
         .reset(reset),
 
-        .r_data_glb_iact(data_out),
+        .r_data_glb_iact(data_out),   // here data_out plays the role of "GLB data"
         .r_addr_glb_iact(glb_addr_read),
         .read_req_glb_iact(glb_req_read),
 
-        .w_data_spad(spad_data_o),      // <-- now wires
-        .load_en_spad(spad_en_o),       // <-- now wires
+        .w_data_spad(spad_data_o),
+        .load_en_spad(spad_en_o),
 
         .load_spad_ctrl(load_spad_ctrl)
     );
 
     //------------------------------------------------------
-    // 5. Assign SPAD outputs to the selected direction
-    //------------------------------------------------------
-    always @(*) begin
-        // default zero outputs
-        north_data_o = 0; north_enable_o = 0;
-        south_data_o = 0; south_enable_o = 0;
-        west_data_o  = 0; west_enable_o  = 0;
-        east_data_o  = 0; east_enable_o  = 0;
-
-        case (COMPUTE_DIR)
-            "NORTH": begin
-                north_data_o   = spad_data_o;
-                north_enable_o = spad_en_o;
-            end
-
-            "SOUTH": begin
-                south_data_o   = spad_data_o;
-                south_enable_o = spad_en_o;
-            end
-
-            "WEST": begin
-                west_data_o    = spad_data_o;
-                west_enable_o  = spad_en_o;
-            end
-
-            "EAST": begin
-                east_data_o    = spad_data_o;
-                east_enable_o  = spad_en_o;
-            end
-        endcase
-    end
-
-    //------------------------------------------------------
-    // 6. Output routing logic based on router_mode
+    // 5 & 6 combined:
+    // Unified output routing logic:
+    //  - When router_mode == CLOSED: SPAD/compute mode
+    //  - Else: normal routing mode
     //------------------------------------------------------
     localparam ALL        = 0;
     localparam NORTH      = 1;
@@ -188,67 +159,116 @@ module router_generic_iact
     localparam CLOSED     = 11;
 
     always @(*) begin
-        case (router_mode)
+        // Default outputs
+        north_data_o   = {DATA_BITWIDTH{1'b0}};
+        south_data_o   = {DATA_BITWIDTH{1'b0}};
+        west_data_o    = {DATA_BITWIDTH{1'b0}};
+        east_data_o    = {DATA_BITWIDTH{1'b0}};
 
-            ALL: begin
-                north_data_o   = data_out; north_enable_o = 1;
-                south_data_o   = data_out; south_enable_o = 1;
-                east_data_o    = data_out; east_enable_o  = 1;
-                west_data_o    = data_out; west_enable_o  = 1;
-            end
+        north_enable_o = 1'b0;
+        south_enable_o = 1'b0;
+        west_enable_o  = 1'b0;
+        east_enable_o  = 1'b0;
 
-            NORTH: begin
-                north_data_o   = data_out; north_enable_o = 1;
-            end
+        // ==================================================
+        //  Compute/SPAD Mode: router_mode == CLOSED
+        // ==================================================
+        if (router_mode == CLOSED) begin
+            // Drive only the COMPUTE_DIR with SPAD output
+            case (COMPUTE_DIR)
+                "NORTH": begin
+                    north_data_o   = spad_data_o;
+                    north_enable_o = spad_en_o;
+                end
 
-            SOUTH: begin
-                south_data_o   = data_out; south_enable_o = 1;
-            end
+                "SOUTH": begin
+                    south_data_o   = spad_data_o;
+                    south_enable_o = spad_en_o;
+                end
 
-            WEST: begin
-                west_data_o    = data_out; west_enable_o = 1;
-            end
+                "WEST": begin
+                    west_data_o    = spad_data_o;
+                    west_enable_o  = spad_en_o;
+                end
 
-            EAST: begin
-                east_data_o    = data_out; east_enable_o = 1;
-            end
+                "EAST": begin
+                    east_data_o    = spad_data_o;
+                    east_enable_o  = spad_en_o;
+                end
 
-            EASTNORTH: begin
-                east_data_o     = data_out; east_enable_o  = 1;
-                north_data_o    = data_out; north_enable_o = 1;
-            end
+                default: begin
+                    // no-op if COMPUTE_DIR is invalid
+                end
+            endcase
+        end
 
-            EASTSOUTH: begin
-                east_data_o     = data_out; east_enable_o  = 1;
-                south_data_o    = data_out; south_enable_o = 1;
-            end
+        // ==================================================
+        //  Normal Routing Mode: router_mode != CLOSED
+        //  Outputs now driven by data_out (not SPAD)
+        // ==================================================
+        else begin
+            case (router_mode)
 
-            EASTWEST: begin
-                east_data_o     = data_out; east_enable_o  = 1;
-                west_data_o     = data_out; west_enable_o  = 1;
-            end
+                ALL: begin
+                    north_data_o   = data_out; north_enable_o = 1'b1;
+                    south_data_o   = data_out; south_enable_o = 1'b1;
+                    east_data_o    = data_out; east_enable_o  = 1'b1;
+                    west_data_o    = data_out; west_enable_o  = 1'b1;
+                end
 
-            WESTNORTH: begin
-                west_data_o     = data_out; west_enable_o  = 1;
-                north_data_o    = data_out; north_enable_o = 1;
-            end
+                NORTH: begin
+                    north_data_o   = data_out; north_enable_o = 1'b1;
+                end
 
-            WESTSOUTH: begin
-                west_data_o     = data_out; west_enable_o  = 1;
-                south_data_o    = data_out; south_enable_o = 1;
-            end
+                SOUTH: begin
+                    south_data_o   = data_out; south_enable_o = 1'b1;
+                end
 
-            WESTEAST: begin
-                west_data_o     = data_out; west_enable_o  = 1;
-                east_data_o     = data_out; east_enable_o  = 1;
-            end
+                WEST: begin
+                    west_data_o    = data_out; west_enable_o  = 1'b1;
+                end
 
-            CLOSED: begin
-                // all outputs already zero
-            end
+                EAST: begin
+                    east_data_o    = data_out; east_enable_o  = 1'b1;
+                end
 
-        endcase
+                EASTNORTH: begin
+                    east_data_o    = data_out; east_enable_o  = 1'b1;
+                    north_data_o   = data_out; north_enable_o = 1'b1;
+                end
+
+                EASTSOUTH: begin
+                    east_data_o    = data_out; east_enable_o  = 1'b1;
+                    south_data_o   = data_out; south_enable_o = 1'b1;
+                end
+
+                EASTWEST: begin
+                    east_data_o    = data_out; east_enable_o  = 1'b1;
+                    west_data_o    = data_out; west_enable_o  = 1'b1;
+                end
+
+                WESTNORTH: begin
+                    west_data_o    = data_out; west_enable_o  = 1'b1;
+                    north_data_o   = data_out; north_enable_o = 1'b1;
+                end
+
+                WESTSOUTH: begin
+                    west_data_o    = data_out; west_enable_o  = 1'b1;
+                    south_data_o   = data_out; south_enable_o = 1'b1;
+                end
+
+                WESTEAST: begin
+                    west_data_o    = data_out; west_enable_o  = 1'b1;
+                    east_data_o    = data_out; east_enable_o  = 1'b1;
+                end
+
+                default: begin
+                    // Outputs remain zero
+                end
+
+            endcase
+        end
     end
 
 endmodule
-
+		

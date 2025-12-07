@@ -63,9 +63,6 @@ HMNOC_1cluster:
 
 ##############################
 # Testbench Compile Targets
-##############################
-# Add more as needed
-##############################
 test-wpsum-generic:
 	iverilog -o $(BUILD_DIR)/wpsum_generic_tb.out \
 		$(TB_DIR)/router_generic_tb.v \
@@ -79,7 +76,16 @@ test-wpsum-generic:
 
 run-wpsum-generic:
 	vvp $(BUILD_DIR)/wpsum_generic_tb.out
-	
+
+test-router-iact:
+	iverilog -g2012 -o $(BUILD_DIR)/router_iact.out \
+		$(TB_DIR)/router_iact_tb.v \
+		$(RTL_DIR)/router_iact.v \
+		$(RTL_DIR)/router_iact_generic.v
+
+run-router-iact:
+	vvp $(BUILD_DIR)/router_iact.out
+
 # ============================================================
 # Compile HMNOC_1cluster with generic routers + testbench
 # ============================================================
