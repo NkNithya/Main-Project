@@ -95,33 +95,14 @@ test-router-weight:
 run-router-weight:
 	vvp $(BUILD_DIR)/router_weight.out
 
-# ============================================================
-# Compile HMNOC_1cluster with generic routers + testbench
-# ============================================================
-HMNOC_1cluster_tb:
-	iverilog -g2012 -o $(BUILD_DIR)/hmnoc_tb_sim.out \
-		$(RTL_DIR)/HMNOC_1cluster_wpsum_generic.v \
-		$(RTL_DIR)/router_cluster_wpsum_generic.v \
-		$(RTL_DIR)/router_iact_generic.v \
-		$(RTL_DIR)/router_weight_generic.v \
-		$(RTL_DIR)/router_psum_generic.v \
-		$(RTL_DIR)/router_iact.v \
-		$(RTL_DIR)/router_weight.v \
+test-router-psum:
+	iverilog -g2012 -o $(BUILD_DIR)/router_psum.out \
+		$(TB_DIR)/router_psum_tb.v \
 		$(RTL_DIR)/router_psum.v \
-		$(RTL_DIR)/GLB_cluster_wpsum.v \
-		$(RTL_DIR)/glb_iact.v \
-		$(RTL_DIR)/glb_weight.v \
-		$(RTL_DIR)/glb_psum.v \
-		$(RTL_DIR)/PE_cluster_new.v \
-		$(RTL_DIR)/PE_new.v \
-		$(RTL_DIR)/mux2.v \
-		$(RTL_DIR)/MAC.v \
-		$(RTL_DIR)/SPad.v \
-		$(TB_DIR)/HMNOC_1cluster_wpsum_generic_tb.v
-
-HMNOC_1cluster_run:
-	vvp $(BUILD_DIR)/hmnoc_tb_sim.out
-
+		$(RTL_DIR)/router_psum_generic.v
+	
+run-router-psum:
+	vvp $(BUILD_DIR)/router_psum.out
 
 ##############################
 # Utility Targets

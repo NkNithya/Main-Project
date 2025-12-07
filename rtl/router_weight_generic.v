@@ -58,24 +58,32 @@ module router_generic_wght
     output                         glb_req_read_wght
 );
 
-    //---------------------------------------------------------
-    // STEP 1 — Compute-direction input for weight loader
-    //---------------------------------------------------------
+    // ---------------------------------------------------------
+    // Direction constants
+    // ---------------------------------------------------------
+    localparam DIR_N = 0;
+    localparam DIR_S = 1;
+    localparam DIR_W = 2;
+    localparam DIR_E = 3;
+
+    // ---------------------------------------------------------
+    // STEP 1 — Compute-direction input selection
+    // ---------------------------------------------------------
     wire [DATA_BITWIDTH-1:0] compute_data_i =
-           (COMPUTE_DIR == 0) ? north_data_i :
-           (COMPUTE_DIR == 1) ? south_data_i :
-           (COMPUTE_DIR == 2) ? west_data_i  :
-                                east_data_i;
+           (COMPUTE_DIR == DIR_N) ? north_data_i :
+           (COMPUTE_DIR == DIR_S) ? south_data_i :
+           (COMPUTE_DIR == DIR_W) ? west_data_i  :
+                                    east_data_i;
 
     wire compute_en =
-           (COMPUTE_DIR == 0) ? north_enable_i :
-           (COMPUTE_DIR == 1) ? south_enable_i :
-           (COMPUTE_DIR == 2) ? west_enable_i  :
-                                east_enable_i;
+           (COMPUTE_DIR == DIR_N) ? north_enable_i :
+           (COMPUTE_DIR == DIR_S) ? south_enable_i :
+           (COMPUTE_DIR == DIR_W) ? west_enable_i  :
+                                    east_enable_i;
 
-    //---------------------------------------------------------
-    // STEP 2 — Input priority selector for routing fanout
-    //---------------------------------------------------------
+    // ---------------------------------------------------------
+    // STEP 2 — Routing fanout input selector (priority)
+    // ---------------------------------------------------------
     reg [DATA_BITWIDTH-1:0] data_out;
     reg                     data_en_out;
 
@@ -98,9 +106,9 @@ module router_generic_wght
         end
     end
 
-    //---------------------------------------------------------
-    // STEP 3 — Pulse generator for weight load_spad_ctrl
-    //---------------------------------------------------------
+    // ---------------------------------------------------------
+    // STEP 3 — One-shot pulse for weight FSM trigger
+    // ---------------------------------------------------------
     reg load_ff0, load_ff1;
     wire load_spad_ctrl;
 
@@ -111,14 +119,14 @@ module router_generic_wght
             load_ff0 <= 1'b0;
             load_ff1 <= 1'b0;
         end else begin
-            load_ff0 <= compute_en;  // compute direction triggers weight load
+            load_ff0 <= compute_en;
             load_ff1 <= load_ff0;
         end
     end
 
-    //---------------------------------------------------------
+    // ---------------------------------------------------------
     // STEP 4 — Instantiate router_weight FSM
-    //---------------------------------------------------------
+    // ---------------------------------------------------------
     wire [DATA_BITWIDTH-1:0] wght_spad_data;
     wire                     wght_spad_en;
 
@@ -137,8 +145,7 @@ module router_generic_wght
         .clk(clk),
         .reset(reset),
 
-        // Here compute_data_i is treated as GLB data source.
-        // If you have a real GLB, wire it here instead.
+        // In this wrapper, compute_data_i acts as the GLB data bus
         .r_data_glb_wght(compute_data_i),
         .r_addr_glb_wght(glb_addr_read_wght),
         .read_req_glb_wght(glb_req_read_wght),
@@ -149,13 +156,12 @@ module router_generic_wght
         .load_spad_ctrl(load_spad_ctrl)
     );
 
-    // Expose SPAD write bus to PE/compute side
     assign spad_wdata_o   = wght_spad_data;
     assign spad_wenable_o = wght_spad_en;
 
-    //---------------------------------------------------------
-    // STEP 5 — Routing fanout (never touch SPAD outputs)
-    //---------------------------------------------------------
+    // ---------------------------------------------------------
+    // STEP 5 — Routing fanout
+    // ---------------------------------------------------------
     localparam ALL        = 0;
     localparam NORTH      = 1;
     localparam SOUTH      = 2;
@@ -179,68 +185,96 @@ module router_generic_wght
         case (router_mode)
 
             ALL: begin
-                if (COMPUTE_DIR != 0) begin north_data_o       = data_out; north_enable_o       = data_en_out; end
-                if (COMPUTE_DIR != 1) begin south_data_o       = data_out; south_enable_o       = data_en_out; end
-                if (COMPUTE_DIR != 3) begin east_data_o        = data_out; east_enable_o        = data_en_out; end
-                if (COMPUTE_DIR != 2) begin west_data_o_routed = data_out; west_enable_o_routed = data_en_out; end
+                if (COMPUTE_DIR != DIR_N) begin
+                    north_data_o = data_out; north_enable_o = data_en_out;
+                end
+                if (COMPUTE_DIR != DIR_S) begin
+                    south_data_o = data_out; south_enable_o = data_en_out;
+                end
+                if (COMPUTE_DIR != DIR_E) begin
+                    east_data_o  = data_out; east_enable_o  = data_en_out;
+                end
+                if (COMPUTE_DIR != DIR_W) begin
+                    west_data_o_routed = data_out; west_enable_o_routed = data_en_out;
+                end
             end
 
-            NORTH: if (COMPUTE_DIR != 0) begin
-                north_data_o   = data_out; north_enable_o = data_en_out;
+            NORTH: if (COMPUTE_DIR != DIR_N) begin
+                north_data_o = data_out; north_enable_o = data_en_out;
             end
 
-            SOUTH: if (COMPUTE_DIR != 1) begin
-                south_data_o   = data_out; south_enable_o = data_en_out;
+            SOUTH: if (COMPUTE_DIR != DIR_S) begin
+                south_data_o = data_out; south_enable_o = data_en_out;
             end
 
-            EAST: if (COMPUTE_DIR != 3) begin
-                east_data_o    = data_out; east_enable_o  = data_en_out;
+            EAST:  if (COMPUTE_DIR != DIR_E) begin
+                east_data_o  = data_out; east_enable_o  = data_en_out;
             end
 
-            WEST: if (COMPUTE_DIR != 2) begin
+            WEST:  if (COMPUTE_DIR != DIR_W) begin
                 west_data_o_routed = data_out; west_enable_o_routed = data_en_out;
             end
 
             EASTNORTH: begin
-                if (COMPUTE_DIR != 3) begin east_data_o = data_out;  east_enable_o  = data_en_out;  end
-                if (COMPUTE_DIR != 0) begin north_data_o = data_out; north_enable_o = data_en_out; end
+                if (COMPUTE_DIR != DIR_E) begin
+                    east_data_o = data_out; east_enable_o = data_en_out;
+                end
+                if (COMPUTE_DIR != DIR_N) begin
+                    north_data_o = data_out; north_enable_o = data_en_out;
+                end
             end
 
             EASTSOUTH: begin
-                if (COMPUTE_DIR != 3) begin east_data_o = data_out;  east_enable_o  = data_en_out;  end
-                if (COMPUTE_DIR != 1) begin south_data_o = data_out; south_enable_o = data_en_out; end
+                if (COMPUTE_DIR != DIR_E) begin
+                    east_data_o = data_out; east_enable_o = data_en_out;
+                end
+                if (COMPUTE_DIR != DIR_S) begin
+                    south_data_o = data_out; south_enable_o = data_en_out;
+                end
             end
 
             EASTWEST: begin
-                if (COMPUTE_DIR != 3) begin east_data_o = data_out;  east_enable_o  = data_en_out;  end
-                if (COMPUTE_DIR != 2) begin west_data_o_routed = data_out; west_enable_o_routed = data_en_out; end
+                if (COMPUTE_DIR != DIR_E) begin
+                    east_data_o = data_out; east_enable_o = data_en_out;
+                end
+                if (COMPUTE_DIR != DIR_W) begin
+                    west_data_o_routed = data_out; west_enable_o_routed = data_en_out;
+                end
             end
 
             WESTNORTH: begin
-                if (COMPUTE_DIR != 2) begin west_data_o_routed = data_out; west_enable_o_routed = data_en_out; end
-                if (COMPUTE_DIR != 0) begin north_data_o       = data_out; north_enable_o       = data_en_out; end
+                if (COMPUTE_DIR != DIR_W) begin
+                    west_data_o_routed = data_out; west_enable_o_routed = data_en_out;
+                end
+                if (COMPUTE_DIR != DIR_N) begin
+                    north_data_o = data_out; north_enable_o = data_en_out;
+                end
             end
 
             WESTSOUTH: begin
-                if (COMPUTE_DIR != 2) begin west_data_o_routed = data_out; west_enable_o_routed = data_en_out; end
-                if (COMPUTE_DIR != 1) begin south_data_o       = data_out; south_enable_o       = data_en_out; end
+                if (COMPUTE_DIR != DIR_W) begin
+                    west_data_o_routed = data_out; west_enable_o_routed = data_en_out;
+                end
+                if (COMPUTE_DIR != DIR_S) begin
+                    south_data_o = data_out; south_enable_o = data_en_out;
+                end
             end
 
             WESTEAST: begin
-                if (COMPUTE_DIR != 2) begin west_data_o_routed = data_out; west_enable_o_routed = data_en_out; end
-                if (COMPUTE_DIR != 3) begin east_data_o        = data_out; east_enable_o        = data_en_out; end
+                if (COMPUTE_DIR != DIR_W) begin
+                    west_data_o_routed = data_out; west_enable_o_routed = data_en_out;
+                end
+                if (COMPUTE_DIR != DIR_E) begin
+                    east_data_o = data_out; east_enable_o = data_en_out;
+                end
             end
 
             CLOSED: begin
-                // everything stays 0
-            end
-
-            default: begin
-                // everything stays 0
+                // all outputs remain 0
             end
 
         endcase
     end
 
 endmodule
-	
+
