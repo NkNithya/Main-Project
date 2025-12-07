@@ -86,6 +86,15 @@ test-router-iact:
 run-router-iact:
 	vvp $(BUILD_DIR)/router_iact.out
 
+test-router-weight:
+	iverilog -g2012 -o $(BUILD_DIR)/router_weight.out \
+		$(TB_DIR)/router_weight_tb.v \
+		$(RTL_DIR)/router_weight.v \
+		$(RTL_DIR)/router_weight_generic.v
+		
+run-router-weight:
+	vvp $(BUILD_DIR)/router_weight.out
+
 # ============================================================
 # Compile HMNOC_1cluster with generic routers + testbench
 # ============================================================

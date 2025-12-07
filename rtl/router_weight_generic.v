@@ -43,77 +43,23 @@ module router_generic_wght
     output reg [DATA_BITWIDTH-1:0] south_data_o,
     output reg                     south_enable_o,
 
-    // *** compute-direction SPAD write ***
-    output [DATA_BITWIDTH-1:0] spad_wdata_o,
-    output                     spad_wenable_o,
-
     output reg [DATA_BITWIDTH-1:0] east_data_o,
     output reg                     east_enable_o,
 
     output reg [DATA_BITWIDTH-1:0] west_data_o_routed,
     output reg                     west_enable_o_routed,
 
+    // SPAD write (from weight loader FSM)
+    output [DATA_BITWIDTH-1:0] spad_wdata_o,
+    output                     spad_wenable_o,
+
+    // GLB read interface for weights
     output [ADDR_BITWIDTH_GLB-1:0] glb_addr_read_wght,
     output                         glb_req_read_wght
 );
 
-
-    // ----------------------------------------------------------------
-    // Compute-direction selection:
-    //   choose which directional input goes to the local SPAD/PE
-    // ----------------------------------------------------------------
-    reg [DATA_BITWIDTH-1:0] comp_data;
-    reg                     comp_valid;
-
-    always @* begin
-        comp_data  = {DATA_BITWIDTH{1'b0}};
-        comp_valid = 1'b0;
-        case (COMPUTE_DIR)
-            0: begin // NORTH
-                comp_data  = north_data_i;
-                comp_valid = north_enable_i;
-            end
-            1: begin // SOUTH
-                comp_data  = south_data_i;
-                comp_valid = south_enable_i;
-            end
-            2: begin // WEST
-                comp_data  = west_data_i;
-                comp_valid = west_enable_i;
-            end
-            3: begin // EAST
-                comp_data  = east_data_i;
-                comp_valid = east_enable_i;
-            end
-            default: begin
-                comp_data  = {DATA_BITWIDTH{1'b0}};
-                comp_valid = 1'b0;
-            end
-        endcase
-    end
-
-    assign spad_wdata_o   = comp_data;
-    assign spad_wenable_o = comp_valid;
-
-
     //---------------------------------------------------------
-    // Routing mode constants
-    //---------------------------------------------------------
-    localparam ALL        = 0;
-    localparam NORTH      = 1;
-    localparam SOUTH      = 2;
-    localparam WEST       = 3;
-    localparam EAST       = 4;
-    localparam EASTNORTH  = 5;
-    localparam EASTSOUTH  = 6;
-    localparam EASTWEST   = 7;
-    localparam WESTNORTH  = 8;
-    localparam WESTSOUTH  = 9;
-    localparam WESTEAST   = 10;
-    localparam CLOSED     = 11;
-
-    //---------------------------------------------------------
-    // STEP 1 — Compute-direction input selection only
+    // STEP 1 — Compute-direction input for weight loader
     //---------------------------------------------------------
     wire [DATA_BITWIDTH-1:0] compute_data_i =
            (COMPUTE_DIR == 0) ? north_data_i :
@@ -136,24 +82,24 @@ module router_generic_wght
     always @(*) begin
         if (north_enable_i) begin
             data_out    = north_data_i;
-            data_en_out = 1;
+            data_en_out = 1'b1;
         end else if (south_enable_i) begin
             data_out    = south_data_i;
-            data_en_out = 1;
+            data_en_out = 1'b1;
         end else if (west_enable_i) begin
             data_out    = west_data_i;
-            data_en_out = 1;
+            data_en_out = 1'b1;
         end else if (east_enable_i) begin
             data_out    = east_data_i;
-            data_en_out = 1;
+            data_en_out = 1'b1;
         end else begin
-            data_out    = 0;
-            data_en_out = 0;
+            data_out    = {DATA_BITWIDTH{1'b0}};
+            data_en_out = 1'b0;
         end
     end
 
     //---------------------------------------------------------
-    // STEP 3 — Pulse generator for load_spad_ctrl
+    // STEP 3 — Pulse generator for weight load_spad_ctrl
     //---------------------------------------------------------
     reg load_ff0, load_ff1;
     wire load_spad_ctrl;
@@ -162,10 +108,10 @@ module router_generic_wght
 
     always @(posedge clk) begin
         if (reset) begin
-            load_ff0 <= 0;
-            load_ff1 <= 0;
+            load_ff0 <= 1'b0;
+            load_ff1 <= 1'b0;
         end else begin
-            load_ff0 <= compute_en;   // ONLY compute direction triggers weight load
+            load_ff0 <= compute_en;  // compute direction triggers weight load
             load_ff1 <= load_ff0;
         end
     end
@@ -173,6 +119,9 @@ module router_generic_wght
     //---------------------------------------------------------
     // STEP 4 — Instantiate router_weight FSM
     //---------------------------------------------------------
+    wire [DATA_BITWIDTH-1:0] wght_spad_data;
+    wire                     wght_spad_en;
+
     router_weight #(
         .DATA_BITWIDTH(DATA_BITWIDTH),
         .ADDR_BITWIDTH_GLB(ADDR_BITWIDTH_GLB),
@@ -188,19 +137,38 @@ module router_generic_wght
         .clk(clk),
         .reset(reset),
 
+        // Here compute_data_i is treated as GLB data source.
+        // If you have a real GLB, wire it here instead.
         .r_data_glb_wght(compute_data_i),
         .r_addr_glb_wght(glb_addr_read_wght),
         .read_req_glb_wght(glb_req_read_wght),
 
-        .w_data_spad(spad_wdata_o),
-        .load_en_spad(spad_wenable_o),
+        .w_data_spad(wght_spad_data),
+        .load_en_spad(wght_spad_en),
 
         .load_spad_ctrl(load_spad_ctrl)
     );
 
+    // Expose SPAD write bus to PE/compute side
+    assign spad_wdata_o   = wght_spad_data;
+    assign spad_wenable_o = wght_spad_en;
+
     //---------------------------------------------------------
-    // STEP 5 — Routing fanout (never touch compute-direction SPAD outputs)
+    // STEP 5 — Routing fanout (never touch SPAD outputs)
     //---------------------------------------------------------
+    localparam ALL        = 0;
+    localparam NORTH      = 1;
+    localparam SOUTH      = 2;
+    localparam WEST       = 3;
+    localparam EAST       = 4;
+    localparam EASTNORTH  = 5;
+    localparam EASTSOUTH  = 6;
+    localparam EASTWEST   = 7;
+    localparam WESTNORTH  = 8;
+    localparam WESTSOUTH  = 9;
+    localparam WESTEAST   = 10;
+    localparam CLOSED     = 11;
+
     always @(*) begin
         // defaults
         north_data_o         = 0; north_enable_o = 0;
@@ -211,52 +179,68 @@ module router_generic_wght
         case (router_mode)
 
             ALL: begin
-                if (COMPUTE_DIR != 0) begin north_data_o = data_out; north_enable_o = data_en_out; end
-                if (COMPUTE_DIR != 1) begin south_data_o = data_out; south_enable_o = data_en_out; end
-                if (COMPUTE_DIR != 3) begin east_data_o  = data_out; east_enable_o  = data_en_out; end
+                if (COMPUTE_DIR != 0) begin north_data_o       = data_out; north_enable_o       = data_en_out; end
+                if (COMPUTE_DIR != 1) begin south_data_o       = data_out; south_enable_o       = data_en_out; end
+                if (COMPUTE_DIR != 3) begin east_data_o        = data_out; east_enable_o        = data_en_out; end
                 if (COMPUTE_DIR != 2) begin west_data_o_routed = data_out; west_enable_o_routed = data_en_out; end
             end
 
-            NORTH: if (COMPUTE_DIR != 0) begin north_data_o = data_out; north_enable_o = data_en_out; end
-            SOUTH: if (COMPUTE_DIR != 1) begin south_data_o = data_out; south_enable_o = data_en_out; end
-            EAST : if (COMPUTE_DIR != 3) begin east_data_o  = data_out; east_enable_o  = data_en_out; end
-            WEST : if (COMPUTE_DIR != 2) begin west_data_o_routed = data_out; west_enable_o_routed = data_en_out; end
+            NORTH: if (COMPUTE_DIR != 0) begin
+                north_data_o   = data_out; north_enable_o = data_en_out;
+            end
+
+            SOUTH: if (COMPUTE_DIR != 1) begin
+                south_data_o   = data_out; south_enable_o = data_en_out;
+            end
+
+            EAST: if (COMPUTE_DIR != 3) begin
+                east_data_o    = data_out; east_enable_o  = data_en_out;
+            end
+
+            WEST: if (COMPUTE_DIR != 2) begin
+                west_data_o_routed = data_out; west_enable_o_routed = data_en_out;
+            end
 
             EASTNORTH: begin
-                if (COMPUTE_DIR != 3) begin east_data_o = data_out; east_enable_o = data_en_out; end
+                if (COMPUTE_DIR != 3) begin east_data_o = data_out;  east_enable_o  = data_en_out;  end
                 if (COMPUTE_DIR != 0) begin north_data_o = data_out; north_enable_o = data_en_out; end
             end
 
             EASTSOUTH: begin
-                if (COMPUTE_DIR != 3) begin east_data_o = data_out; east_enable_o = data_en_out; end
+                if (COMPUTE_DIR != 3) begin east_data_o = data_out;  east_enable_o  = data_en_out;  end
                 if (COMPUTE_DIR != 1) begin south_data_o = data_out; south_enable_o = data_en_out; end
             end
 
             EASTWEST: begin
-                if (COMPUTE_DIR != 3) begin east_data_o = data_out; east_enable_o = data_en_out; end
+                if (COMPUTE_DIR != 3) begin east_data_o = data_out;  east_enable_o  = data_en_out;  end
                 if (COMPUTE_DIR != 2) begin west_data_o_routed = data_out; west_enable_o_routed = data_en_out; end
             end
 
             WESTNORTH: begin
                 if (COMPUTE_DIR != 2) begin west_data_o_routed = data_out; west_enable_o_routed = data_en_out; end
-                if (COMPUTE_DIR != 0) begin north_data_o = data_out; north_enable_o = data_en_out; end
+                if (COMPUTE_DIR != 0) begin north_data_o       = data_out; north_enable_o       = data_en_out; end
             end
 
             WESTSOUTH: begin
                 if (COMPUTE_DIR != 2) begin west_data_o_routed = data_out; west_enable_o_routed = data_en_out; end
-                if (COMPUTE_DIR != 1) begin south_data_o = data_out; south_enable_o = data_en_out; end
+                if (COMPUTE_DIR != 1) begin south_data_o       = data_out; south_enable_o       = data_en_out; end
             end
 
             WESTEAST: begin
                 if (COMPUTE_DIR != 2) begin west_data_o_routed = data_out; west_enable_o_routed = data_en_out; end
-                if (COMPUTE_DIR != 3) begin east_data_o = data_out; east_enable_o = data_en_out; end
+                if (COMPUTE_DIR != 3) begin east_data_o        = data_out; east_enable_o        = data_en_out; end
             end
 
-            CLOSED: begin end
-            default: begin end
+            CLOSED: begin
+                // everything stays 0
+            end
+
+            default: begin
+                // everything stays 0
+            end
 
         endcase
     end
 
 endmodule
-
+	
