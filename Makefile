@@ -35,6 +35,26 @@ router-wpsum: ## Compile WPSUM cluster router
 		$(RTL_DIR)/router_psum_generic.v \
 		$(RTL_DIR)/router_weight.v \
 		$(RTL_DIR)/router_weight_generic.v 
+		
+hmnoc-1cluster: ##Compile HMNOC 1 cluster
+	iverilog -g2012 $(RTL_DIR)/HMNOC_1cluster_wpsum_generic.v \
+		$(RTL_DIR)/router_cluster_wpsum_generic.v \
+		$(RTL_DIR)/router_iact.v \
+		$(RTL_DIR)/router_iact_generic.v \
+		$(RTL_DIR)/router_weight.v \
+		$(RTL_DIR)/router_weight_generic.v \
+		$(RTL_DIR)/router_psum.v \
+		$(RTL_DIR)/router_psum_generic.v \
+		$(RTL_DIR)/PE_new.v \
+		$(RTL_DIR)/PE_cluster_new.v \
+		$(RTL_DIR)/GLB_cluster_wpsum.v \
+		$(RTL_DIR)/glb_weight.v \
+		$(RTL_DIR)/glb_iact.v \
+		$(RTL_DIR)/glb_psum.v \
+		$(RTL_DIR)/MAC.v \
+		$(RTL_DIR)/mux2.v \
+		$(RTL_DIR)/SPad.v 
+
 
 
 ##############################
@@ -81,7 +101,27 @@ test-router-psum: ## Build PSUM router testbench
 
 run-router-psum: ## Run PSUM router simulation
 	vvp $(BUILD_DIR)/router_psum.out
-
+	
+test-hmnoc-1cluster: ##Build HMNOC 1cluster testbench
+	iverilog -g2012  -o $(BUILD_DIR)/HMNOC_1cluster_wpsum_generic.out \
+		$(TB_DIR)/HMNOC_1cluster_wpsum_generic_tb.v \
+		$(RTL_DIR)/HMNOC_1cluster_wpsum_generic.v \
+		$(RTL_DIR)/router_cluster_wpsum_generic.v \
+		$(RTL_DIR)/router_iact.v \
+		$(RTL_DIR)/router_iact_generic.v \
+		$(RTL_DIR)/router_weight.v \
+		$(RTL_DIR)/router_weight_generic.v \
+		$(RTL_DIR)/router_psum.v \
+		$(RTL_DIR)/router_psum_generic.v \
+		$(RTL_DIR)/PE_new.v \
+		$(RTL_DIR)/PE_cluster_new.v \
+		$(RTL_DIR)/GLB_cluster_wpsum.v \
+		$(RTL_DIR)/glb_weight.v \
+		$(RTL_DIR)/glb_iact.v \
+		$(RTL_DIR)/glb_psum.v \
+		$(RTL_DIR)/MAC.v \
+		$(RTL_DIR)/mux2.v \
+		$(RTL_DIR)/SPad.v 
 
 ##############################
 # Utility Targets
