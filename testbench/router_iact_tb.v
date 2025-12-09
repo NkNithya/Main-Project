@@ -305,9 +305,7 @@ module router_generic_iact_tb;
     integer idx;
 
     initial begin
-        $display("\n===============================================");
-        $display("   TESTING ALL 4 COMPUTE DIRECTIONS");
-        $display("===============================================\n");
+        $display("TESTING ALL 4 COMPUTE DIRECTIONS");
 
         router_mode = CLOSED;
 
@@ -322,14 +320,14 @@ module router_generic_iact_tb;
         repeat(2) @(posedge clk);
 
         // ===================== NORTH =====================
-        $display("--- Testing COMPUTE_DIR = NORTH ---");
+        $display("Testing COMPUTE_DIR = NORTH ");
         north_enable_i_N = 1;
         idx = 0;
         while (idx < TOTAL_ELEMS) begin
             @(posedge clk);
             if (north_enable_o_N) begin
                 if (north_data_o_N !== expected_vals[idx]) begin
-                    $display("❌ FAIL NORTH idx=%0d got=%h exp=%h",
+                    $display("FAIL NORTH idx=%0d got=%h exp=%h",
                              idx, north_data_o_N, expected_vals[idx]);
                     $finish;
                 end
@@ -337,10 +335,10 @@ module router_generic_iact_tb;
             end
         end
         north_enable_i_N = 0;
-        $display("✔ NORTH PASS\n");
+        $display("NORTH PASS\n");
 
         // ===================== SOUTH =====================
-        $display("--- Testing COMPUTE_DIR = SOUTH ---");
+        $display("Testing COMPUTE_DIR = SOUTH");
         reset = 1; repeat(3) @(posedge clk); reset = 0; repeat(2) @(posedge clk);
         south_enable_i_S = 1;
         idx = 0;
@@ -348,7 +346,7 @@ module router_generic_iact_tb;
             @(posedge clk);
             if (south_enable_o_S) begin
                 if (south_data_o_S !== expected_vals[idx]) begin
-                    $display("❌ FAIL SOUTH idx=%0d got=%h exp=%h",
+                    $display("FAIL SOUTH idx=%0d got=%h exp=%h",
                              idx, south_data_o_S, expected_vals[idx]);
                     $finish;
                 end
@@ -356,10 +354,10 @@ module router_generic_iact_tb;
             end
         end
         south_enable_i_S = 0;
-        $display("✔ SOUTH PASS\n");
+        $display("SOUTH PASS\n");
 
         // ===================== WEST ======================
-        $display("--- Testing COMPUTE_DIR = WEST ---");
+        $display("Testing COMPUTE_DIR = WEST");
         reset = 1; repeat(3) @(posedge clk); reset = 0; repeat(2) @(posedge clk);
         west_enable_i_W = 1;
         idx = 0;
@@ -367,7 +365,7 @@ module router_generic_iact_tb;
             @(posedge clk);
             if (west_enable_o_W) begin
                 if (west_data_o_W !== expected_vals[idx]) begin
-                    $display("❌ FAIL WEST idx=%0d got=%h exp=%h",
+                    $display("FAIL WEST idx=%0d got=%h exp=%h",
                              idx, west_data_o_W, expected_vals[idx]);
                     $finish;
                 end
@@ -375,10 +373,10 @@ module router_generic_iact_tb;
             end
         end
         west_enable_i_W = 0;
-        $display("✔ WEST PASS\n");
+        $display("WEST PASS\n");
 
         // ===================== EAST ======================
-        $display("--- Testing COMPUTE_DIR = EAST ---");
+        $display("Testing COMPUTE_DIR = EAST");
         reset = 1; repeat(3) @(posedge clk); reset = 0; repeat(2) @(posedge clk);
         east_enable_i_E = 1;
         idx = 0;
@@ -386,7 +384,7 @@ module router_generic_iact_tb;
             @(posedge clk);
             if (east_enable_o_E) begin
                 if (east_data_o_E !== expected_vals[idx]) begin
-                    $display("❌ FAIL EAST idx=%0d got=%h exp=%h",
+                    $display("FAIL EAST idx=%0d got=%h exp=%h",
                              idx, east_data_o_E, expected_vals[idx]);
                     $finish;
                 end
@@ -394,11 +392,10 @@ module router_generic_iact_tb;
             end
         end
         east_enable_i_E = 0;
-        $display("✔ EAST PASS\n");
+        $display("EAST PASS\n");
 
-        $display("===============================================");
-        $display("   ALL FOUR COMPUTE DIRECTIONS PASSED! 🎉");
-        $display("===============================================\n");
+
+        $display("ALL FOUR COMPUTE DIRECTIONS PASSED!");
         $finish;
     end
 

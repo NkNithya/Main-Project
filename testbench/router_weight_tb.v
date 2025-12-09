@@ -210,9 +210,9 @@ module router_generic_wght_tb;
     integer idx;
 
     initial begin
-        $display("\n================================================");
+
         $display("     WEIGHT ROUTER – ALL 4 DIRECTIONS TEST");
-        $display("================================================\n");
+
 
         router_mode = CLOSED;
 
@@ -227,7 +227,7 @@ module router_generic_wght_tb;
         repeat(2) @(posedge clk);
 
         // ---------------- NORTH ----------------
-        $display("--- Testing NORTH compute (0) ---");
+        $display("Testing NORTH compute (0)");
         idx = 0;
         en_nN = 1;
 
@@ -235,7 +235,7 @@ module router_generic_wght_tb;
             @(posedge clk);
             if (spadN_en) begin
                 if (spadN_data !== exp_vals[idx]) begin
-                    $display("❌ FAIL NORTH idx=%0d got=%h exp=%h",
+                    $display("FAIL NORTH idx=%0d got=%h exp=%h",
                               idx, spadN_data, exp_vals[idx]);
                     $finish;
                 end
@@ -244,10 +244,10 @@ module router_generic_wght_tb;
         end
 
         en_nN = 0;
-        $display("✔ NORTH PASS\n");
+        $display("NORTH PASS\n");
 
         // ---------------- SOUTH ----------------
-        $display("--- Testing SOUTH compute (1) ---");
+        $display("Testing SOUTH compute (1)");
         reset=1; repeat(3) @(posedge clk); reset=0; repeat(2) @(posedge clk);
 
         idx=0; en_sS=1;
@@ -256,7 +256,7 @@ module router_generic_wght_tb;
             @(posedge clk);
             if (spadS_en) begin
                 if (spadS_data !== exp_vals[idx]) begin
-                    $display("❌ FAIL SOUTH idx=%0d got=%h exp=%h",
+                    $display("FAIL SOUTH idx=%0d got=%h exp=%h",
                               idx, spadS_data, exp_vals[idx]);
                     $finish;
                 end
@@ -265,7 +265,7 @@ module router_generic_wght_tb;
         end
 
         en_sS=0;
-        $display("✔ SOUTH PASS\n");
+        $display("SOUTH PASS\n");
 
         // ---------------- WEST ----------------
         $display("--- Testing WEST compute (2) ---");
@@ -277,7 +277,7 @@ module router_generic_wght_tb;
             @(posedge clk);
             if (spadW_en) begin
                 if (spadW_data !== exp_vals[idx]) begin
-                    $display("❌ FAIL WEST idx=%0d got=%h exp=%h",
+                    $display("FAIL WEST idx=%0d got=%h exp=%h",
                               idx, spadW_data, exp_vals[idx]);
                     $finish;
                 end
@@ -286,7 +286,7 @@ module router_generic_wght_tb;
         end
 
         en_wW=0;
-        $display("✔ WEST PASS\n");
+        $display("WEST PASS\n");
 
         // ---------------- EAST ----------------
         $display("--- Testing EAST compute (3) ---");
@@ -298,7 +298,7 @@ module router_generic_wght_tb;
             @(posedge clk);
             if (spadE_en) begin
                 if (spadE_data !== exp_vals[idx]) begin
-                    $display("❌ FAIL EAST idx=%0d got=%h exp=%h",
+                    $display("FAIL EAST idx=%0d got=%h exp=%h",
                               idx, spadE_data, exp_vals[idx]);
                     $finish;
                 end
@@ -307,11 +307,11 @@ module router_generic_wght_tb;
         end
 
         en_eE=0;
-        $display("✔ EAST PASS\n");
+        $display("EAST PASS\n");
 
-        $display("================================================");
-        $display("  ALL 4 WEIGHT DIRECTIONS PASSED! 🎉");
-        $display("================================================\n");
+
+        $display("ALL 4 WEIGHT DIRECTIONS PASSED! ");
+
 
         $finish;
     end

@@ -188,7 +188,7 @@ module router_psum_tb;
         input integer dir; // 0=N,1=S,2=W,3=E
 
         begin
-            $display("--- Testing compute direction %0d ---", dir);
+            $display("Testing compute direction %0d", dir);
 
             // reset DUT
             reset = 1;
@@ -221,32 +221,32 @@ module router_psum_tb;
                 case(dir)
                     0: if (psumN_en) begin
                            if (psumN_data !== exp_vals[idx])
-                               $display("❌ N idx=%0d got=%h exp=%h",
+                               $display("N idx=%0d got=%h exp=%h",
                                idx, psumN_data, exp_vals[idx]);
                            idx++;
                        end
                     1: if (psumS_en) begin
                            if (psumS_data !== exp_vals[idx])
-                               $display("❌ S idx=%0d got=%h exp=%h",
+                               $display("S idx=%0d got=%h exp=%h",
                                idx, psumS_data, exp_vals[idx]);
                            idx++;
                        end
                     2: if (psumW_en) begin
                            if (psumW_data !== exp_vals[idx])
-                               $display("❌ W idx=%0d got=%h exp=%h",
+                               $display("W idx=%0d got=%h exp=%h",
                                idx, psumW_data, exp_vals[idx]);
                            idx++;
                        end
                     3: if (psumE_en) begin
                            if (psumE_data !== exp_vals[idx])
-                               $display("❌ E idx=%0d got=%h exp=%h",
+                               $display("E idx=%0d got=%h exp=%h",
                                idx, psumE_data, exp_vals[idx]);
                            idx++;
                        end
                 endcase
             end
 
-            $display("✔ Direction %0d PASS\n", dir);
+            $display("Direction %0d PASS\n", dir);
         end
     endtask
 
@@ -255,9 +255,9 @@ module router_psum_tb;
     // TEST SEQUENCE
     // =============================================================
     initial begin
-        $display("\n===============================================");
-        $display("     PSUM ROUTER – ALL 4 DIRECTIONS");
-        $display("===============================================");
+
+        $display("PSUM ROUTER – ALL 4 DIRECTIONS");
+
 
         router_mode = CLOSED;
 
@@ -266,9 +266,8 @@ module router_psum_tb;
         run_test(2); // WEST
         run_test(3); // EAST
 
-        $display("===============================================");
-        $display(" ALL PSUM ROUTES PASSED SUCCESSFULLY 🎉");
-        $display("===============================================\n");
+
+        $display("ALL PSUM ROUTES PASSED SUCCESSFULLY");
 
         $finish;
     end
