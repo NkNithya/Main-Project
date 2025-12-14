@@ -1,0 +1,632 @@
+$date
+	Sun Dec 14 18:40:26 2025
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module tb_router_generic_iact $end
+$var wire 1 ! west_enable_o $end
+$var wire 16 " west_data_o [15:0] $end
+$var wire 1 # south_enable_o $end
+$var wire 16 $ south_data_o [15:0] $end
+$var wire 1 % north_enable_o $end
+$var wire 16 & north_data_o [15:0] $end
+$var wire 1 ' glb_req_read $end
+$var wire 10 ( glb_addr_read [9:0] $end
+$var wire 1 ) east_enable_o $end
+$var wire 16 * east_data_o [15:0] $end
+$var parameter 32 + ADDR_BITWIDTH_GLB $end
+$var parameter 32 , DATA_BITWIDTH $end
+$var reg 1 - clk $end
+$var reg 16 . east_data_i [15:0] $end
+$var reg 1 / east_enable_i $end
+$var reg 16 0 north_data_i [15:0] $end
+$var reg 1 1 north_enable_i $end
+$var reg 1 2 reset $end
+$var reg 4 3 router_mode [3:0] $end
+$var reg 16 4 south_data_i [15:0] $end
+$var reg 1 5 south_enable_i $end
+$var reg 16 6 west_data_i [15:0] $end
+$var reg 1 7 west_enable_i $end
+$scope module dut $end
+$var wire 1 - clk $end
+$var wire 16 8 east_data_i [15:0] $end
+$var wire 1 / east_enable_i $end
+$var wire 1 9 load_spad_ctrl $end
+$var wire 16 : north_data_i [15:0] $end
+$var wire 1 1 north_enable_i $end
+$var wire 1 2 reset $end
+$var wire 4 ; router_mode [3:0] $end
+$var wire 16 < south_data_i [15:0] $end
+$var wire 1 5 south_enable_i $end
+$var wire 16 = west_data_i [15:0] $end
+$var wire 1 7 west_enable_i $end
+$var wire 1 > spad_en $end
+$var wire 16 ? spad_data [15:0] $end
+$var wire 1 ' glb_req_read $end
+$var wire 10 @ glb_addr_read [9:0] $end
+$var parameter 32 A ADDR_BITWIDTH_GLB $end
+$var parameter 32 B ADDR_BITWIDTH_SPAD $end
+$var parameter 32 C ALL $end
+$var parameter 32 D A_LOAD_ADDR $end
+$var parameter 32 E A_READ_ADDR $end
+$var parameter 32 F CLOSED $end
+$var parameter 32 G COMPUTE_DIR $end
+$var parameter 32 H DATA_BITWIDTH $end
+$var parameter 32 I EAST $end
+$var parameter 32 J EASTNORTH $end
+$var parameter 32 K EASTSOUTH $end
+$var parameter 32 L EASTWEST $end
+$var parameter 32 M NORTH $end
+$var parameter 32 N SOUTH $end
+$var parameter 32 O WEST $end
+$var parameter 32 P WESTEAST $end
+$var parameter 32 Q WESTNORTH $end
+$var parameter 32 R WESTSOUTH $end
+$var parameter 32 S X_dim $end
+$var parameter 32 T Y_dim $end
+$var parameter 32 U act_size $end
+$var parameter 32 V kernel_size $end
+$var reg 16 W data_out [15:0] $end
+$var reg 16 X east_data_o [15:0] $end
+$var reg 1 ) east_enable_o $end
+$var reg 1 Y load_ff0 $end
+$var reg 1 Z load_ff1 $end
+$var reg 1 [ load_spad_ctrl_c $end
+$var reg 16 \ north_data_o [15:0] $end
+$var reg 1 % north_enable_o $end
+$var reg 16 ] south_data_o [15:0] $end
+$var reg 1 # south_enable_o $end
+$var reg 16 ^ west_data_o [15:0] $end
+$var reg 1 ! west_enable_o $end
+$scope begin genblk1 $end
+$upscope $end
+$scope module router_iact_0 $end
+$var wire 1 - clk $end
+$var wire 1 9 load_spad_ctrl $end
+$var wire 16 _ r_data_glb_iact [15:0] $end
+$var wire 1 2 reset $end
+$var parameter 32 ` ADDR_BITWIDTH_GLB $end
+$var parameter 32 a ADDR_BITWIDTH_SPAD $end
+$var parameter 32 b A_LOAD_ADDR $end
+$var parameter 32 c A_READ_ADDR $end
+$var parameter 32 d DATA_BITWIDTH $end
+$var parameter 3 e IDLE $end
+$var parameter 3 f READ_GLB $end
+$var parameter 3 g READ_GLB_0 $end
+$var parameter 3 h WRITE_SPAD $end
+$var parameter 32 i X_dim $end
+$var parameter 32 j Y_dim $end
+$var parameter 32 k act_size $end
+$var parameter 32 l kernel_size $end
+$var reg 6 m filt_count [5:0] $end
+$var reg 1 > load_en_spad $end
+$var reg 10 n r_addr_glb_iact [9:0] $end
+$var reg 1 ' read_req_glb_iact $end
+$var reg 3 o state [2:0] $end
+$var reg 16 p w_data_spad [15:0] $end
+$upscope $end
+$upscope $end
+$scope task clear_inputs $end
+$upscope $end
+$scope task wait_clk $end
+$var integer 32 q i [31:0] $end
+$var integer 32 r n [31:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+b11 l
+b101 k
+b11 j
+b101 i
+b10 h
+b11 g
+b1 f
+b0 e
+b10000 d
+b1100100 c
+b0 b
+b1001 a
+b1010 `
+b11 V
+b101 U
+b11 T
+b101 S
+b1001 R
+b1000 Q
+b1010 P
+b11 O
+b10 N
+b1 M
+b111 L
+b110 K
+b101 J
+b100 I
+b10000 H
+b10 G
+b1011 F
+b1100100 E
+b0 D
+b0 C
+b1001 B
+b1010 A
+b10000 ,
+b1010 +
+$end
+#0
+$dumpvars
+b11 r
+b0 q
+bx p
+bx o
+bx n
+bx m
+b0 _
+b0 ^
+b0 ]
+b0 \
+0[
+xZ
+xY
+b0 X
+b0 W
+bx @
+bx ?
+x>
+b0 =
+b0 <
+b0 ;
+b0 :
+x9
+b0 8
+07
+b0 6
+05
+b0 4
+b0 3
+12
+01
+b0 0
+0/
+b0 .
+0-
+b0 *
+1)
+bx (
+x'
+b0 &
+1%
+b0 $
+1#
+b0 "
+0!
+$end
+#5000
+bx "
+bx ^
+09
+b0 o
+b0 m
+0>
+b0 (
+b0 @
+b0 n
+0'
+0Z
+0Y
+b1 q
+1-
+#10000
+0-
+#15000
+b10 q
+1-
+#20000
+0-
+#25000
+b10 r
+02
+b0 q
+1-
+#30000
+0-
+#35000
+b1 q
+1-
+#40000
+0-
+#45000
+b1010101010101010 $
+b1010101010101010 ]
+1[
+b1010101010101010 W
+b1010101010101010 _
+0)
+b0 "
+b0 ^
+1#
+0%
+11
+b1010101010101010 0
+b1010101010101010 :
+b10 3
+b10 ;
+b0 q
+1-
+#50000
+0-
+#55000
+19
+1Y
+b1 q
+1-
+#60000
+0-
+#65000
+09
+b1 o
+b1100100 (
+b1100100 @
+b1100100 n
+1'
+1Z
+0#
+b0 $
+b0 ]
+b1011101110111011 W
+b1011101110111011 _
+b1011 3
+b1011 ;
+b1011101110111011 0
+b1011101110111011 :
+11
+b0 q
+1-
+#70000
+0-
+#75000
+b1011101110111011 "
+b1011101110111011 ^
+b10 o
+b1011101110111011 ?
+b1011101110111011 p
+b1100101 (
+b1100101 @
+b1100101 n
+b1 m
+b1 q
+1-
+#80000
+0-
+#85000
+1!
+b1100110 (
+b1100110 @
+b1100110 n
+b10 m
+1>
+b1011101110111011 "
+b1011101110111011 ^
+b100000001 W
+b100000001 _
+b1 r
+17
+b100000001 6
+b100000001 =
+b0 0
+b0 :
+01
+b0 q
+1-
+#90000
+0-
+#95000
+b1100111 (
+b1100111 @
+b1100111 n
+b11 m
+b100000001 ?
+b100000001 p
+1!
+b100000001 "
+b100000001 ^
+0[
+b0 W
+b0 _
+b1010 r
+07
+b0 q
+1-
+#100000
+0-
+#105000
+b0 "
+b0 ^
+b1101000 (
+b1101000 @
+b1101000 n
+b100 m
+b0 ?
+b0 p
+0Y
+b1 q
+1-
+#110000
+0-
+#115000
+0Z
+b1101001 (
+b1101001 @
+b1101001 n
+b101 m
+b10 q
+1-
+#120000
+0-
+#125000
+b1101010 (
+b1101010 @
+b1101010 n
+b110 m
+b11 q
+1-
+#130000
+0-
+#135000
+b1101011 (
+b1101011 @
+b1101011 n
+b111 m
+b100 q
+1-
+#140000
+0-
+#145000
+b1101100 (
+b1101100 @
+b1101100 n
+b1000 m
+b101 q
+1-
+#150000
+0-
+#155000
+b1101101 (
+b1101101 @
+b1101101 n
+b1001 m
+b110 q
+1-
+#160000
+0-
+#165000
+b1101110 (
+b1101110 @
+b1101110 n
+b1010 m
+b111 q
+1-
+#170000
+0-
+#175000
+b1101111 (
+b1101111 @
+b1101111 n
+b1011 m
+b1000 q
+1-
+#180000
+0-
+#185000
+b1110000 (
+b1110000 @
+b1110000 n
+b1100 m
+b1001 q
+1-
+#190000
+0-
+#195000
+b1110001 (
+b1110001 @
+b1110001 n
+b1101 m
+b1100110011001100 *
+b1100110011001100 X
+1[
+b1100110011001100 W
+b1100110011001100 _
+1)
+0!
+b1 r
+11
+b1100110011001100 0
+b1100110011001100 :
+b100 3
+b100 ;
+b0 q
+1-
+#200000
+0-
+#205000
+1!
+b1100110011001100 "
+b1100110011001100 ^
+19
+b1110010 (
+b1110010 @
+b1110010 n
+b1110 m
+b1100110011001100 ?
+b1100110011001100 p
+1Y
+1)
+b1000000010 *
+b1000000010 X
+b1000000010 W
+b1000000010 _
+17
+b1000000010 6
+b1000000010 =
+01
+b0 q
+1-
+#210000
+0-
+#215000
+09
+1Z
+b1110011 (
+b1110011 @
+b1110011 n
+b1111 m
+b1000000010 ?
+b1000000010 p
+1)
+b0 *
+b0 X
+1!
+b1000000010 "
+b1000000010 ^
+0[
+b0 W
+b0 _
+b1010 r
+07
+b0 q
+1-
+#220000
+0-
+#225000
+b0 "
+b0 ^
+b1110100 (
+b1110100 @
+b1110100 n
+b10000 m
+b0 ?
+b0 p
+0Y
+b1 q
+1-
+#230000
+0-
+#235000
+0Z
+b1110101 (
+b1110101 @
+b1110101 n
+b10001 m
+b10 q
+1-
+#240000
+0-
+#245000
+b1110110 (
+b1110110 @
+b1110110 n
+b10010 m
+b11 q
+1-
+#250000
+0-
+#255000
+b1110111 (
+b1110111 @
+b1110111 n
+b10011 m
+b100 q
+1-
+#260000
+0-
+#265000
+b1111000 (
+b1111000 @
+b1111000 n
+b10100 m
+b101 q
+1-
+#270000
+0-
+#275000
+b1111001 (
+b1111001 @
+b1111001 n
+b10101 m
+b110 q
+1-
+#280000
+0-
+#285000
+b1111010 (
+b1111010 @
+b1111010 n
+b10110 m
+b111 q
+1-
+#290000
+0-
+#295000
+b1111011 (
+b1111011 @
+b1111011 n
+b10111 m
+b1000 q
+1-
+#300000
+0-
+#305000
+b1111100 (
+b1111100 @
+b1111100 n
+b11000 m
+b1001 q
+1-
+#310000
+0-
+#315000
+b1111101 (
+b1111101 @
+b1111101 n
+b11001 m
+b101 r
+b0 q
+1-
+#320000
+0-
+#325000
+b0 o
+b1100100 (
+b1100100 @
+b1100100 n
+b0 m
+b1 q
+1-
+#330000
+0-
+#335000
+0!
+0>
+0'
+b10 q
+1-
+#340000
+0-
+#345000
+b11 q
+1-
+#350000
+0-
+#355000
+b100 q
+1-
+#360000
+0-
+#365000
+b101 q
+1-

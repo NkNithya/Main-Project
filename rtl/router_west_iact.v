@@ -10,7 +10,7 @@ module router_west_iact
 		parameter X_dim = 5,
         parameter Y_dim = 3,
         parameter kernel_size = 3,
-        parameter act_size = 5,
+        parameter ACT_SIZE = 5,
 		
 		parameter A_READ_ADDR =100, 
         parameter A_LOAD_ADDR = 0
