@@ -1,0 +1,130 @@
+`timescale 1ns/1ps
+
+module router_iact_generic #(
+    parameter DATA_BITWIDTH     = 16,
+    parameter ADDR_BITWIDTH_GLB = 10,
+    parameter act_size          = 5,
+    parameter A_READ_ADDR       = 0,
+
+    parameter HAS_NORTH = 1,
+    parameter HAS_SOUTH = 1,
+    parameter HAS_WEST  = 1,
+    parameter HAS_EAST  = 1
+)(
+    input  wire clk,
+    input  wire reset,
+    input  wire [3:0] router_mode,
+
+    // GLB
+    output reg  [ADDR_BITWIDTH_GLB-1:0] glb_addr_read,
+    output reg  glb_req_read,
+    input  wire [DATA_BITWIDTH-1:0]     glb_rdata,
+
+    // Directional inputs
+    input  wire [DATA_BITWIDTH-1:0] north_data_i,
+    input  wire north_enable_i,
+    input  wire [DATA_BITWIDTH-1:0] south_data_i,
+    input  wire south_enable_i,
+    input  wire [DATA_BITWIDTH-1:0] west_data_i,
+    input  wire west_enable_i,
+    input  wire [DATA_BITWIDTH-1:0] east_data_i,
+    input  wire east_enable_i,
+
+    // Outputs
+    output reg [DATA_BITWIDTH-1:0] local_data_o,
+    output reg local_enable_o,
+    output reg [DATA_BITWIDTH-1:0] east_data_o,
+    output reg east_enable_o
+);
+
+    localparam MODE_IDLE = 4'd0;
+    localparam MODE_LOAD = 4'd1;
+    localparam MODE_FWD  = 4'd2;
+
+    // ---------------- LOAD path ----------------
+    reg [$clog2(act_size+1)-1:0] act_cnt;
+    reg                          glb_req_q;
+    reg [DATA_BITWIDTH-1:0]      glb_data_q;
+
+    // ---------------- FORWARD pipeline ----------------
+    reg                          fwd_valid_q;
+    reg [DATA_BITWIDTH-1:0]      fwd_data_q;
+
+    always @(posedge clk) begin
+        if (reset) begin
+            glb_addr_read  <= A_READ_ADDR;
+            glb_req_read   <= 1'b0;
+            glb_req_q      <= 1'b0;
+            act_cnt        <= 0;
+
+            fwd_valid_q    <= 1'b0;
+
+            local_enable_o <= 1'b0;
+            east_enable_o  <= 1'b0;
+        end else begin
+            // defaults
+            glb_req_read   <= 1'b0;
+            local_enable_o <= 1'b0;
+            east_enable_o  <= 1'b0;
+
+            // ---------------- GLB return pipeline ----------------
+            glb_req_q <= glb_req_read;
+            if (glb_req_q)
+                glb_data_q <= glb_rdata;
+
+            // ---------------- FORWARD output stage ----------------
+            if (fwd_valid_q && router_mode == MODE_FWD) begin
+                local_data_o   <= fwd_data_q;
+                local_enable_o <= 1'b1;
+            end
+            fwd_valid_q <= 1'b0;
+
+            case (router_mode)
+
+                // ================= LOAD =================
+                MODE_LOAD: begin
+                    if (act_cnt < act_size) begin
+                        glb_req_read  <= 1'b1;
+                        glb_addr_read <= glb_addr_read + 1'b1;
+                        act_cnt       <= act_cnt + 1'b1;
+                    end
+
+                    if (glb_req_q) begin
+                        local_data_o   <= glb_data_q;
+                        local_enable_o <= 1'b1;
+
+                        if (HAS_EAST) begin
+                            east_data_o   <= glb_data_q;
+                            east_enable_o <= 1'b1;
+                        end
+                    end
+                end
+
+                // ================= FORWARD =================
+                MODE_FWD: begin
+                    if (HAS_NORTH && north_enable_i) begin
+                        fwd_data_q  <= north_data_i;
+                        fwd_valid_q <= 1'b1;
+                    end
+                    else if (HAS_WEST && west_enable_i) begin
+                        fwd_data_q  <= west_data_i;
+                        fwd_valid_q <= 1'b1;
+                    end
+                    else if (HAS_SOUTH && south_enable_i) begin
+                        fwd_data_q  <= south_data_i;
+                        fwd_valid_q <= 1'b1;
+                    end
+                end
+            endcase
+
+            // ---------------- mode exit cleanup ----------------
+            if (router_mode != MODE_LOAD) begin
+                glb_addr_read <= A_READ_ADDR;
+                act_cnt       <= 0;
+                glb_req_q     <= 1'b0;
+            end
+        end
+    end
+
+endmodule
+
