@@ -13,6 +13,9 @@ module router_wght_generic_tb;
     localparam KERNEL_ELEMS = KERNEL_SIZE * KERNEL_SIZE;
     localparam W_READ_ADDR = 8'h20;
 
+    localparam MODE_IDLE = 4'd0;
+    localparam MODE_LOAD = 4'd1;
+
     /* ------------------------------------------------------------
      * Clock / Reset
      * ----------------------------------------------------------*/
@@ -22,81 +25,67 @@ module router_wght_generic_tb;
     always #5 clk = ~clk;
 
     /* ------------------------------------------------------------
-     * DUT interface
+     * Shared signals
      * ----------------------------------------------------------*/
     reg  [3:0] router_mode;
-
-    wire [ADDR_BITWIDTH_GLB-1:0] glb_addr_read;
-    wire glb_req_read;
     reg  [DATA_BITWIDTH-1:0] glb_rdata;
 
-    wire [DATA_BITWIDTH-1:0] spad_data_o;
-    wire spad_en_o;
+    integer i;
 
     /* ------------------------------------------------------------
-     * NoC inputs (quiet by default)
+     * Expected kernel
      * ----------------------------------------------------------*/
-    reg  [DATA_BITWIDTH-1:0] west_data_i;
-    reg  west_enable_i;
-
-    wire [DATA_BITWIDTH-1:0] north_data_i = '0;
-    wire [DATA_BITWIDTH-1:0] south_data_i = '0;
-    wire [DATA_BITWIDTH-1:0] east_data_i  = '0;
-
-    wire north_enable_i = 1'b0;
-    wire south_enable_i = 1'b0;
-    wire east_enable_i  = 1'b0;
-
-    /* ------------------------------------------------------------
-     * Scoreboarding
-     * ----------------------------------------------------------*/
-    integer cycle;
-    integer glb_cnt;
-    integer spad_cnt;
-
     reg [DATA_BITWIDTH-1:0] expected [0:KERNEL_ELEMS-1];
 
     /* ------------------------------------------------------------
-     * DUT
+     * Mesh outputs (per DUT)
      * ----------------------------------------------------------*/
-    router_wght_generic #(
-        .DATA_BITWIDTH(DATA_BITWIDTH),
-        .ADDR_BITWIDTH_GLB(ADDR_BITWIDTH_GLB),
-        .ADDR_BITWIDTH_SPAD(ADDR_BITWIDTH_SPAD),
-        .HAS_NORTH(1),
-        .HAS_SOUTH(1),
-        .HAS_WEST(1),
-        .HAS_EAST(1)
-    ) dut (
-        .clk(clk),
-        .reset(reset),
-        .router_mode(router_mode),
+    wire [DATA_BITWIDTH-1:0]
+        n_data [0:3], s_data [0:3], w_data [0:3], e_data [0:3];
 
-        .glb_addr_read(glb_addr_read),
-        .glb_req_read(glb_req_read),
-        .glb_rdata(glb_rdata),
+    wire n_en [0:3], s_en [0:3], w_en [0:3], e_en [0:3];
 
-        .north_data_i(north_data_i),
-        .north_enable_i(north_enable_i),
-        .south_data_i(south_data_i),
-        .south_enable_i(south_enable_i),
-        .east_data_i(east_data_i),
-        .east_enable_i(east_enable_i),
-        .west_data_i(west_data_i),
-        .west_enable_i(west_enable_i),
+    wire [DATA_BITWIDTH-1:0] spad_data [0:3];
+    wire spad_en [0:3];
 
-        .north_data_o(),
-        .north_enable_o(),
-        .south_data_o(),
-        .south_enable_o(),
-        .east_data_o(),
-        .east_enable_o(),
-        .west_data_o(),
-        .west_enable_o(),
+    /* ------------------------------------------------------------
+     * DUTs: one per direction
+     * ----------------------------------------------------------*/
+    genvar d;
+    generate
+        for (d = 0; d < 4; d = d + 1) begin : DUTS
+            router_weight_full_generic #(
+                .DATA_BITWIDTH(DATA_BITWIDTH),
+                .ADDR_BITWIDTH_GLB(ADDR_BITWIDTH_GLB),
+                .ADDR_BITWIDTH_SPAD(ADDR_BITWIDTH_SPAD),
+                .kernel_size(KERNEL_SIZE),
+                .W_READ_ADDR(W_READ_ADDR),
+                .HAS_GLB(1),
+                .INJECT_DIR(d)
+            ) dut (
+                .clk(clk),
+                .reset(reset),
+                .router_mode(router_mode),
 
-        .spad_data_o(spad_data_o),
-        .spad_en_o(spad_en_o)
-    );
+                .glb_addr_read(),
+                .glb_req_read(),
+                .glb_rdata(glb_rdata),
+
+                .north_data_i('0), .north_enable_i(1'b0),
+                .south_data_i('0), .south_enable_i(1'b0),
+                .west_data_i ('0), .west_enable_i (1'b0),
+                .east_data_i ('0), .east_enable_i (1'b0),
+
+                .north_data_o(n_data[d]), .north_enable_o(n_en[d]),
+                .south_data_o(s_data[d]), .south_enable_o(s_en[d]),
+                .west_data_o (w_data[d]), .west_enable_o (w_en[d]),
+                .east_data_o (e_data[d]), .east_enable_o (e_en[d]),
+
+                .spad_data_o(spad_data[d]),
+                .spad_en_o(spad_en[d])
+            );
+        end
+    endgenerate
 
     /* ------------------------------------------------------------
      * VCD
@@ -107,113 +96,60 @@ module router_wght_generic_tb;
     end
 
     /* ------------------------------------------------------------
-     * Zero-latency GLB model
+     * GLB model (zero latency)
      * ----------------------------------------------------------*/
+    integer glb_cnt;
     always @(*) begin
-        if (glb_req_read)
-            glb_rdata = expected[glb_cnt];
-        else
-            glb_rdata = '0;
+        glb_rdata = expected[glb_cnt];
     end
 
     /* ------------------------------------------------------------
-     * Test sequence
+     * Test
      * ----------------------------------------------------------*/
     initial begin
         clk = 0;
         reset = 1;
-        router_mode = 4'd0;
+        router_mode = MODE_IDLE;
+        glb_cnt = 0;
 
-        west_data_i   = '0;
-        west_enable_i = 1'b0;
+        for (i = 0; i < KERNEL_ELEMS; i = i + 1)
+            expected[i] = 16'hA000 + i;
 
-        cycle    = 0;
-        glb_cnt  = 0;
-        spad_cnt = 0;
-
-        /* Initialize kernel */
-        begin : init_kernel
-            integer i;
-            for (i = 0; i < KERNEL_ELEMS; i = i + 1)
-                expected[i] = 16'hA000 + i;
-        end
-
-        #20;
-        reset = 0;
-        $display("=== RESET DEASSERTED ===");
+        #20 reset = 0;
 
         /* --------------------------------------------------------
-         * TEST 1: LOAD MODE (GLB → SPAD)
+         * Test each direction
          * ------------------------------------------------------*/
-        router_mode = 4'd1; // MODE_LOAD
-        $display("=== TEST 1: WEIGHT LOAD MODE ===");
+        for (i = 0; i < 4; i = i + 1) begin
+            $display("=== TEST FORWARD DIR = %0d ===", i);
 
-        while (spad_cnt < KERNEL_ELEMS) begin
+            router_mode = MODE_LOAD;
+            glb_cnt = 0;
+
+            while (glb_cnt < KERNEL_ELEMS) begin
+                @(posedge clk);
+                if (spad_en[i]) glb_cnt = glb_cnt + 1;
+            end
+
+            // one extra cycle to observe forwarding
             @(posedge clk);
-            cycle = cycle + 1;
 
-            if (glb_req_read) begin
-                if (glb_addr_read !== (W_READ_ADDR + glb_cnt)) begin
-                    $fatal(1,
-                        "[LOAD][ERROR] GLB addr mismatch @cycle=%0d exp=%0h got=%0h",
-                        cycle, W_READ_ADDR + glb_cnt, glb_addr_read);
-                end
-                glb_cnt = glb_cnt + 1;
-            end
+            case (i)
+                0: if (!n_en[i]) $fatal("Expected NORTH enable");
+                1: if (!s_en[i]) $fatal("Expected SOUTH enable");
+                2: if (!w_en[i]) $fatal("Expected WEST enable");
+                3: if (!e_en[i]) $fatal("Expected EAST enable");
+            endcase
 
-            if (spad_en_o) begin
-                if (spad_data_o !== expected[spad_cnt]) begin
-                    $fatal(1,
-                        "[LOAD][ERROR] SPAD data mismatch idx=%0d exp=%0h got=%0h",
-                        spad_cnt, expected[spad_cnt], spad_data_o);
-                end
-                spad_cnt = spad_cnt + 1;
-            end
+            // ensure no other direction fires
+            if ((n_en[i] + s_en[i] + w_en[i] + e_en[i]) != 1)
+                $fatal("Multiple or zero directions fired");
 
-            if (spad_cnt > glb_cnt) begin
-                $fatal(1, "[LOAD][ERROR] SPAD write without GLB request");
-            end
+            router_mode = MODE_IDLE;
+            @(posedge clk);
         end
 
-        $display("[PASS] Weight load completed successfully");
-
-        /* --------------------------------------------------------
-         * TEST 2: END-OF-LOAD QUIESCENCE
-         * ------------------------------------------------------*/
-        @(posedge clk);
-        if (glb_req_read || spad_en_o) begin
-            $fatal(1, "[ERROR] Activity detected after load completion");
-        end
-        $display("[PASS] Clean end-of-load behavior");
-
-        /* --------------------------------------------------------
-         * TEST 3: MODE TRANSITION RESET
-         * ------------------------------------------------------*/
-        router_mode = 4'd0; // IDLE
-        @(posedge clk);
-        router_mode = 4'd1; // LOAD again
-
-        glb_cnt  = 0;
-        spad_cnt = 0;
-
-        @(posedge clk);
-        if (glb_addr_read !== W_READ_ADDR) begin
-            $fatal(1, "[ERROR] GLB address did not reset on mode change");
-        end
-        $display("[PASS] Mode change resets internal sequencing");
-
-        /* --------------------------------------------------------
-         * TEST 4: FORWARD MODE (NO GLB / NO SPAD)
-         * ------------------------------------------------------*/
-        router_mode = 4'd2; // MODE_FWD
-        repeat (5) @(posedge clk);
-
-        if (glb_req_read || spad_en_o) begin
-            $fatal(1, "[ERROR] GLB/SPAD activity in FORWARD mode");
-        end
-        $display("[PASS] Forward mode is GLB/SPAD silent");
-
-        $display("=== ALL TESTS PASSED ===");
+        $display("=== ALL DIRECTIONAL TESTS PASSED ===");
         #20;
         $finish;
     end

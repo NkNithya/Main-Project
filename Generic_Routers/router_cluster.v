@@ -1,124 +1,90 @@
-`timescale 1ns/1ps
+`timescale 1ns / 1ps
 
-module router_cluster_pe_level2 #(
-    parameter DATA_BITWIDTH = 16,
-    parameter ADDR_BITWIDTH = 10,
-    parameter ACT_SIZE      = 5,
-    parameter KERNEL_SIZE   = 3,
-    parameter X_dim         = 5,   // must match PE_cluster_new
-    parameter A_READ_ADDR   = 10,
-    parameter W_READ_ADDR   = 16
+module router_cluster_wpsum #(
+    parameter DATA_BITWIDTH     = 16,
+    parameter ADDR_BITWIDTH_GLB = 10,
+    parameter kernel_size       = 3,
+
+    parameter A_READ_ADDR        = 0,
+    parameter W_READ_ADDR        = 0,
+    parameter PSUM_GLB_BASE_ADDR = 0
 )(
-    input  clk,
-    input  reset,
-    input  [3:0] router_mode,
+    input  wire clk,
+    input  wire reset,
+    input  wire [3:0] router_mode,
 
-    // -------- GLB --------
-    output [ADDR_BITWIDTH-1:0] glb_addr_read_iact,
-    output                     glb_req_read_iact,
+    // -------- IACT GLB --------
+    output wire [ADDR_BITWIDTH_GLB-1:0] iact_glb_addr,
+    output wire                         iact_glb_req,
+    input  wire [DATA_BITWIDTH-1:0]     iact_glb_rdata,
 
-    output [ADDR_BITWIDTH-1:0] glb_addr_read_wght,
-    output                     glb_req_read_wght,
+    // -------- WGHT GLB --------
+    output wire [ADDR_BITWIDTH_GLB-1:0] wght_glb_addr,
+    output wire                         wght_glb_req,
+    input  wire [DATA_BITWIDTH-1:0]     wght_glb_rdata,
 
-    output [ADDR_BITWIDTH-1:0] glb_addr_write_psum,
-    output [DATA_BITWIDTH-1:0] glb_data_write_psum,
-    output                     glb_we_psum,
-
-    input  [DATA_BITWIDTH-1:0] glb_rdata,
-
-    // -------- Status --------
-    output compute_done
+    // -------- PSUM GLB --------
+    output wire [ADDR_BITWIDTH_GLB-1:0] psum_glb_addr,
+    output wire                         psum_glb_en,
+    output wire [DATA_BITWIDTH-1:0]     psum_glb_data
 );
 
-    // ===================================================
-    // IACT router outputs
-    // ===================================================
-    wire [DATA_BITWIDTH-1:0] iact_local_data;
-    wire                     iact_local_en;
+    localparam MODE_IDLE  = 4'd0;
+    localparam MODE_LOAD  = 4'd1;
+    localparam MODE_LOCAL = 4'd2;
+    localparam MODE_DRAIN = 4'd3;
 
-    // ===================================================
-    // Weight router outputs
-    // ===================================================
-    wire [DATA_BITWIDTH-1:0] wght_spad_data;
-    wire                     wght_spad_en;
+    wire window_reset = reset || (router_mode == MODE_IDLE);
 
-    // ===================================================
-    // PE outputs (VECTOR)
-    // ===================================================
-    wire [DATA_BITWIDTH*X_dim-1:0] pe_psum_vec;
-    wire [DATA_BITWIDTH-1:0]       pe_psum_lane0;
+    // -------------------------------------------------
+    // Activation router → PE
+    // -------------------------------------------------
+    wire [DATA_BITWIDTH-1:0] iact_data;
+    wire                     iact_valid;
 
-    // Explicit lane selection
-    assign pe_psum_lane0 = pe_psum_vec[DATA_BITWIDTH-1:0];
-
-    // ===================================================
-    // PSUM latch (CRITICAL FIX)
-    // ===================================================
-    reg [DATA_BITWIDTH-1:0] psum_latched;
-    reg                     psum_valid;
-
-    always @(posedge clk or posedge reset) begin
-        if (reset) begin
-            psum_latched <= '0;
-            psum_valid   <= 1'b0;
-        end else begin
-            // latch PE output at compute completion
-            if (compute_done) begin
-                psum_latched <= pe_psum_lane0;
-                psum_valid   <= 1'b1;
-            end
-            // clear after successful drain
-            else if (router_mode == 4'd3 && psum_valid) begin
-                psum_valid <= 1'b0;
-            end
-        end
-    end
-
-    // ===================================================
-    // IACT ROUTER
-    // ===================================================
     router_iact_generic #(
         .DATA_BITWIDTH(DATA_BITWIDTH),
-        .ADDR_BITWIDTH_GLB(ADDR_BITWIDTH),
-        .act_size(ACT_SIZE),
+        .ADDR_BITWIDTH_GLB(ADDR_BITWIDTH_GLB),
+        .act_size(kernel_size * kernel_size),
         .A_READ_ADDR(A_READ_ADDR)
     ) u_iact (
         .clk(clk),
-        .reset(reset),
+        .reset(window_reset),
         .router_mode(router_mode),
 
-        .glb_addr_read(glb_addr_read_iact),
-        .glb_req_read(glb_req_read_iact),
-        .glb_rdata(glb_rdata),
+        .glb_addr_read(iact_glb_addr),
+        .glb_req_read (iact_glb_req),
+        .glb_rdata    (iact_glb_rdata),
 
         .north_data_i('0), .north_enable_i(1'b0),
         .south_data_i('0), .south_enable_i(1'b0),
         .west_data_i ('0), .west_enable_i (1'b0),
         .east_data_i ('0), .east_enable_i (1'b0),
 
-        .local_data_o(iact_local_data),
-        .local_enable_o(iact_local_en)
+        .local_data_o  (iact_data),
+        .local_enable_o(iact_valid)
     );
 
-    // ===================================================
-    // WEIGHT ROUTER
-    // ===================================================
+    // -------------------------------------------------
+    // Weight router → PE
+    // -------------------------------------------------
+    wire [DATA_BITWIDTH-1:0] wght_data;
+    wire                     wght_valid;
+
     router_weight_full_generic #(
         .DATA_BITWIDTH(DATA_BITWIDTH),
-        .ADDR_BITWIDTH_GLB(ADDR_BITWIDTH),
-        .kernel_size(KERNEL_SIZE),
+        .ADDR_BITWIDTH_GLB(ADDR_BITWIDTH_GLB),
+        .kernel_size(kernel_size),
         .W_READ_ADDR(W_READ_ADDR),
-        .HAS_GLB(1),
-        .HAS_WEST(0),
-        .INJECT_DIR(3)
+        .HAS_GLB(1)
     ) u_wght (
         .clk(clk),
-        .reset(reset),
+        .reset(window_reset),
         .router_mode(router_mode),
 
-        .glb_addr_read(glb_addr_read_wght),
-        .glb_req_read(glb_req_read_wght),
-        .glb_rdata(glb_rdata),
+        .glb_addr_read(wght_glb_addr),
+        .glb_req_read (wght_glb_req),
+        .glb_rdata    (wght_glb_rdata),
 
         .north_data_i('0), .north_enable_i(1'b0),
         .south_data_i('0), .south_enable_i(1'b0),
@@ -130,47 +96,47 @@ module router_cluster_pe_level2 #(
         .west_data_o (), .west_enable_o (),
         .east_data_o (), .east_enable_o (),
 
-        .spad_data_o(wght_spad_data),
-        .spad_en_o(wght_spad_en)
+        .spad_data_o(wght_data),
+        .spad_en_o  (wght_valid)
     );
 
-    // ===================================================
-    // PE CLUSTER (VECTOR OUTPUT)
-    // ===================================================
+    // -------------------------------------------------
+    // PE (true CNN kernel)
+    // -------------------------------------------------
+    wire [DATA_BITWIDTH-1:0] psum;
+    wire                     psum_valid;
+
     PE_cluster_new #(
         .DATA_BITWIDTH(DATA_BITWIDTH),
-        .kernel_size(KERNEL_SIZE),
-        .act_size(ACT_SIZE),
-        .X_dim(X_dim)
+        .kernel_size(kernel_size)
     ) u_pe (
         .clk(clk),
-        .reset(reset),
+        .reset(window_reset),
+        .start(router_mode == MODE_LOCAL),
 
-        .act_in(iact_local_data),
-        .filt_in(wght_spad_data),
+        .iact_data_i (iact_data),
+        .iact_valid_i(iact_valid),
+        .wght_data_i (wght_data),
+        .wght_valid_i(wght_valid),
 
-        .load_en_act(iact_local_en),
-        .load_en_wght(wght_spad_en),
-
-        .start(router_mode == 4'd2), // MODE_COMPUTE
-
-        .pe_out(pe_psum_vec),
-        .compute_done(compute_done)
+        .psum_data_o (psum),
+        .psum_valid_o(psum_valid)
     );
 
-    // ===================================================
-    // PSUM ROUTER (SCALAR, MODE_DRAIN ONLY)
-    // ===================================================
+    // -------------------------------------------------
+    // PSUM router → GLB
+    // -------------------------------------------------
     router_psum_generic #(
         .DATA_BITWIDTH(DATA_BITWIDTH),
-        .ADDR_BITWIDTH_GLB(ADDR_BITWIDTH)
+        .ADDR_BITWIDTH_GLB(ADDR_BITWIDTH_GLB),
+        .PSUM_GLB_BASE_ADDR(PSUM_GLB_BASE_ADDR)
     ) u_psum (
         .clk(clk),
-        .reset(reset),
+        .reset(window_reset),
         .router_mode(router_mode),
 
-        .local_data_i(psum_latched),
-        .local_enable_i(psum_valid && router_mode == 4'd3),
+        .local_data_i  (psum),
+        .local_enable_i(psum_valid && router_mode == MODE_DRAIN),
 
         .north_data_i('0), .north_enable_i(1'b0),
         .south_data_i('0), .south_enable_i(1'b0),
@@ -186,10 +152,10 @@ module router_cluster_pe_level2 #(
         .spad_en_o(),
         .spad_addr_o(),
 
-        .glb_data_o(glb_data_write_psum),
-        .glb_en_o(glb_we_psum),
-        .glb_addr_o(glb_addr_write_psum)
+        .glb_data_o (psum_glb_data),
+        .glb_en_o   (psum_glb_en),
+        .glb_addr_o (psum_glb_addr)
     );
 
 endmodule
-	
+

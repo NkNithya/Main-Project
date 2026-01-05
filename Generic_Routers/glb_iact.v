@@ -22,11 +22,11 @@ module glb_iact #( parameter DATA_BITWIDTH = 16,
 				data <= 0;
 			else
 			begin
-				if(read_req) begin
+				if(read_req) begin	
 					data <= mem[r_addr];
 //					$display("Read Address to SPad:%d",r_addr);
 				end else begin
-					data <= 11000; //Random default value to verify model
+					data <= 0; //Random default value to verify model
 				end
 			end
 		end

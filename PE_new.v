@@ -9,6 +9,8 @@ module PE_new #(
     parameter W_LOAD_ADDR  = 0,
     parameter A_LOAD_ADDR  = 100,
 
+    parameter PSUM_ADDR    = 500,
+
     parameter kernel_size  = 3,
     parameter act_size     = 5
 )(
@@ -28,7 +30,7 @@ module PE_new #(
 );
 
     // ==================================================
-    // FSM STATES (UNCHANGED)
+    // FSM STATES
     // ==================================================
     localparam IDLE        = 5'd0,
                LD_W_ADDR   = 5'd1,
@@ -81,15 +83,11 @@ module PE_new #(
     );
 
     // ==================================================
-    // REGISTERED READ DATA  (FIXED: gated)
+    // REGISTERED READ DATA
     // ==================================================
     reg [DATA_BITWIDTH-1:0] r_data_q;
-    always @(posedge clk) begin
-        if (reset)
-            r_data_q <= {DATA_BITWIDTH{1'b0}};
-        else if (read_en)
-            r_data_q <= r_data;
-    end
+    always @(posedge clk)
+        r_data_q <= reset ? {DATA_BITWIDTH{1'b0}} : r_data;
 
     // ==================================================
     // OPERANDS
@@ -97,7 +95,7 @@ module PE_new #(
     reg [DATA_BITWIDTH-1:0] act_reg, wgt_reg;
 
     // ==================================================
-    // MAC (REGISTERED OUTPUT)
+    // MAC
     // ==================================================
     reg mac_en;
     wire [DATA_BITWIDTH-1:0] psum;
@@ -156,7 +154,6 @@ module PE_new #(
 
             case (state)
 
-            // ================= IDLE =================
             IDLE: begin
                 if (load_en_wght) begin
                     load_count <= 0;
@@ -173,7 +170,6 @@ module PE_new #(
                 end
             end
 
-            // ================= LOAD WEIGHTS =================
             LD_W_ADDR: begin
                 w_addr <= W_LOAD_ADDR + load_count;
                 w_data <= filt_in;
@@ -182,7 +178,7 @@ module PE_new #(
 
             LD_W_WRITE: begin
                 write_en <= 1;
-                if (load_count == kernel_size*kernel_size - 1) begin
+                if (load_count == kernel_size*kernel_size) begin
                     load_done <= 1;
                     state <= IDLE;
                 end else begin
@@ -191,7 +187,6 @@ module PE_new #(
                 end
             end
 
-            // ================= LOAD ACTIVATIONS =================
             LD_A_ADDR: begin
                 w_addr <= A_LOAD_ADDR + load_count;
                 w_data <= act_in;
@@ -200,7 +195,7 @@ module PE_new #(
 
             LD_A_WRITE: begin
                 write_en <= 1;
-                if (load_count == act_size*act_size - 1) begin
+                if (load_count == act_size*act_size) begin
                     load_done <= 1;
                     state <= IDLE;
                 end else begin
@@ -209,7 +204,6 @@ module PE_new #(
                 end
             end
 
-            // ================= READ WEIGHT =================
             RD_W_ADDR: begin
                 r_addr <= W_READ_ADDR + rd_idx;
                 state <= RD_W_REQ;
@@ -227,7 +221,6 @@ module PE_new #(
                 state <= RD_A_ADDR;
             end
 
-            // ================= READ ACT =================
             RD_A_ADDR: begin
                 r_addr <= A_READ_ADDR + rd_idx;
                 state <= RD_A_REQ;
@@ -245,7 +238,6 @@ module PE_new #(
                 state <= MAC_FIRE;
             end
 
-            // ================= MAC =================
             MAC_FIRE: begin
                 mac_en <= 1;
                 state <= MAC_WAIT;
@@ -253,7 +245,6 @@ module PE_new #(
 
             MAC_WAIT: state <= ACCUM;
 
-            // ================= ACCUMULATE =================
             ACCUM: begin
                 pe_out <= pe_out + psum_q;
                 acc_count <= acc_count + 1;
@@ -266,7 +257,9 @@ module PE_new #(
                 end
             end
 
-            // ================= COMMIT =================
+            // ==================================================
+            // COMMIT (NO WRITE-BACK)
+            // ==================================================
             COMMIT: begin
                 compute_done <= 1;
                 busy <= 0;

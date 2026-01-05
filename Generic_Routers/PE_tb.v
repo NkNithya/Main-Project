@@ -6,187 +6,119 @@ module PE_new_tb;
     // Parameters
     // -------------------------------------------------
     localparam DATA_BITWIDTH = 16;
-    localparam ADDR_BITWIDTH = 9;
-
-    localparam kernel_size = 3;
-    localparam act_size    = 5;
-
-    localparam W_READ_ADDR = 0;
-    localparam A_READ_ADDR = 100;
-    localparam W_LOAD_ADDR = 0;
-    localparam A_LOAD_ADDR = 100;
-    localparam PSUM_ADDR   = 500;
+    localparam kernel_size  = 3;
+    localparam TOTAL_MACS   = kernel_size * kernel_size;
 
     // -------------------------------------------------
     // Signals
     // -------------------------------------------------
     reg clk;
     reg reset;
-
-    reg  [DATA_BITWIDTH-1:0] act_in;
-    reg  [DATA_BITWIDTH-1:0] filt_in;
-
-    reg load_en_wght;
-    reg load_en_act;
     reg start;
 
-    wire [DATA_BITWIDTH-1:0] pe_out;
-    wire compute_done;
-    wire load_done;
+    reg  [DATA_BITWIDTH-1:0] iact_data_i;
+    reg                      iact_valid_i;
+
+    reg  [DATA_BITWIDTH-1:0] wght_data_i;
+    reg                      wght_valid_i;
+
+    wire [DATA_BITWIDTH-1:0] psum_data_o;
+    wire                     psum_valid_o;
 
     // -------------------------------------------------
     // DUT
     // -------------------------------------------------
     PE_new #(
         .DATA_BITWIDTH(DATA_BITWIDTH),
-        .ADDR_BITWIDTH(ADDR_BITWIDTH),
-        .kernel_size(kernel_size),
-        .act_size(act_size),
-        .W_READ_ADDR(W_READ_ADDR),
-        .A_READ_ADDR(A_READ_ADDR),
-        .W_LOAD_ADDR(W_LOAD_ADDR),
-        .A_LOAD_ADDR(A_LOAD_ADDR),
-        .PSUM_ADDR(PSUM_ADDR)
+        .kernel_size(kernel_size)
     ) dut (
         .clk(clk),
         .reset(reset),
-        .act_in(act_in),
-        .filt_in(filt_in),
-        .load_en_wght(load_en_wght),
-        .load_en_act(load_en_act),
+        .iact_data_i(iact_data_i),
+        .iact_valid_i(iact_valid_i),
+        .wght_data_i(wght_data_i),
+        .wght_valid_i(wght_valid_i),
         .start(start),
-        .pe_out(pe_out),
-        .compute_done(compute_done),
-        .load_done(load_done)
+        .psum_data_o(psum_data_o),
+        .psum_valid_o(psum_valid_o)
     );
 
     // -------------------------------------------------
-    // Clock
+    // Clock (10 ns period)
     // -------------------------------------------------
     always #5 clk = ~clk;
 
-    // -------------------------------------------------
-    // Test vectors
-    // -------------------------------------------------
-    reg [DATA_BITWIDTH-1:0] weights [0:kernel_size-1];
-    reg [DATA_BITWIDTH-1:0] acts    [0:kernel_size-1];
-
-    reg [DATA_BITWIDTH-1:0] expected_last_mac;
-    reg [DATA_BITWIDTH-1:0] psum_mem;
-
     integer i;
-
-    // -------------------------------------------------
-    // Direct SPAD access (legal for TB)
-    // -------------------------------------------------
-    wire [DATA_BITWIDTH-1:0] spad_psum =
-        dut.spad.mem[PSUM_ADDR];
-
-    // -------------------------------------------------
-    // Tasks
-    // -------------------------------------------------
-    task load_weights;
-    begin
-        $display("=== LOADING WEIGHTS ===");
-        load_en_wght = 1;
-        for (i = 0; i < kernel_size*kernel_size; i = i + 1) begin
-            filt_in = weights[i % kernel_size];
-            @(posedge clk);
-        end
-        load_en_wght = 0;
-        filt_in = 0;
-
-        wait (load_done);
-        @(posedge clk);
-        $display("[TB] Weight load complete");
-    end
-    endtask
-
-    task load_activations;
-    begin
-        $display("=== LOADING ACTIVATIONS ===");
-        load_en_act = 1;
-        for (i = 0; i < act_size*act_size; i = i + 1) begin
-            act_in = acts[i % kernel_size];
-            @(posedge clk);
-        end
-        load_en_act = 0;
-        act_in = 0;
-
-        wait (load_done);
-        @(posedge clk);
-        $display("[TB] Activation load complete");
-    end
-    endtask
+    integer timeout;
+    reg [DATA_BITWIDTH-1:0] expected_sum;
 
     // -------------------------------------------------
     // Test sequence
     // -------------------------------------------------
     initial begin
-        $dumpfile("pe_new_tb.vcd");
+        // ---------------- VCD ----------------
+        $dumpfile("PE_new_tb.vcd");
         $dumpvars(0, PE_new_tb);
 
-        // Init
+        // ---------------- Init ----------------
         clk = 0;
         reset = 1;
-        act_in = 0;
-        filt_in = 0;
-        load_en_wght = 0;
-        load_en_act = 0;
         start = 0;
+        iact_data_i  = 0;
+        iact_valid_i = 0;
+        wght_data_i  = 0;
+        wght_valid_i = 0;
+        expected_sum = 0;
 
-        // Define vectors
-        weights[0] = 1;
-        weights[1] = 2;
-        weights[2] = 3;
-
-        acts[0] = 1;
-        acts[1] = 2;
-        acts[2] = 3;
-
-        // Modified PE produces ONLY last MAC
-        expected_last_mac = acts[0]*weights[0] + acts[1]*weights[1] + acts[2]*weights[2];  // 3 * 3 = 9
-
-        // Reset
-        repeat (4) @(posedge clk);
+        // ---------------- Reset ----------------
+        #20;
         reset = 0;
-        $display("=== RESET DEASSERTED ===");
+        $display("[TB] Reset deasserted");
 
-        // Load
-        load_weights();
-        load_activations();
-
-        // -------------------------------------------------
-        // START COMPUTE
-        // -------------------------------------------------
-        $display("=== START COMPUTE ===");
-        @(posedge clk);
+        // ---------------- Start pulse (1 cycle) ----------------
+        @(negedge clk);
         start = 1;
-        @(posedge clk);
+        @(negedge clk);
         start = 0;
 
-        // Wait for compute_done
-        wait (compute_done);
-        $display("[TB] compute_done asserted");
+        // ---------------- Guard cycles (router-accurate) ----------------
+        @(negedge clk);
+        @(negedge clk);
 
-        // Allow PSUM write-back to settle
-        repeat (2) @(posedge clk);
-
-        // -------------------------------------------------
-        // CHECK RESULT
-        // -------------------------------------------------
-        psum_mem = spad_psum;
-
-        $display("PE_OUT (last MAC) = %0d", pe_out);
-        $display("PSUM_MEM         = %0d", psum_mem);
-        $display("EXPECTED         = %0d", expected_last_mac);
-
-        if (psum_mem !== expected_last_mac) begin
-            $display("❌ FAIL: PSUM mismatch");
-            $fatal;
-        end else begin
-            $display("✅ PASS: Modified PE verified");
+        // ---------------- Feed MAC data ----------------
+        for (i = 0; i < TOTAL_MACS; i = i + 1) begin
+            @(negedge clk);
+            iact_data_i  = i + 1;   // 1..9
+            wght_data_i  = 1;
+            iact_valid_i = 1;
+            wght_valid_i = 1;
+            expected_sum = expected_sum + (i + 1);
         end
+
+        // Deassert valids
+        @(negedge clk);
+        iact_valid_i = 0;
+        wght_valid_i = 0;
+
+        // ---------------- Timeout-protected wait ----------------
+        timeout = 0;
+        while (!psum_valid_o) begin
+            @(posedge clk);
+            timeout = timeout + 1;
+            if (timeout > 50) begin
+                $fatal(1, "[TB] TIMEOUT: psum_valid_o never asserted");
+            end
+        end
+
+        // ---------------- Check result ----------------
+        $display("[TB] PSUM valid asserted");
+        $display("[TB] PSUM_OUT = %0d", psum_data_o);
+        $display("[TB] EXPECTED = %0d", expected_sum);
+
+        if (psum_data_o !== expected_sum)
+            $fatal(1, "[TB] FAIL: result mismatch");
+        else
+            $display("✅ PASS: PE_new computation correct");
 
         #20;
         $finish;

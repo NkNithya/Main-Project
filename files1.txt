@@ -1,0 +1,665 @@
+glb_iact.v :
+
+`timescale 1ns / 1ps
+
+module glb_iact #( parameter DATA_BITWIDTH = 16,
+			 parameter ADDR_BITWIDTH = 10 )
+		   ( input clk,
+			 input reset,
+			 input read_req,
+			 input write_en,
+			 input [ADDR_BITWIDTH-1 : 0] r_addr,
+			 input [ADDR_BITWIDTH-1 : 0] w_addr,
+			 input [DATA_BITWIDTH-1 : 0] w_data,
+			 output  [DATA_BITWIDTH-1 : 0] r_data
+    );
+	
+	reg [DATA_BITWIDTH-1 : 0] mem [0 : (1 << ADDR_BITWIDTH) - 1]; 
+		// default - 1024(2^10) 16-bit memory. Total size = 2kB 
+	reg [DATA_BITWIDTH-1 : 0] data;
+	
+	always@(posedge clk)
+		begin : READ
+			if(reset)
+				data <= 0;
+			else
+			begin
+				if(read_req) begin
+					data <= mem[r_addr];
+//					$display("Read Address to SPad:%d",r_addr);
+				end else begin
+					data <= 11000; //Random default value to verify model
+				end
+			end
+		end
+	
+	assign r_data = data;
+	
+	always@(posedge clk)
+		begin : WRITE	
+			if(write_en && !reset) begin
+				mem[w_addr] = w_data;
+			end
+		end
+	
+endmodule
+
+
+glb_psum.v : 
+
+`timescale 1ns / 1ps
+
+
+module glb_psum #( parameter DATA_BITWIDTH = 16,
+			 parameter ADDR_BITWIDTH = 10,
+			 parameter X_dim=3,
+			 parameter Y_dim =3 )
+		   ( input clk,
+			 input reset,
+			 input read_req,
+			 input write_en,
+			 input [ADDR_BITWIDTH-1 : 0] r_addr,
+			 input [ADDR_BITWIDTH-1 : 0] w_addr,
+			 input [DATA_BITWIDTH-1 : 0] w_data,
+			 output  [DATA_BITWIDTH-1 : 0] r_data,
+			 input [ADDR_BITWIDTH-1 : 0] r_addr_inter,
+			 input read_req_inter,
+			 output  [DATA_BITWIDTH*X_dim-1 : 0] r_data_inter,
+			 output reg read_en_inter
+
+    );
+	
+	reg [DATA_BITWIDTH-1 : 0] mem [0 : (1 << ADDR_BITWIDTH) - 1]; 
+		// default - 1024(2^10) 16-bit memory. Total size = 2kB 
+	reg [DATA_BITWIDTH-1 : 0] data;
+	reg [DATA_BITWIDTH*X_dim-1 : 0] data_inter;
+	always@(posedge clk)
+		begin : READ
+			if(reset)
+				data = 0;
+			else
+			begin
+				if(read_req) begin
+					data = mem[r_addr];
+//					$display("Read Address to SPad:%d",r_addr);
+				end else begin
+					data = 10101; //Random default value to verify model
+				end
+			end
+		end
+	
+	assign r_data = data;
+	
+	always@(posedge clk)
+		begin : READ_INTER
+			if(reset)
+			begin
+				data_inter=0;
+				read_en_inter=0;
+			end
+			else
+			begin
+				if(read_req_inter) 
+				begin
+					
+					data_inter = {mem[r_addr_inter+2],mem[r_addr_inter+1],mem[r_addr_inter]};
+					
+					read_en_inter=1;
+				end
+				else 
+				begin
+					data_inter=0;
+					read_en_inter=0;
+				end
+			end
+		end
+
+	assign r_data_inter = data_inter ;
+	
+	always@(posedge clk)
+		begin : WRITE
+		
+/* 				$display("\t\t\t\t\t Current Status in glb_psum:\n \
+				 \t psum[0]:%d", mem[0],
+				" | psum[1]:%d", mem[1],
+				" | psum[2]:%d", mem[2],
+				" | psum[3]:%d", mem[3],
+				" | psum[4]:%d", mem[4],
+				" | psum[5]:%d", mem[5],
+				" | psum[6]:%d", mem[6],
+				" | psum[7]:%d", mem[7],
+				" | psum[8]:%d", mem[8],
+				" | psum[9]:%d", mem[9]
+				);
+			
+			$display("WriteEn: %d\n",write_en);
+			$display("Write Data: %d\n",w_data);
+			$display("Write Addr: %d\n\n\n",w_addr); */
+			
+			if(write_en && !reset) begin
+				mem[w_addr] = w_data;
+			end
+		end
+	
+endmodule
+
+
+glb_wght.v : 
+
+`timescale 1ns / 1ps
+
+
+module glb_weight #( parameter DATA_BITWIDTH = 16,
+			 parameter ADDR_BITWIDTH = 10 )
+		   ( input clk,
+			 input reset,
+			 input read_req,
+			 input write_en,
+			 input [ADDR_BITWIDTH-1 : 0] r_addr,
+			 input [ADDR_BITWIDTH-1 : 0] w_addr,
+			 input [DATA_BITWIDTH-1 : 0] w_data,
+			 output  [DATA_BITWIDTH-1 : 0] r_data
+    );
+	
+	reg [DATA_BITWIDTH-1 : 0] mem [0 : (1 << ADDR_BITWIDTH) - 1]; 
+		// default - 1024(2^10) 16-bit memory. Total size = 2kB 
+	reg [DATA_BITWIDTH-1 : 0] data;
+	
+	always@(posedge clk)
+		begin : READ
+			if(reset)
+				data = 0;
+			else
+			begin
+				if(read_req) begin
+					data = mem[r_addr];
+//					$display("Read Address to SPad:%d",r_addr);
+				end else begin
+					data = 10101; //Random default value to verify model
+				end
+			end
+		end
+	
+	assign r_data = data;
+	
+	always@(posedge clk)
+		begin : WRITE	
+			if(write_en && !reset) begin
+				mem[w_addr] = w_data;
+			end
+		end
+	
+endmodule
+
+
+router_iact_generic.v : 
+
+`timescale 1ns/1ps
+
+module router_iact_generic #(
+    parameter DATA_BITWIDTH     = 16,
+    parameter ADDR_BITWIDTH_GLB = 10,
+
+    parameter act_size    = 5,
+    parameter A_READ_ADDR = 0,
+
+    // topology (kept for compatibility / agnosticism)
+    parameter HAS_NORTH = 1,
+    parameter HAS_SOUTH = 1,
+    parameter HAS_WEST  = 1,
+    parameter HAS_EAST  = 1
+)(
+    input  wire clk,
+    input  wire reset,
+    input  wire [3:0] router_mode,
+
+    // ---------- GLB Interface ----------
+    output reg  [ADDR_BITWIDTH_GLB-1:0] glb_addr_read,
+    output reg                          glb_req_read,
+    input  wire [DATA_BITWIDTH-1:0]     glb_rdata,
+
+    // ---------- Mesh Inputs (unused for IA) ----------
+    input  wire [DATA_BITWIDTH-1:0] north_data_i,
+    input  wire north_enable_i,
+    input  wire [DATA_BITWIDTH-1:0] south_data_i,
+    input  wire south_enable_i,
+    input  wire [DATA_BITWIDTH-1:0] west_data_i,
+    input  wire west_enable_i,
+    input  wire [DATA_BITWIDTH-1:0] east_data_i,
+    input  wire east_enable_i,
+
+    // ---------- Local Output ----------
+    output reg  [DATA_BITWIDTH-1:0] local_data_o,
+    output reg                      local_enable_o
+);
+
+    // ---------------- Modes ----------------
+    localparam MODE_IDLE = 4'd0;
+    localparam MODE_LOAD = 4'd1;
+
+    // ---------------- State ----------------
+    reg [$clog2(act_size):0] act_cnt;
+    reg [3:0]                router_mode_d;
+
+    reg [DATA_BITWIDTH-1:0] iact_reg;
+    reg                     iact_valid;
+
+    // =====================================================
+    // MODE REGISTER (detect transitions)
+    // =====================================================
+    always @(posedge clk) begin
+        if (reset)
+            router_mode_d <= MODE_IDLE;
+        else
+            router_mode_d <= router_mode;
+    end
+
+    // =====================================================
+    // COUNTER (RESET ONLY ON MODE ENTRY)
+    // =====================================================
+    always @(posedge clk) begin
+        if (reset) begin
+            act_cnt <= 0;
+        end
+        else begin
+            // reset counter ONLY when entering LOAD
+            if (router_mode == MODE_LOAD && router_mode_d != MODE_LOAD) begin
+                act_cnt <= 0;
+            end
+            else if (router_mode == MODE_LOAD && act_cnt < act_size) begin
+                act_cnt <= act_cnt + 1'b1;
+            end
+        end
+    end
+
+    // =====================================================
+    // GLB REQUEST / ADDRESS
+    // =====================================================
+    always @(posedge clk) begin
+        if (reset) begin
+            glb_req_read  <= 1'b0;
+            glb_addr_read <= A_READ_ADDR;
+        end
+        else begin
+            glb_req_read <= 1'b0;
+
+            if (router_mode == MODE_LOAD && act_cnt < act_size) begin
+                glb_req_read  <= 1'b1;
+                glb_addr_read <= A_READ_ADDR + act_cnt;
+            end
+        end
+    end
+
+    // =====================================================
+    // GLB DATA CAPTURE (SAME-CYCLE, REQ-GATED)
+    // =====================================================
+    always @(posedge clk) begin
+        if (reset) begin
+            iact_reg   <= '0;
+            iact_valid <= 1'b0;
+        end
+        else begin
+            iact_valid <= 1'b0;
+
+            if (glb_req_read) begin
+                iact_reg   <= glb_rdata;
+                iact_valid <= 1'b1;
+            end
+        end
+    end
+
+    // =====================================================
+    // LOCAL CONSUME (STREAMING IA)
+    // =====================================================
+    always @(posedge clk) begin
+        if (reset) begin
+            local_data_o   <= '0;
+            local_enable_o <= 1'b0;
+        end
+        else begin
+            local_enable_o <= 1'b0;
+
+            if (iact_valid) begin
+                local_data_o   <= iact_reg;
+                local_enable_o <= 1'b1;
+            end
+        end
+    end
+
+endmodule
+
+
+router_psum_generic.v
+
+`timescale 1ns / 1ps
+
+module router_psum_generic #(
+    parameter DATA_BITWIDTH     = 16,
+    parameter ADDR_BITWIDTH_GLB  = 10,
+    parameter ADDR_BITWIDTH_SPAD = 9,
+
+    parameter PSUM_GLB_BASE_ADDR  = 0,
+    parameter PSUM_SPAD_BASE_ADDR = 0,
+
+    // Topology masking (same philosophy as weight / iact routers)
+    parameter HAS_NORTH = 1,
+    parameter HAS_SOUTH = 1,
+    parameter HAS_WEST  = 1,
+    parameter HAS_EAST  = 1
+)(
+    input  wire clk,
+    input  wire reset,
+    input  wire [3:0] router_mode,
+
+    // -------- Local --------
+    input  wire [DATA_BITWIDTH-1:0] local_data_i,
+    input  wire                     local_enable_i,
+
+    // -------- Inputs --------
+    input  wire [DATA_BITWIDTH-1:0] north_data_i,
+    input  wire                     north_enable_i,
+    input  wire [DATA_BITWIDTH-1:0] south_data_i,
+    input  wire                     south_enable_i,
+    input  wire [DATA_BITWIDTH-1:0] west_data_i,
+    input  wire                     west_enable_i,
+    input  wire [DATA_BITWIDTH-1:0] east_data_i,
+    input  wire                     east_enable_i,
+
+    // -------- Outputs --------
+    output reg  [DATA_BITWIDTH-1:0] north_data_o,
+    output reg                      north_enable_o,
+    output reg  [DATA_BITWIDTH-1:0] south_data_o,
+    output reg                      south_enable_o,
+    output reg  [DATA_BITWIDTH-1:0] west_data_o,
+    output reg                      west_enable_o,
+    output reg  [DATA_BITWIDTH-1:0] east_data_o,
+    output reg                      east_enable_o,
+
+    // -------- SPAD --------
+    output reg  [DATA_BITWIDTH-1:0] spad_data_o,
+    output reg                      spad_en_o,
+    output reg  [ADDR_BITWIDTH_SPAD-1:0] spad_addr_o,
+
+    // -------- GLB --------
+    output reg  [DATA_BITWIDTH-1:0] glb_data_o,
+    output reg                      glb_en_o,
+    output reg  [ADDR_BITWIDTH_GLB-1:0] glb_addr_o
+);
+
+    // -------- Modes (must match cluster) --------
+    localparam MODE_IDLE  = 4'd0;
+    localparam MODE_LOCAL = 4'd1;
+    localparam MODE_FWD   = 4'd2;
+    localparam MODE_DRAIN = 4'd3;
+
+    // -------- Selected PSUM --------
+    reg [DATA_BITWIDTH-1:0] selected_data;
+    reg                     selected_valid;
+
+    // -------- Address counters --------
+    reg [ADDR_BITWIDTH_GLB-1:0]  glb_addr_cnt;
+    reg [ADDR_BITWIDTH_SPAD-1:0] spad_addr_cnt;
+
+    // -------- Arbitration (single winner, topology aware) --------
+    always @(*) begin
+        selected_valid = 1'b0;
+        selected_data  = '0;
+
+        if (local_enable_i) begin
+            selected_valid = 1'b1;
+            selected_data  = local_data_i;
+        end else if (HAS_NORTH && north_enable_i) begin
+            selected_valid = 1'b1;
+            selected_data  = north_data_i;
+        end else if (HAS_SOUTH && south_enable_i) begin
+            selected_valid = 1'b1;
+            selected_data  = south_data_i;
+        end else if (HAS_WEST && west_enable_i) begin
+            selected_valid = 1'b1;
+            selected_data  = west_data_i;
+        end else if (HAS_EAST && east_enable_i) begin
+            selected_valid = 1'b1;
+            selected_data  = east_data_i;
+        end
+    end
+
+    // -------- Sequential logic --------
+    always @(posedge clk) begin
+        if (reset) begin
+            north_enable_o <= 1'b0;
+            south_enable_o <= 1'b0;
+            west_enable_o  <= 1'b0;
+            east_enable_o  <= 1'b0;
+            spad_en_o      <= 1'b0;
+            glb_en_o       <= 1'b0;
+
+            glb_addr_cnt  <= PSUM_GLB_BASE_ADDR;
+            spad_addr_cnt <= PSUM_SPAD_BASE_ADDR;
+        end else begin
+            // Default: one-cycle pulses
+            north_enable_o <= 1'b0;
+            south_enable_o <= 1'b0;
+            west_enable_o  <= 1'b0;
+            east_enable_o  <= 1'b0;
+            spad_en_o      <= 1'b0;
+            glb_en_o       <= 1'b0;
+
+            case (router_mode)
+
+                MODE_LOCAL: begin
+                    if (selected_valid) begin
+                        spad_en_o    <= 1'b1;
+                        spad_data_o  <= selected_data;
+                        spad_addr_o  <= spad_addr_cnt;
+                        spad_addr_cnt <= spad_addr_cnt + 1'b1;
+                    end
+                end
+
+                MODE_FWD: begin
+                    if (selected_valid) begin
+                        // deterministic forward direction
+                        if (HAS_EAST) begin
+                            east_enable_o <= 1'b1;
+                            east_data_o   <= selected_data;
+                        end else if (HAS_SOUTH) begin
+                            south_enable_o <= 1'b1;
+                            south_data_o   <= selected_data;
+                        end
+                    end
+                end
+
+                MODE_DRAIN: begin
+                    if (selected_valid) begin
+                        glb_en_o     <= 1'b1;
+                        glb_data_o   <= selected_data;
+                        glb_addr_o   <= glb_addr_cnt;
+                        glb_addr_cnt <= glb_addr_cnt + 1'b1;
+                    end
+                end
+            endcase
+        end
+    end
+
+endmodule
+
+
+router_weight_generic.v : 
+
+`timescale 1ns / 1ps
+
+module router_weight_full_generic #(
+    // ---------------- Data ----------------
+    parameter DATA_BITWIDTH       = 16,
+    parameter ADDR_BITWIDTH_GLB   = 10,
+    parameter ADDR_BITWIDTH_SPAD  = 9,
+
+    // ---------------- CNN -----------------
+    parameter kernel_size         = 3,
+    parameter W_READ_ADDR         = 0,
+
+    // ---------------- Role ----------------
+    parameter HAS_GLB             = 0,   // exactly ONE router must set this
+    parameter INJECT_DIR          = 3,   // 0:N, 1:S, 2:W, 3:E
+
+    // ---------------- Topology ------------
+    parameter HAS_NORTH = 1,
+    parameter HAS_SOUTH = 1,
+    parameter HAS_WEST  = 1,
+    parameter HAS_EAST  = 1
+)(
+    input clk,
+    input reset,
+    input [3:0] router_mode,
+
+    // ---------------- GLB -----------------
+    output reg  [ADDR_BITWIDTH_GLB-1:0] glb_addr_read,
+    output reg                          glb_req_read,
+    input       [DATA_BITWIDTH-1:0]     glb_rdata,
+
+    // ---------------- Mesh Inputs ---------
+    input  [DATA_BITWIDTH-1:0] north_data_i,
+    input                       north_enable_i,
+    input  [DATA_BITWIDTH-1:0] south_data_i,
+    input                       south_enable_i,
+    input  [DATA_BITWIDTH-1:0] west_data_i,
+    input                       west_enable_i,
+    input  [DATA_BITWIDTH-1:0] east_data_i,
+    input                       east_enable_i,
+
+    // ---------------- Mesh Outputs --------
+    output reg [DATA_BITWIDTH-1:0] north_data_o,
+    output reg                      north_enable_o,
+    output reg [DATA_BITWIDTH-1:0] south_data_o,
+    output reg                      south_enable_o,
+    output reg [DATA_BITWIDTH-1:0] west_data_o,
+    output reg                      west_enable_o,
+    output reg [DATA_BITWIDTH-1:0] east_data_o,
+    output reg                      east_enable_o,
+
+    // ---------------- Local SPAD ----------
+    output reg [DATA_BITWIDTH-1:0] spad_data_o,
+    output reg                      spad_en_o
+);
+
+    // ---------------- Modes ----------------
+    localparam MODE_IDLE = 4'd0;
+    localparam MODE_LOAD = 4'd1;
+
+    localparam TOTAL_W = kernel_size * kernel_size;
+
+    // ---------------- GLB FSM ----------------
+    localparam GLB_IDLE = 2'd0;
+    localparam GLB_REQ  = 2'd1;
+    localparam GLB_WAIT = 2'd2;
+    localparam GLB_DATA = 2'd3;
+
+    reg [1:0] glb_state;
+    reg [ADDR_BITWIDTH_GLB-1:0] load_idx;
+
+    // registered GLB data
+    reg [DATA_BITWIDTH-1:0] glb_rdata_q;
+    reg glb_data_valid_q;
+
+    wire glb_active;
+    wire inj_valid;
+    wire [DATA_BITWIDTH-1:0] inj_data;
+
+    assign glb_active = HAS_GLB && (router_mode == MODE_LOAD);
+
+    // ---------------- GLB FSM (FINAL, CORRECT) ----------------
+    always @(posedge clk) begin
+        if (reset) begin
+            glb_state        <= GLB_IDLE;
+            glb_req_read     <= 0;
+            glb_addr_read    <= W_READ_ADDR;
+            load_idx         <= 0;
+            glb_rdata_q      <= '0;
+            glb_data_valid_q <= 0;
+        end else begin
+            glb_req_read     <= 0;
+            glb_data_valid_q <= 0;
+
+            case (glb_state)
+
+                GLB_IDLE: begin
+                    if (glb_active && load_idx < TOTAL_W)
+                        glb_state <= GLB_REQ;
+                end
+
+                GLB_REQ: begin
+                    glb_req_read  <= 1;
+                    glb_addr_read <= W_READ_ADDR + load_idx;
+                    glb_state     <= GLB_WAIT;
+                end
+
+                GLB_WAIT: begin
+                    // wait one full cycle for synchronous GLB
+                    glb_state <= GLB_DATA;
+                end
+
+                GLB_DATA: begin
+                    // GLB data is now valid
+                    glb_rdata_q      <= glb_rdata;
+                    glb_data_valid_q <= 1;
+                    load_idx         <= load_idx + 1;
+                    glb_state        <= GLB_IDLE;
+                end
+
+            endcase
+        end
+    end
+
+    // ---------------- Injection Select ----------------
+    // GLB load is EXCLUSIVE with mesh injection
+    assign inj_valid =
+        glb_active ? glb_data_valid_q :
+        north_enable_i |
+        south_enable_i |
+        west_enable_i  |
+        east_enable_i;
+
+    assign inj_data =
+        glb_active ? glb_rdata_q :
+        north_enable_i ? north_data_i :
+        south_enable_i ? south_data_i :
+        west_enable_i  ? west_data_i  :
+        east_data_i;
+
+    // ---------------- Routing Core ----------------
+    always @(*) begin
+        // defaults
+        north_enable_o = 0;
+        south_enable_o = 0;
+        west_enable_o  = 0;
+        east_enable_o  = 0;
+        spad_en_o      = 0;
+
+        north_data_o = inj_data;
+        south_data_o = inj_data;
+        west_data_o  = inj_data;
+        east_data_o  = inj_data;
+        spad_data_o  = inj_data;
+
+        if (inj_valid && router_mode != MODE_IDLE) begin
+            spad_en_o = 1;
+
+            case (INJECT_DIR)
+                0: if (HAS_NORTH) north_enable_o = 1;
+                1: if (HAS_SOUTH) south_enable_o = 1;
+                2: if (HAS_WEST)  west_enable_o  = 1;
+                3: if (HAS_EAST)  east_enable_o  = 1;
+            endcase
+        end
+    end
+
+    // ---------------- Safety ----------------
+    initial begin
+        if (HAS_GLB && (INJECT_DIR > 3)) begin
+            $fatal(1, "router_weight_full_generic: invalid INJECT_DIR");
+        end
+    end
+
+endmodule
+
+
+
