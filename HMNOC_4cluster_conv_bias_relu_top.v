@@ -1,0 +1,299 @@
+`timescale 1ns / 1ps
+
+module HMNOC_4cluster_wpsum_bias_relu_top
+#(
+    parameter ADDR_BITWIDTH_GLB = 6,
+    parameter ADDR_BITWIDTH_SPAD = 6,
+    parameter DATA_BITWIDTH = 16,
+    parameter ADDR_BITWIDTH = 6,
+    parameter A_READ_ADDR = 10,
+    parameter A_LOAD_ADDR = 10,
+    parameter W_READ_ADDR = 0,
+    parameter W_LOAD_ADDR = 0,
+    parameter PSUM_READ_ADDR = 0,
+    parameter PSUM_LOAD_ADDR = 0,
+    parameter PSUM_ADDR = 40,
+    parameter X_dim = 3,
+    parameter Y_dim = 3,
+    parameter kernel_size = 3,
+    parameter act_size = 7,
+    parameter NUM_GLB_IACT = 1,
+    parameter NUM_GLB_PSUM = 1,
+    parameter NUM_GLB_WGHT = 1
+)(
+    /* ===== CLOCK / CTRL ===== */
+    input clk,
+    input reset,
+    input start,
+    output compute_done,
+    output load_done,
+
+    /* ===== WEST 0 ===== */
+    input write_en_iact_west_0,
+    input [DATA_BITWIDTH-1:0] w_data_iact_west_0,
+    input [ADDR_BITWIDTH-1:0] w_addr_iact_west_0,
+
+    input write_en_wght_west_0,
+    input [DATA_BITWIDTH-1:0] w_data_wght_west_0,
+    input [ADDR_BITWIDTH-1:0] w_addr_wght_west_0,
+
+    input r_req_psum_west_0,
+    input r_req_psum_inter_west_0,
+    input [ADDR_BITWIDTH-1:0] r_addr_psum_west_0,
+    input [ADDR_BITWIDTH-1:0] r_addr_psum_inter_west_0,
+    output [DATA_BITWIDTH-1:0] r_data_psum_west_0,
+
+    /* ===== WEST 1 ===== */
+    input write_en_iact_west_1,
+    input [DATA_BITWIDTH-1:0] w_data_iact_west_1,
+    input [ADDR_BITWIDTH-1:0] w_addr_iact_west_1,
+
+    input write_en_wght_west_1,
+    input [DATA_BITWIDTH-1:0] w_data_wght_west_1,
+    input [ADDR_BITWIDTH-1:0] w_addr_wght_west_1,
+
+    input r_req_psum_west_1,
+    input r_req_psum_inter_west_1,
+    input [ADDR_BITWIDTH-1:0] r_addr_psum_west_1,
+    input [ADDR_BITWIDTH-1:0] r_addr_psum_inter_west_1,
+    output [DATA_BITWIDTH-1:0] r_data_psum_west_1,
+
+    /* ===== EAST 0 ===== */
+    input write_en_iact_east_0,
+    input [DATA_BITWIDTH-1:0] w_data_iact_east_0,
+    input [ADDR_BITWIDTH-1:0] w_addr_iact_east_0,
+
+    input write_en_wght_east_0,
+    input [DATA_BITWIDTH-1:0] w_data_wght_east_0,
+    input [ADDR_BITWIDTH-1:0] w_addr_wght_east_0,
+
+    input r_req_psum_east_0,
+    input r_req_psum_inter_east_0,
+    input [ADDR_BITWIDTH-1:0] r_addr_psum_east_0,
+    input [ADDR_BITWIDTH-1:0] r_addr_psum_inter_east_0,
+    output [DATA_BITWIDTH-1:0] r_data_psum_east_0,
+
+    /* ===== EAST 1 ===== */
+    input write_en_iact_east_1,
+    input [DATA_BITWIDTH-1:0] w_data_iact_east_1,
+    input [ADDR_BITWIDTH-1:0] w_addr_iact_east_1,
+
+    input write_en_wght_east_1,
+    input [DATA_BITWIDTH-1:0] w_data_wght_east_1,
+    input [ADDR_BITWIDTH-1:0] w_addr_wght_east_1,
+
+    input r_req_psum_east_1,
+    input r_req_psum_inter_east_1,
+    input [ADDR_BITWIDTH-1:0] r_addr_psum_east_1,
+    input [ADDR_BITWIDTH-1:0] r_addr_psum_inter_east_1,
+    output [DATA_BITWIDTH-1:0] r_data_psum_east_1,
+
+    /* ===== ROUTER CTRL ===== */
+    input west_enable_i_west_0_wght,
+    input west_enable_i_west_0_iact,
+    input west_enable_i_west_1_wght,
+    input west_enable_i_west_1_iact,
+    input west_enable_i_east_0_wght,
+    input west_enable_i_east_0_iact,
+    input west_enable_i_east_1_wght,
+    input west_enable_i_east_1_iact,
+
+    input [3:0] router_mode_west_0_wght,
+    input [3:0] router_mode_west_0_iact,
+    input [3:0] router_mode_west_0_psum,
+    input [3:0] router_mode_west_1_wght,
+    input [3:0] router_mode_west_1_iact,
+    input [3:0] router_mode_west_1_psum,
+    input [3:0] router_mode_east_0_wght,
+    input [3:0] router_mode_east_0_iact,
+    input [3:0] router_mode_east_0_psum,
+    input [3:0] router_mode_east_1_wght,
+    input [3:0] router_mode_east_1_iact,
+    input [3:0] router_mode_east_1_psum,
+    
+    input [DATA_BITWIDTH-1:0]w_bias_west_0,
+    input [DATA_BITWIDTH-1:0]w_bias_west_1,
+    input [DATA_BITWIDTH-1:0]w_bias_east_0,
+    input [DATA_BITWIDTH-1:0]w_bias_east_1
+);
+
+    /* ===== RAW PSUM WIRES FROM HMNOC ===== */
+    wire [DATA_BITWIDTH-1:0] psum_west_0_raw;
+    wire [DATA_BITWIDTH-1:0] psum_west_1_raw;
+    wire [DATA_BITWIDTH-1:0] psum_east_0_raw;
+    wire [DATA_BITWIDTH-1:0] psum_east_1_raw;
+    wire signed [DATA_BITWIDTH-1:0] relu_out_west_0;
+    wire signed [DATA_BITWIDTH-1:0] relu_out_west_1;
+    wire signed [DATA_BITWIDTH-1:0] relu_out_east_0;
+    wire signed [DATA_BITWIDTH-1:0] relu_out_east_1;
+
+    /* ===== HMNOC INSTANCE (UNCHANGED INTERFACE) ===== */
+    HMNOC_4cluster_wpsum #(
+        .ADDR_BITWIDTH_GLB(ADDR_BITWIDTH_GLB),
+        .ADDR_BITWIDTH_SPAD(ADDR_BITWIDTH_SPAD),
+        .DATA_BITWIDTH(DATA_BITWIDTH),
+        .ADDR_BITWIDTH(ADDR_BITWIDTH),
+        .A_READ_ADDR(A_READ_ADDR),
+        .A_LOAD_ADDR(A_LOAD_ADDR),
+        .W_READ_ADDR(W_READ_ADDR),
+        .W_LOAD_ADDR(W_LOAD_ADDR),
+        .PSUM_ADDR(PSUM_ADDR),
+        .X_dim(X_dim),
+        .Y_dim(Y_dim),
+        .kernel_size(kernel_size),
+        .act_size(act_size),
+        .NUM_GLB_IACT(NUM_GLB_IACT),
+        .NUM_GLB_PSUM(NUM_GLB_PSUM),
+        .NUM_GLB_WGHT(NUM_GLB_WGHT)
+    ) u_hmnoc (
+        .clk(clk),
+        .reset(reset),
+        .start(start),
+        .compute_done(compute_done),
+        .load_done(load_done),
+
+        /* all ports forwarded 1:1 */
+        .write_en_iact_west_0(write_en_iact_west_0),
+        .w_data_iact_west_0(w_data_iact_west_0),
+        .w_addr_iact_west_0(w_addr_iact_west_0),
+        .write_en_wght_west_0(write_en_wght_west_0),
+        .w_data_wght_west_0(w_data_wght_west_0),
+        .w_addr_wght_west_0(w_addr_wght_west_0),
+        .r_req_psum_west_0(r_req_psum_west_0),
+        .r_req_psum_inter_west_0(r_req_psum_inter_west_0),
+        .r_addr_psum_west_0(r_addr_psum_west_0),
+        .r_addr_psum_inter_west_0(r_addr_psum_inter_west_0),
+        .r_data_psum_west_0(psum_west_0_raw),
+
+        .write_en_iact_west_1(write_en_iact_west_1),
+        .w_data_iact_west_1(w_data_iact_west_1),
+        .w_addr_iact_west_1(w_addr_iact_west_1),
+        .write_en_wght_west_1(write_en_wght_west_1),
+        .w_data_wght_west_1(w_data_wght_west_1),
+        .w_addr_wght_west_1(w_addr_wght_west_1),
+        .r_req_psum_west_1(r_req_psum_west_1),
+        .r_req_psum_inter_west_1(r_req_psum_inter_west_1),
+        .r_addr_psum_west_1(r_addr_psum_west_1),
+        .r_addr_psum_inter_west_1(r_addr_psum_inter_west_1),
+        .r_data_psum_west_1(psum_west_1_raw),
+
+        .write_en_iact_east_0(write_en_iact_east_0),
+        .w_data_iact_east_0(w_data_iact_east_0),
+        .w_addr_iact_east_0(w_addr_iact_east_0),
+        .write_en_wght_east_0(write_en_wght_east_0),
+        .w_data_wght_east_0(w_data_wght_east_0),
+        .w_addr_wght_east_0(w_addr_wght_east_0),
+        .r_req_psum_east_0(r_req_psum_east_0),
+        .r_req_psum_inter_east_0(r_req_psum_inter_east_0),
+        .r_addr_psum_east_0(r_addr_psum_east_0),
+        .r_addr_psum_inter_east_0(r_addr_psum_inter_east_0),
+        .r_data_psum_east_0(psum_east_0_raw),
+
+        .write_en_iact_east_1(write_en_iact_east_1),
+        .w_data_iact_east_1(w_data_iact_east_1),
+        .w_addr_iact_east_1(w_addr_iact_east_1),
+        .write_en_wght_east_1(write_en_wght_east_1),
+        .w_data_wght_east_1(w_data_wght_east_1),
+        .w_addr_wght_east_1(w_addr_wght_east_1),
+        .r_req_psum_east_1(r_req_psum_east_1),
+        .r_req_psum_inter_east_1(r_req_psum_inter_east_1),
+        .r_addr_psum_east_1(r_addr_psum_east_1),
+        .r_addr_psum_inter_east_1(r_addr_psum_inter_east_1),
+        .r_data_psum_east_1(psum_east_1_raw),
+
+        .west_enable_i_west_0_wght(west_enable_i_west_0_wght),
+        .west_enable_i_west_0_iact(west_enable_i_west_0_iact),
+        .west_enable_i_west_1_wght(west_enable_i_west_1_wght),
+        .west_enable_i_west_1_iact(west_enable_i_west_1_iact),
+        .west_enable_i_east_0_wght(west_enable_i_east_0_wght),
+        .west_enable_i_east_0_iact(west_enable_i_east_0_iact),
+        .west_enable_i_east_1_wght(west_enable_i_east_1_wght),
+        .west_enable_i_east_1_iact(west_enable_i_east_1_iact),
+
+        .router_mode_west_0_wght(router_mode_west_0_wght),
+        .router_mode_west_0_iact(router_mode_west_0_iact),
+        .router_mode_west_0_psum(router_mode_west_0_psum),
+        .router_mode_west_1_wght(router_mode_west_1_wght),
+        .router_mode_west_1_iact(router_mode_west_1_iact),
+        .router_mode_west_1_psum(router_mode_west_1_psum),
+        .router_mode_east_0_wght(router_mode_east_0_wght),
+        .router_mode_east_0_iact(router_mode_east_0_iact),
+        .router_mode_east_0_psum(router_mode_east_0_psum),
+        .router_mode_east_1_wght(router_mode_east_1_wght),
+        .router_mode_east_1_iact(router_mode_east_1_iact),
+        .router_mode_east_1_psum(router_mode_east_1_psum)
+    );
+
+    /* ===== RELU ONLY (BIAS = 0) ===== */
+    bias_relu #(.BW(DATA_BITWIDTH)) relu_w0 (.in(psum_west_0_raw), .bias(w_bias_west_0), .en(1'b1), .out(relu_out_west_0));
+    bias_relu #(.BW(DATA_BITWIDTH)) relu_w1 (.in(psum_west_1_raw), .bias(w_bias_west_1), .en(1'b1), .out(relu_out_west_1));
+    bias_relu #(.BW(DATA_BITWIDTH)) relu_e0 (.in(psum_east_0_raw), .bias(w_bias_east_0), .en(1'b1), .out(relu_out_east_0));
+    bias_relu #(.BW(DATA_BITWIDTH)) relu_e1 (.in(psum_east_1_raw), .bias(w_bias_east_1), .en(1'b1), .out(relu_out_east_1));
+
+    pool_max_4x4_stream #(
+        .DATA_BITWIDTH(DATA_BITWIDTH)
+    ) pool_w0 (
+        .clk      (clk),
+        .reset    (reset),
+
+        // use SAME read request TB already drives
+        .r_req    (r_req_psum_west_0),
+
+        // feed ReLU output
+       .data_in  (relu_out_west_0),
+
+        // drive SAME output TB already reads
+        .data_out (r_data_psum_west_0)
+    );
+
+    pool_max_4x4_stream #(
+        .DATA_BITWIDTH(DATA_BITWIDTH)
+    ) pool_e0 (
+        .clk      (clk),
+        .reset    (reset),
+
+        // use SAME read request TB already drives
+        .r_req    (r_req_psum_east_0),
+
+        // feed ReLU output
+       .data_in  (relu_out_east_0),
+
+        // drive SAME output TB already reads
+        .data_out (r_data_psum_east_0)
+    );
+    
+    pool_max_4x4_stream #(
+        .DATA_BITWIDTH(DATA_BITWIDTH)
+    ) pool_w1 (
+        .clk      (clk),
+        .reset    (reset),
+
+        // use SAME read request TB already drives
+        .r_req    (r_req_psum_west_1),
+
+        // feed ReLU output
+       .data_in  (relu_out_west_1),
+
+        // drive SAME output TB already reads
+        .data_out (r_data_psum_west_1)
+    );
+
+    pool_max_4x4_stream #(
+        .DATA_BITWIDTH(DATA_BITWIDTH)
+    ) pool_e1 (
+        .clk      (clk),
+        .reset    (reset),
+
+        // use SAME read request TB already drives
+        .r_req    (r_req_psum_east_1),
+
+        // feed ReLU output
+       .data_in  (relu_out_east_1),
+
+        // drive SAME output TB already reads
+        .data_out (r_data_psum_east_1)
+    );
+
+
+endmodule
+
