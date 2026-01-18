@@ -45,6 +45,27 @@ module PE_new #( parameter DATA_BITWIDTH = 16,
 	reg [ADDR_BITWIDTH-1:0] w_addr, r_addr;
 	reg [DATA_BITWIDTH-1:0]  w_data;
 	wire [DATA_BITWIDTH-1:0] r_data;
+	
+	// ECG wires
+	// ===== ECG wires =====
+	wire mac_gated_clk;
+
+	ECG #(
+		.IN_BITWIDTH(DATA_BITWIDTH)
+	) ecg_mac (
+		.a_in   (act_in_reg),
+		.w_in   (filt_in_reg),
+		.sum_in (sum_in),
+		.en     (mac_en),
+		.clk    (clk),
+		.reset  (reset),
+		.gated_clk (mac_gated_clk)
+	);
+
+// ECG produces gated clock internally
+assign mac_gated_clk = ecg_mac.gated_clk;
+
+	
 	SPad
 	#(
 		.DATA_BITWIDTH(DATA_BITWIDTH),
@@ -79,8 +100,7 @@ module PE_new #( parameter DATA_BITWIDTH = 16,
 				( .a_in(act_in_reg),
 				  .w_in(filt_in_reg),
 				  .sum_in(sum_in),
-				  .en(mac_en),
-				  .clk(clk),
+				  .clk(mac_gated_clk),
 				  .out(psum_reg)
 				);
 			

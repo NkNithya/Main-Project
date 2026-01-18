@@ -33,13 +33,6 @@ Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 
 Top level modules:
 	HMNOC_4cluster_wpsum
 
-} {} {}} /home/abhiram/Projects/Nithya-Project/Noc_ModelSim/PE_new.v {1 {vlog -work work -stats=none /home/abhiram/Projects/Nithya-Project/Noc_ModelSim/PE_new.v
-Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
--- Compiling module PE_new
-
-Top level modules:
-	PE_new
-
 } {} {}} /home/abhiram/Projects/Nithya-Project/Noc_ModelSim/router_west_psum.v {1 {vlog -work work -stats=none /home/abhiram/Projects/Nithya-Project/Noc_ModelSim/router_west_psum.v
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
 -- Compiling module router_west_psum
@@ -61,19 +54,19 @@ Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 
 Top level modules:
 	router_iact
 
+} {} {}} /home/abhiram/Projects/Nithya-Project/Noc_ModelSim/pool_max_4x4_stream.v {1 {vlog -work work -stats=none /home/abhiram/Projects/Nithya-Project/Noc_ModelSim/pool_max_4x4_stream.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module pool_max_4x4_stream
+
+Top level modules:
+	pool_max_4x4_stream
+
 } {} {}} /home/abhiram/Projects/Nithya-Project/Noc_ModelSim/GLB_cluster_wpsum.v {1 {vlog -work work -stats=none /home/abhiram/Projects/Nithya-Project/Noc_ModelSim/GLB_cluster_wpsum.v
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
 -- Compiling module GLB_cluster_wpsum
 
 Top level modules:
 	GLB_cluster_wpsum
-
-} {} {}} /home/abhiram/Projects/Nithya-Project/Noc_ModelSim/MAC.v {1 {vlog -work work -stats=none /home/abhiram/Projects/Nithya-Project/Noc_ModelSim/MAC.v
-Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
--- Compiling module MAC
-
-Top level modules:
-	MAC
 
 } {} {}} /home/abhiram/Projects/Nithya-Project/Noc_ModelSim/activation.v {1 {vlog -work work -stats=none /home/abhiram/Projects/Nithya-Project/Noc_ModelSim/activation.v
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
@@ -151,6 +144,13 @@ Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 
 
 Top level modules:
 	router_cluster_wpsum
+
+} {} {}} /home/abhiram/Projects/Nithya-Project/Noc_ModelSim/HMNOC_4cluster_conv_bias_relu_top.v {1 {vlog -work work -stats=none /home/abhiram/Projects/Nithya-Project/Noc_ModelSim/HMNOC_4cluster_conv_bias_relu_top.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module HMNOC_4cluster_wpsum_bias_relu_top
+
+Top level modules:
+	HMNOC_4cluster_wpsum_bias_relu_top
 
 } {} {}} /home/abhiram/Projects/Nithya-Project/Noc_ModelSim/uart_tx.v {1 {vlog -work work -stats=none /home/abhiram/Projects/Nithya-Project/Noc_ModelSim/uart_tx.v
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
