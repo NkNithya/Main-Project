@@ -10,27 +10,27 @@ z2
 cModel Technology
 Z0 d/home/abhiram/Projects/Nithya-Project/Noc_ModelSim
 vand2
-Z1 !s110 1768846589
+Z1 !s110 1768928881
 !i10b 1
 !s100 ]X04>i[mG6MN_hRo80_7A1
 Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
 IWHffROaUQ:GYMg[]?:h:42
 Z3 VDg1SIo80bB@j0V0VzS_@n1
-R0
-Z4 w1768757006
-Z5 8ECG.v
-Z6 FECG.v
-!i122 369
+Z4 d/home/abhiram/Projects/Nithya-Project/Noc_Modelsim
+Z5 w1768927318
+Z6 8ECG.v
+Z7 FECG.v
+!i122 373
 L0 100 7
-Z7 OV;L;2020.1;71
+Z8 OV;L;2020.1;71
 r1
 !s85 0
 31
-Z8 !s108 1768846589.000000
-!s107 uart_tx.v|uart_rx.v|uart_bram_interface.v|tb_uart_bram_interface.v|router_west_wght.v|router_west_psum.v|router_west_iact.v|router_weight.v|router_psum.v|router_iact.v|router_cluster_wpsum.v|pool_max_4x4_stream.v|mux2.v|glb_weight.v|glb_psum.v|glb_iact.v|feature_map_sram.v|activation.v|SPad.v|PE_new.v|PE_cluster_new.v|MAC.v|HMNOC_4cluster_wpsum_tb.v|HMNOC_4cluster_wpsum_mf_tb.v|HMNOC_4cluster_wpsum.v|HMNOC_4cluster_conv_bias_relu_top_mf_tb.v|HMNOC_4cluster_conv_bias_relu_top.v|HMNOC_1cluster_wpsum_tb.v|HMNOC_1cluster_wpsum.v|GLB_cluster_wpsum.v|ECG_tb.v|ECG.v|
-Z9 !s90 -reportprogress|300|ECG.v|ECG_tb.v|GLB_cluster_wpsum.v|HMNOC_1cluster_wpsum.v|HMNOC_1cluster_wpsum_tb.v|HMNOC_4cluster_conv_bias_relu_top.v|HMNOC_4cluster_conv_bias_relu_top_mf_tb.v|HMNOC_4cluster_wpsum.v|HMNOC_4cluster_wpsum_mf_tb.v|HMNOC_4cluster_wpsum_tb.v|MAC.v|PE_cluster_new.v|PE_new.v|SPad.v|activation.v|feature_map_sram.v|glb_iact.v|glb_psum.v|glb_weight.v|mux2.v|pool_max_4x4_stream.v|router_cluster_wpsum.v|router_iact.v|router_psum.v|router_weight.v|router_west_iact.v|router_west_psum.v|router_west_wght.v|tb_uart_bram_interface.v|uart_bram_interface.v|uart_rx.v|uart_tx.v|
+Z9 !s108 1768928880.000000
+!s107 uart_tx.v|uart_rx.v|uart_bram_interface.v|tb_uart_bram_interface.v|router_west_wght.v|router_west_psum.v|router_west_iact.v|router_weight.v|router_psum.v|router_iact.v|router_cluster_wpsum.v|pool_max_4x4_stream.v|mux2.v|lecg.v|glb_weight.v|glb_psum.v|glb_iact.v|feature_map_sram.v|activation.v|SPad.v|PE_new.v|PE_cluster_new.v|MAC.v|HMNOC_4cluster_wpsum_tb.v|HMNOC_4cluster_wpsum_mf_tb.v|HMNOC_4cluster_wpsum.v|HMNOC_4cluster_conv_bias_relu_top_mf_tb.v|HMNOC_4cluster_conv_bias_relu_top.v|HMNOC_1cluster_wpsum_tb.v|HMNOC_1cluster_wpsum.v|GLB_cluster_wpsum.v|ECG_tb.v|ECG.v|
+Z10 !s90 -reportprogress|300|ECG.v|ECG_tb.v|GLB_cluster_wpsum.v|HMNOC_1cluster_wpsum.v|HMNOC_1cluster_wpsum_tb.v|HMNOC_4cluster_conv_bias_relu_top.v|HMNOC_4cluster_conv_bias_relu_top_mf_tb.v|HMNOC_4cluster_wpsum.v|HMNOC_4cluster_wpsum_mf_tb.v|HMNOC_4cluster_wpsum_tb.v|MAC.v|PE_cluster_new.v|PE_new.v|SPad.v|activation.v|feature_map_sram.v|glb_iact.v|glb_psum.v|glb_weight.v|lecg.v|mux2.v|pool_max_4x4_stream.v|router_cluster_wpsum.v|router_iact.v|router_psum.v|router_weight.v|router_west_iact.v|router_west_psum.v|router_west_wght.v|tb_uart_bram_interface.v|uart_bram_interface.v|uart_rx.v|uart_tx.v|
 !i113 1
-Z10 tCvgOpt 0
+Z11 tCvgOpt 0
 vand_gate
 R1
 !i10b 1
@@ -38,21 +38,21 @@ R1
 R2
 IVdH_b8HBGLzoeHTRdKU?j0
 R3
-R0
 R4
 R5
 R6
-!i122 369
-L0 124 11
 R7
+!i122 373
+L0 124 11
+R8
 r1
 !s85 0
 31
-R8
-Z11 !s107 uart_tx.v|uart_rx.v|uart_bram_interface.v|tb_uart_bram_interface.v|router_west_wght.v|router_west_psum.v|router_west_iact.v|router_weight.v|router_psum.v|router_iact.v|router_cluster_wpsum.v|pool_max_4x4_stream.v|mux2.v|glb_weight.v|glb_psum.v|glb_iact.v|feature_map_sram.v|activation.v|SPad.v|PE_new.v|PE_cluster_new.v|MAC.v|HMNOC_4cluster_wpsum_tb.v|HMNOC_4cluster_wpsum_mf_tb.v|HMNOC_4cluster_wpsum.v|HMNOC_4cluster_conv_bias_relu_top_mf_tb.v|HMNOC_4cluster_conv_bias_relu_top.v|HMNOC_1cluster_wpsum_tb.v|HMNOC_1cluster_wpsum.v|GLB_cluster_wpsum.v|ECG_tb.v|ECG.v|
 R9
-!i113 1
+Z12 !s107 uart_tx.v|uart_rx.v|uart_bram_interface.v|tb_uart_bram_interface.v|router_west_wght.v|router_west_psum.v|router_west_iact.v|router_weight.v|router_psum.v|router_iact.v|router_cluster_wpsum.v|pool_max_4x4_stream.v|mux2.v|lecg.v|glb_weight.v|glb_psum.v|glb_iact.v|feature_map_sram.v|activation.v|SPad.v|PE_new.v|PE_cluster_new.v|MAC.v|HMNOC_4cluster_wpsum_tb.v|HMNOC_4cluster_wpsum_mf_tb.v|HMNOC_4cluster_wpsum.v|HMNOC_4cluster_conv_bias_relu_top_mf_tb.v|HMNOC_4cluster_conv_bias_relu_top.v|HMNOC_1cluster_wpsum_tb.v|HMNOC_1cluster_wpsum.v|GLB_cluster_wpsum.v|ECG_tb.v|ECG.v|
 R10
+!i113 1
+R11
 vbias_relu
 R1
 !i10b 1
@@ -60,21 +60,21 @@ R1
 R2
 I=97^?;g`J@?0Xj>9gM@]g0
 R3
-R0
-w1768473194
+R4
+R5
 8activation.v
 Factivation.v
-!i122 369
+!i122 373
 L0 1 14
-R7
+R8
 r1
 !s85 0
 31
-R8
-R11
 R9
-!i113 1
+R12
 R10
+!i113 1
+R11
 vbus_or_reduce
 R1
 !i10b 1
@@ -82,21 +82,21 @@ R1
 R2
 ID:fG3kaNdEZjZJJ1BA2>Z0
 R3
-R0
 R4
 R5
 R6
-!i122 369
-L0 79 19
 R7
+!i122 373
+L0 79 19
+R8
 r1
 !s85 0
 31
-R8
-R11
 R9
-!i113 1
+R12
 R10
+!i113 1
+R11
 vbus_xor
 R1
 !i10b 1
@@ -104,21 +104,21 @@ R1
 R2
 ITjYUV4;FVHk?8mgK7fmfB2
 R3
-R0
 R4
 R5
 R6
-!i122 369
-L0 108 14
 R7
+!i122 373
+L0 108 14
+R8
 r1
 !s85 0
 31
-R8
-R11
 R9
-!i113 1
+R12
 R10
+!i113 1
+R11
 vd_ff
 R1
 !i10b 1
@@ -126,21 +126,21 @@ R1
 R2
 IgNAi]Sl2zNUKIWT`UThHW0
 R3
-R0
 R4
 R5
 R6
-!i122 369
-L0 154 15
 R7
+!i122 373
+L0 154 15
+R8
 r1
 !s85 0
 31
-R8
-R11
 R9
-!i113 1
+R12
 R10
+!i113 1
+R11
 vd_latch
 !s110 1768750373
 !i10b 1
@@ -150,11 +150,11 @@ I7oYMCPm5UMM;K0R_YKcCL2
 R3
 R0
 w1768750354
-R5
 R6
+R7
 !i122 328
 L0 94 15
-R7
+R8
 r1
 !s85 0
 31
@@ -162,7 +162,7 @@ r1
 !s107 uart_tx.v|uart_rx.v|uart_bram_interface.v|tb_uart_bram_interface.v|router_west_wght.v|router_west_psum.v|router_west_iact.v|router_weight.v|router_psum.v|router_iact.v|router_cluster_wpsum.v|pool_max_4x4_stream.v|mux2.v|glb_weight.v|glb_psum.v|glb_iact.v|feature_map_sram.v|activation.v|SPad.v|PE_new.v|PE_cluster_new.v|MAC.v|HMNOC_4cluster_wpsum_tb.v|HMNOC_4cluster_wpsum_mf_tb.v|HMNOC_4cluster_wpsum.v|HMNOC_4cluster_conv_bias_relu_top_mf_tb.v|HMNOC_4cluster_conv_bias_relu_top.v|HMNOC_1cluster_wpsum_tb.v|HMNOC_1cluster_wpsum.v|GLB_cluster_wpsum.v|ECG.v|
 !s90 -reportprogress|300|ECG.v|GLB_cluster_wpsum.v|HMNOC_1cluster_wpsum.v|HMNOC_1cluster_wpsum_tb.v|HMNOC_4cluster_conv_bias_relu_top.v|HMNOC_4cluster_conv_bias_relu_top_mf_tb.v|HMNOC_4cluster_wpsum.v|HMNOC_4cluster_wpsum_mf_tb.v|HMNOC_4cluster_wpsum_tb.v|MAC.v|PE_cluster_new.v|PE_new.v|SPad.v|activation.v|feature_map_sram.v|glb_iact.v|glb_psum.v|glb_weight.v|mux2.v|pool_max_4x4_stream.v|router_cluster_wpsum.v|router_iact.v|router_psum.v|router_weight.v|router_west_iact.v|router_west_psum.v|router_west_wght.v|tb_uart_bram_interface.v|uart_bram_interface.v|uart_rx.v|uart_tx.v|
 !i113 1
-R10
+R11
 vECG
 R1
 !i10b 1
@@ -170,21 +170,21 @@ R1
 R2
 IX1k9F2PXo]0b3eMzPJo3j2
 R3
-R0
 R4
 R5
 R6
-!i122 369
-L0 7 57
 R7
+!i122 373
+L0 7 57
+R8
 r1
 !s85 0
 31
-R8
-R11
 R9
-!i113 1
+R12
 R10
+!i113 1
+R11
 n@e@c@g
 vfeature_map_sram
 R1
@@ -193,21 +193,21 @@ R1
 R2
 I3KBj<Ske^N_=R?>Yk6RB90
 R3
-R0
-w1768487549
+R4
+R5
 8feature_map_sram.v
 Ffeature_map_sram.v
-!i122 369
+!i122 373
 L0 1 33
-R7
+R8
 r1
 !s85 0
 31
-R8
-R11
 R9
-!i113 1
+R12
 R10
+!i113 1
+R11
 vGLB_cluster_wpsum
 R1
 !i10b 1
@@ -215,21 +215,21 @@ R1
 R2
 IL[Skz9:iiGB`XeII`JWJd1
 R3
-R0
-Z12 w1768454636
+R4
+R5
 8GLB_cluster_wpsum.v
 FGLB_cluster_wpsum.v
-!i122 369
+!i122 373
 L0 3 109
-R7
+R8
 r1
 !s85 0
 31
-R8
-R11
 R9
-!i113 1
+R12
 R10
+!i113 1
+R11
 n@g@l@b_cluster_wpsum
 vglb_iact
 R1
@@ -238,21 +238,21 @@ R1
 R2
 I;YeEbH5h9iae^nQ[I@mKa3
 R3
-R0
-R12
+R4
+R5
 8glb_iact.v
 Fglb_iact.v
-!i122 369
+!i122 373
 L0 3 41
-R7
+R8
 r1
 !s85 0
 31
-R8
-R11
 R9
-!i113 1
+R12
 R10
+!i113 1
+R11
 vglb_psum
 R1
 !i10b 1
@@ -260,21 +260,21 @@ R1
 R2
 IF:M]QVa=Tz87JF=Qj?Dg71
 R3
-R0
-R12
+R4
+R5
 8glb_psum.v
 Fglb_psum.v
-!i122 369
+!i122 373
 L0 4 92
-R7
+R8
 r1
 !s85 0
 31
-R8
-R11
 R9
-!i113 1
+R12
 R10
+!i113 1
+R11
 vglb_weight
 R1
 !i10b 1
@@ -282,21 +282,21 @@ R1
 R2
 I<=a4JZLWD202zniXWPQUL0
 R3
-R0
-R12
+R4
+R5
 8glb_weight.v
 Fglb_weight.v
-!i122 369
+!i122 373
 L0 4 41
-R7
+R8
 r1
 !s85 0
 31
-R8
-R11
 R9
-!i113 1
+R12
 R10
+!i113 1
+R11
 vHMNOC_1cluster_wpsum
 R1
 !i10b 1
@@ -304,21 +304,21 @@ R1
 R2
 I>CdfYU>MA:MVIKAMSX]c33
 R3
-R0
-R12
+R4
+R5
 8HMNOC_1cluster_wpsum.v
 FHMNOC_1cluster_wpsum.v
-!i122 369
+!i122 373
 L0 3 345
-R7
+R8
 r1
 !s85 0
 31
-R8
-R11
 R9
-!i113 1
+R12
 R10
+!i113 1
+R11
 n@h@m@n@o@c_1cluster_wpsum
 vHMNOC_1cluster_wpsum_tb
 R1
@@ -327,21 +327,21 @@ R1
 R2
 I[gz;0a@E]n@R;TLE1VPHz3
 R3
-R0
-R12
+R4
+R5
 8HMNOC_1cluster_wpsum_tb.v
 FHMNOC_1cluster_wpsum_tb.v
-!i122 369
+!i122 373
 L0 3 404
-R7
+R8
 r1
 !s85 0
 31
-R8
-R11
 R9
-!i113 1
+R12
 R10
+!i113 1
+R11
 n@h@m@n@o@c_1cluster_wpsum_tb
 vHMNOC_4cluster_conv_bias_relu_top
 !s110 1768457452
@@ -356,7 +356,7 @@ w1768457447
 F/home/abhiram/Projects/Nithya-Project/Noc_ModelSim/HMNOC_4cluster_conv_bias_relu_top.v
 !i122 183
 L0 3 230
-R7
+R8
 r1
 !s85 0
 31
@@ -365,7 +365,7 @@ Z13 !s108 1768457452.000000
 !s90 -reportprogress|300|-work|work|-stats=none|/home/abhiram/Projects/Nithya-Project/Noc_ModelSim/HMNOC_4cluster_conv_bias_relu_top.v|
 !i113 1
 Z14 o-work work
-R10
+R11
 n@h@m@n@o@c_4cluster_conv_bias_relu_top
 vHMNOC_4cluster_conv_bias_relu_top_mf_tb
 !s110 1768457453
@@ -380,7 +380,7 @@ w1768456684
 F/home/abhiram/Projects/Nithya-Project/Noc_ModelSim/HMNOC_4cluster_conv_bias_relu_top_mf_tb.v
 !i122 184
 L0 3 570
-R7
+R8
 r1
 !s85 0
 31
@@ -389,7 +389,7 @@ R13
 !s90 -reportprogress|300|-work|work|-stats=none|/home/abhiram/Projects/Nithya-Project/Noc_ModelSim/HMNOC_4cluster_conv_bias_relu_top_mf_tb.v|
 !i113 1
 R14
-R10
+R11
 n@h@m@n@o@c_4cluster_conv_bias_relu_top_mf_tb
 vHMNOC_4cluster_wpsum
 R1
@@ -398,21 +398,21 @@ R1
 R2
 I1GXMdCgeX8SjFX[1YN6fg1
 R3
-R0
-R12
+R4
+R5
 8HMNOC_4cluster_wpsum.v
 FHMNOC_4cluster_wpsum.v
-!i122 369
+!i122 373
 L0 3 581
-R7
+R8
 r1
 !s85 0
 31
-R8
-R11
 R9
-!i113 1
+R12
 R10
+!i113 1
+R11
 n@h@m@n@o@c_4cluster_wpsum
 vHMNOC_4cluster_wpsum_bias_relu_mf_parallel_tb
 !s110 1768496462
@@ -427,7 +427,7 @@ w1768496413
 F/home/abhiram/Projects/Nithya-Project/Noc_ModelSim/HMNOC_4cluster_wpsum_bias_relu_pipeline_tb.v
 !i122 257
 L0 3 203
-R7
+R8
 r1
 !s85 0
 31
@@ -436,7 +436,7 @@ r1
 !s90 -reportprogress|300|-work|work|-stats=none|/home/abhiram/Projects/Nithya-Project/Noc_ModelSim/HMNOC_4cluster_wpsum_bias_relu_pipeline_tb.v|
 !i113 1
 R14
-R10
+R11
 n@h@m@n@o@c_4cluster_wpsum_bias_relu_mf_parallel_tb
 vHMNOC_4cluster_wpsum_bias_relu_mf_tb
 R1
@@ -445,21 +445,21 @@ R1
 R2
 IEg5:DXDEG`K73diN78F]_2
 R3
-R0
-w1768845935
+R4
+R5
 8HMNOC_4cluster_conv_bias_relu_top_mf_tb.v
 FHMNOC_4cluster_conv_bias_relu_top_mf_tb.v
-!i122 369
+!i122 373
 L0 3 653
-R7
+R8
 r1
 !s85 0
 31
-R8
-R11
 R9
-!i113 1
+R12
 R10
+!i113 1
+R11
 n@h@m@n@o@c_4cluster_wpsum_bias_relu_mf_tb
 vHMNOC_4cluster_wpsum_bias_relu_pipeline_tb
 !s110 1768632424
@@ -474,7 +474,7 @@ Z15 8HMNOC_4cluster_wpsum_bias_relu_pipeline_tb.v
 Z16 FHMNOC_4cluster_wpsum_bias_relu_pipeline_tb.v
 !i122 296
 L0 3 231
-R7
+R8
 r1
 !s85 0
 31
@@ -482,7 +482,7 @@ r1
 Z17 !s107 uart_tx.v|uart_rx.v|uart_bram_interface.v|tb_uart_bram_interface.v|router_west_wght.v|router_west_psum.v|router_west_iact.v|router_weight.v|router_psum.v|router_iact.v|router_cluster_wpsum.v|pool_max_4x4_stream.v|mux2.v|glb_weight.v|glb_psum.v|glb_iact.v|feature_map_sram.v|activation.v|SPad.v|PE_new.v|PE_cluster_new.v|MAC.v|HMNOC_4cluster_wpsum_tb.v|HMNOC_4cluster_wpsum_mf_tb.v|HMNOC_4cluster_wpsum_bias_relu_pipelined_top.v|HMNOC_4cluster_wpsum_bias_relu_pipeline_tb.v|HMNOC_4cluster_wpsum.v|HMNOC_4cluster_conv_bias_relu_top_mf_tb.v|HMNOC_4cluster_conv_bias_relu_top.v|HMNOC_1cluster_wpsum_tb.v|HMNOC_1cluster_wpsum.v|GLB_cluster_wpsum.v|
 Z18 !s90 -reportprogress|300|GLB_cluster_wpsum.v|HMNOC_1cluster_wpsum.v|HMNOC_1cluster_wpsum_tb.v|HMNOC_4cluster_conv_bias_relu_top.v|HMNOC_4cluster_conv_bias_relu_top_mf_tb.v|HMNOC_4cluster_wpsum.v|HMNOC_4cluster_wpsum_bias_relu_pipeline_tb.v|HMNOC_4cluster_wpsum_bias_relu_pipelined_top.v|HMNOC_4cluster_wpsum_mf_tb.v|HMNOC_4cluster_wpsum_tb.v|MAC.v|PE_cluster_new.v|PE_new.v|SPad.v|activation.v|feature_map_sram.v|glb_iact.v|glb_psum.v|glb_weight.v|mux2.v|pool_max_4x4_stream.v|router_cluster_wpsum.v|router_iact.v|router_psum.v|router_weight.v|router_west_iact.v|router_west_psum.v|router_west_wght.v|tb_uart_bram_interface.v|uart_bram_interface.v|uart_rx.v|uart_tx.v|
 !i113 1
-R10
+R11
 n@h@m@n@o@c_4cluster_wpsum_bias_relu_pipeline_tb
 vHMNOC_4cluster_wpsum_bias_relu_pipelined_tb
 !s110 1768746641
@@ -497,7 +497,7 @@ R15
 R16
 !i122 309
 L0 3 362
-R7
+R8
 r1
 !s85 0
 31
@@ -505,7 +505,7 @@ r1
 !s107 uart_tx.v|uart_rx.v|uart_bram_interface.v|tb_uart_bram_interface.v|router_west_wght.v|router_west_psum.v|router_west_iact.v|router_weight.v|router_psum.v|router_iact.v|router_cluster_wpsum.v|pool_max_4x4_stream.v|mux2.v|glb_weight.v|glb_psum.v|glb_iact.v|feature_map_sram.v|activation.v|SPad.v|PE_new.v|PE_cluster_new.v|MAC.v|HMNOC_4cluster_wpsum_tb.v|HMNOC_4cluster_wpsum_mf_tb.v|HMNOC_4cluster_wpsum_bias_relu_pipelined_top.v|HMNOC_4cluster_wpsum_bias_relu_pipeline_tb.v|HMNOC_4cluster_wpsum.v|HMNOC_4cluster_conv_bias_relu_top_mf_tb.v|HMNOC_4cluster_conv_bias_relu_top.v|HMNOC_1cluster_wpsum_tb.v|HMNOC_1cluster_wpsum.v|GLB_cluster_wpsum.v|ECG.v|
 !s90 -reportprogress|300|ECG.v|GLB_cluster_wpsum.v|HMNOC_1cluster_wpsum.v|HMNOC_1cluster_wpsum_tb.v|HMNOC_4cluster_conv_bias_relu_top.v|HMNOC_4cluster_conv_bias_relu_top_mf_tb.v|HMNOC_4cluster_wpsum.v|HMNOC_4cluster_wpsum_bias_relu_pipeline_tb.v|HMNOC_4cluster_wpsum_bias_relu_pipelined_top.v|HMNOC_4cluster_wpsum_mf_tb.v|HMNOC_4cluster_wpsum_tb.v|MAC.v|PE_cluster_new.v|PE_new.v|SPad.v|activation.v|feature_map_sram.v|glb_iact.v|glb_psum.v|glb_weight.v|mux2.v|pool_max_4x4_stream.v|router_cluster_wpsum.v|router_iact.v|router_psum.v|router_weight.v|router_west_iact.v|router_west_psum.v|router_west_wght.v|tb_uart_bram_interface.v|uart_bram_interface.v|uart_rx.v|uart_tx.v|
 !i113 1
-R10
+R11
 n@h@m@n@o@c_4cluster_wpsum_bias_relu_pipelined_tb
 vHMNOC_4cluster_wpsum_bias_relu_pipelined_top
 !s110 1768646484
@@ -520,7 +520,7 @@ w1768499109
 FHMNOC_4cluster_wpsum_bias_relu_pipelined_top.v
 !i122 304
 L0 3 651
-R7
+R8
 r1
 !s85 0
 31
@@ -528,7 +528,7 @@ r1
 R17
 R18
 !i113 1
-R10
+R11
 n@h@m@n@o@c_4cluster_wpsum_bias_relu_pipelined_top
 vHMNOC_4cluster_wpsum_bias_relu_top
 R1
@@ -537,21 +537,21 @@ R1
 R2
 IYTazdKL]cRV=;JSNQD`ZA1
 R3
-R0
-w1768483471
+R4
+R5
 8HMNOC_4cluster_conv_bias_relu_top.v
 FHMNOC_4cluster_conv_bias_relu_top.v
-!i122 369
+!i122 373
 L0 3 296
-R7
+R8
 r1
 !s85 0
 31
-R8
-R11
 R9
-!i113 1
+R12
 R10
+!i113 1
+R11
 n@h@m@n@o@c_4cluster_wpsum_bias_relu_top
 vHMNOC_4cluster_wpsum_mf_tb
 R1
@@ -560,21 +560,21 @@ R1
 R2
 I=z6BjFo4[[=?<EQTd7gSn2
 R3
-R0
-w1768843211
+R4
+R5
 8HMNOC_4cluster_wpsum_mf_tb.v
 FHMNOC_4cluster_wpsum_mf_tb.v
-!i122 369
+!i122 373
 L0 3 687
-R7
+R8
 r1
 !s85 0
 31
-R8
-R11
 R9
-!i113 1
+R12
 R10
+!i113 1
+R11
 n@h@m@n@o@c_4cluster_wpsum_mf_tb
 vHMNOC_4cluster_wpsum_tb
 R1
@@ -583,21 +583,21 @@ R1
 R2
 IME3K]BPgg=i1Z^GlaM^hA3
 R3
-R0
-R12
+R4
+R5
 8HMNOC_4cluster_wpsum_tb.v
 FHMNOC_4cluster_wpsum_tb.v
-!i122 369
+!i122 373
 L0 3 626
-R7
+R8
 r1
 !s85 0
 31
-R8
-R11
 R9
-!i113 1
+R12
 R10
+!i113 1
+R11
 n@h@m@n@o@c_4cluster_wpsum_tb
 vicg
 R1
@@ -606,21 +606,21 @@ R1
 R2
 I:i[;T15[fWX`j1[BF<Dz92
 R3
-R0
 R4
 R5
 R6
-!i122 369
-L0 66 12
 R7
+!i122 373
+L0 66 12
+R8
 r1
 !s85 0
 31
-R8
-R11
 R9
-!i113 1
+R12
 R10
+!i113 1
+R11
 vicg_latch
 R1
 !i10b 1
@@ -628,21 +628,65 @@ R1
 R2
 I2^O70F1WmgzYJL>joh1Kh1
 R3
-R0
 R4
 R5
 R6
-!i122 369
-L0 136 16
 R7
+!i122 373
+L0 136 16
+R8
 r1
 !s85 0
 31
-R8
-R11
 R9
-!i113 1
+R12
 R10
+!i113 1
+R11
+vlecg
+R1
+!i10b 1
+!s100 <kX[a4GaeX=6AJSf<k5Tc0
+R2
+IRI]b`K74<gB`33DLj:JI32
+R3
+R4
+Z19 w1768928860
+Z20 8lecg.v
+Z21 Flecg.v
+!i122 373
+L0 1 19
+R8
+r1
+!s85 0
+31
+R9
+R12
+R10
+!i113 1
+R11
+vlevel_latch
+R1
+!i10b 1
+!s100 DQLR3Y5Om^k1VY=IL6@d:0
+R2
+I<kKDe0M0ZLZ4eQleTHOUg3
+R3
+R4
+R19
+R20
+R21
+!i122 373
+L0 21 10
+R8
+r1
+!s85 0
+31
+R9
+R12
+R10
+!i113 1
+R11
 vMAC
 R1
 !i10b 1
@@ -650,21 +694,21 @@ R1
 R2
 ILza?0aKgD:RKWRhkOobJj1
 R3
-R0
-w1768744637
+R4
+w1768928519
 8MAC.v
 FMAC.v
-!i122 369
+!i122 373
 L0 3 17
-R7
+R8
 r1
 !s85 0
 31
-R8
-R11
 R9
-!i113 1
+R12
 R10
+!i113 1
+R11
 n@m@a@c
 vmux2
 R1
@@ -673,21 +717,21 @@ R1
 R2
 I1c7_JkZTAH]FH^]ChJ<QC1
 R3
-R0
-R12
+R4
+R5
 8mux2.v
 Fmux2.v
-!i122 369
+!i122 373
 L0 3 11
-R7
+R8
 r1
 !s85 0
 31
-R8
-R11
 R9
-!i113 1
+R12
 R10
+!i113 1
+R11
 vPE_cluster_new
 R1
 !i10b 1
@@ -695,44 +739,44 @@ R1
 R2
 IViOE:e52jeWXBL_1PnE[R3
 R3
-R0
-R12
+R4
+R5
 8PE_cluster_new.v
 FPE_cluster_new.v
-!i122 369
+!i122 373
 L0 3 149
-R7
+R8
 r1
 !s85 0
 31
-R8
-R11
 R9
-!i113 1
+R12
 R10
+!i113 1
+R11
 n@p@e_cluster_new
 vPE_new
 R1
 !i10b 1
-!s100 =Ie:b6cg9@<2oe>?;P6M01
+!s100 8SBT_`B4e]7TTYhWXIRSb0
 R2
-IaXK0Pn>b[S7?>IRb]3m=K0
+IDB=?B`XaW7hTZP1]ZOml32
 R3
-R0
-w1768756978
+R4
+w1768928793
 8PE_new.v
 FPE_new.v
-!i122 369
-L0 3 277
-R7
+!i122 373
+L0 3 263
+R8
 r1
 !s85 0
 31
-R8
-R11
 R9
-!i113 1
+R12
 R10
+!i113 1
+R11
 n@p@e_new
 vpool_max_2x2_stream
 !s110 1768481156
@@ -746,8 +790,8 @@ w1768480180
 8pool_max_2x2_stream.v
 Fpool_max_2x2_stream.v
 !i122 242
-Z19 L0 12 51
-R7
+Z22 L0 12 51
+R8
 r1
 !s85 0
 31
@@ -755,7 +799,7 @@ r1
 !s107 uart_tx.v|uart_rx.v|uart_bram_interface.v|tb_uart_bram_interface.v|router_west_wght.v|router_west_psum.v|router_west_iact.v|router_weight.v|router_psum.v|router_iact.v|router_cluster_wpsum.v|pool_max_2x2_stream.v|mux2.v|glb_weight.v|glb_psum.v|glb_iact.v|activation.v|SPad.v|PE_new.v|PE_cluster_new.v|MAC.v|HMNOC_4cluster_wpsum_tb.v|HMNOC_4cluster_wpsum_mf_tb.v|HMNOC_4cluster_wpsum.v|HMNOC_4cluster_conv_bias_relu_top_mf_tb.v|HMNOC_4cluster_conv_bias_relu_top.v|HMNOC_1cluster_wpsum_tb.v|HMNOC_1cluster_wpsum.v|GLB_cluster_wpsum.v|
 !s90 -reportprogress|300|GLB_cluster_wpsum.v|HMNOC_1cluster_wpsum.v|HMNOC_1cluster_wpsum_tb.v|HMNOC_4cluster_conv_bias_relu_top.v|HMNOC_4cluster_conv_bias_relu_top_mf_tb.v|HMNOC_4cluster_wpsum.v|HMNOC_4cluster_wpsum_mf_tb.v|HMNOC_4cluster_wpsum_tb.v|MAC.v|PE_cluster_new.v|PE_new.v|SPad.v|activation.v|glb_iact.v|glb_psum.v|glb_weight.v|mux2.v|pool_max_2x2_stream.v|router_cluster_wpsum.v|router_iact.v|router_psum.v|router_weight.v|router_west_iact.v|router_west_psum.v|router_west_wght.v|tb_uart_bram_interface.v|uart_bram_interface.v|uart_rx.v|uart_tx.v|
 !i113 1
-R10
+R11
 vpool_max_4x4_stream
 R1
 !i10b 1
@@ -763,21 +807,21 @@ R1
 R2
 Ic@XciZmPg07gBjTh:?>4`1
 R3
-R0
-w1768482335
+R4
+R5
 8pool_max_4x4_stream.v
 Fpool_max_4x4_stream.v
-!i122 369
-R19
-R7
+!i122 373
+R22
+R8
 r1
 !s85 0
 31
-R8
-R11
 R9
-!i113 1
+R12
 R10
+!i113 1
+R11
 vrouter_cluster_wpsum
 R1
 !i10b 1
@@ -785,21 +829,21 @@ R1
 R2
 I6W=9h`EbD2ndW=ZM51KWZ2
 R3
-R0
-R12
+R4
+R5
 8router_cluster_wpsum.v
 Frouter_cluster_wpsum.v
-!i122 369
+!i122 373
 L0 4 291
-R7
+R8
 r1
 !s85 0
 31
-R8
-R11
 R9
-!i113 1
+R12
 R10
+!i113 1
+R11
 vrouter_iact
 R1
 !i10b 1
@@ -807,21 +851,21 @@ R1
 R2
 I1jf5bPQ2GAo1:IWnGIGf[3
 R3
-R0
-R12
+R4
+R5
 8router_iact.v
 Frouter_iact.v
-!i122 369
-Z20 L0 3 90
-R7
+!i122 373
+Z23 L0 3 90
+R8
 r1
 !s85 0
 31
-R8
-R11
 R9
-!i113 1
+R12
 R10
+!i113 1
+R11
 vrouter_psum
 R1
 !i10b 1
@@ -829,21 +873,21 @@ R1
 R2
 IkdPQnnAoo]]RPo:b_Lg[L1
 R3
-R0
-R12
+R4
+R5
 8router_psum.v
 Frouter_psum.v
-!i122 369
+!i122 373
 L0 3 103
-R7
+R8
 r1
 !s85 0
 31
-R8
-R11
 R9
-!i113 1
+R12
 R10
+!i113 1
+R11
 vrouter_weight
 R1
 !i10b 1
@@ -851,21 +895,21 @@ R1
 R2
 IJTki[OAGaLOgPISaXN1Y^3
 R3
-R0
-R12
+R4
+R5
 8router_weight.v
 Frouter_weight.v
-!i122 369
-R20
-R7
+!i122 373
+R23
+R8
 r1
 !s85 0
 31
-R8
-R11
 R9
-!i113 1
+R12
 R10
+!i113 1
+R11
 vrouter_west_iact
 R1
 !i10b 1
@@ -873,21 +917,21 @@ R1
 R2
 Ibb5i_im@C[JHJGcY564@i2
 R3
-R0
-R12
+R4
+R5
 8router_west_iact.v
 Frouter_west_iact.v
-!i122 369
+!i122 373
 L0 3 327
-R7
+R8
 r1
 !s85 0
 31
-R8
-R11
 R9
-!i113 1
+R12
 R10
+!i113 1
+R11
 vrouter_west_psum
 R1
 !i10b 1
@@ -895,21 +939,21 @@ R1
 R2
 I=^J8oiff<C^fCO3VAR[L`2
 R3
-R0
-R12
+R4
+R5
 8router_west_psum.v
 Frouter_west_psum.v
-!i122 369
+!i122 373
 L0 3 124
-R7
+R8
 r1
 !s85 0
 31
-R8
-R11
 R9
-!i113 1
+R12
 R10
+!i113 1
+R11
 vrouter_west_wght
 R1
 !i10b 1
@@ -917,21 +961,21 @@ R1
 R2
 I7WVNhH1S>f<eS`XK8FSC10
 R3
-R0
-R12
+R4
+R5
 8router_west_wght.v
 Frouter_west_wght.v
-!i122 369
+!i122 373
 L0 3 332
-R7
+R8
 r1
 !s85 0
 31
-R8
-R11
 R9
-!i113 1
+R12
 R10
+!i113 1
+R11
 vSPad
 R1
 !i10b 1
@@ -939,21 +983,21 @@ R1
 R2
 Ib`XnT9]3CU0DQDhkBD^K02
 R3
-R0
-R12
+R4
+R5
 8SPad.v
 FSPad.v
-!i122 369
+!i122 373
 L0 3 67
-R7
+R8
 r1
 !s85 0
 31
-R8
-R11
 R9
-!i113 1
+R12
 R10
+!i113 1
+R11
 n@s@pad
 vtb_ECG
 R1
@@ -962,21 +1006,21 @@ R1
 R2
 Ika>Y^1Bb6Cm80Nzdla?3L3
 R3
-R0
-w1768755409
+R4
+R5
 8ECG_tb.v
 FECG_tb.v
-!i122 369
+!i122 373
 L0 3 78
-R7
+R8
 r1
 !s85 0
 31
-R8
-R11
 R9
-!i113 1
+R12
 R10
+!i113 1
+R11
 ntb_@e@c@g
 vtb_uart_bram_interface
 R1
@@ -985,21 +1029,21 @@ R1
 R2
 I@;mJ3kTmH:jLPmi;6HeXI1
 R3
-R0
-R12
+R4
+R5
 8tb_uart_bram_interface.v
 Ftb_uart_bram_interface.v
-!i122 369
+!i122 373
 L0 2 81
-R7
+R8
 r1
 !s85 0
 31
-R8
-R11
 R9
-!i113 1
+R12
 R10
+!i113 1
+R11
 vuart_bram_interface
 R1
 !i10b 1
@@ -1007,21 +1051,21 @@ R1
 R2
 I4OahXna5cZWie0C?Waj=W0
 R3
-R0
-R12
+R4
+R5
 8uart_bram_interface.v
 Fuart_bram_interface.v
-!i122 369
+!i122 373
 L0 2 115
-R7
+R8
 r1
 !s85 0
 31
-R8
-R11
 R9
-!i113 1
+R12
 R10
+!i113 1
+R11
 vuart_rx
 R1
 !i10b 1
@@ -1029,21 +1073,21 @@ R1
 R2
 Ib]:Zm>obC:8XAXP0c_A?32
 R3
-R0
-R12
+R4
+R5
 8uart_rx.v
 Fuart_rx.v
-!i122 369
+!i122 373
 L0 2 59
-R7
+R8
 r1
 !s85 0
 31
-R8
-R11
 R9
-!i113 1
+R12
 R10
+!i113 1
+R11
 vuart_tx
 R1
 !i10b 1
@@ -1051,18 +1095,18 @@ R1
 R2
 Iaoj3amf=4eU>AU8:<ITgO3
 R3
-R0
-R12
+R4
+R5
 8uart_tx.v
 Fuart_tx.v
-!i122 369
+!i122 373
 L0 2 53
-R7
+R8
 r1
 !s85 0
 31
-R8
-R11
 R9
-!i113 1
+R12
 R10
+!i113 1
+R11
