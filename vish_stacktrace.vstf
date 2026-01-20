@@ -1,0 +1,23 @@
+# Current time Sun Jan 18 22:13:04 2026
+# ModelSim - Intel FPGA Edition Stack Trace
+# Program = vish
+# Id = "2020.1"
+# Version = "2020.02"
+# Date = "Feb 28 2020"
+# Platform = "linuxaloem"
+# 0    0x086d5d9d: '<unknown (@0x86d5d9d)>'
+# 1    0x086d7f82: 'dbg_sym_load_block + 0x152' in '/home/abhiram/intelFPGA_lite/20.1/modelsim_ase/linuxaloem/vish'
+# 2    0x086d8897: 'dbg_load_named_block + 0x37' in '/home/abhiram/intelFPGA_lite/20.1/modelsim_ase/linuxaloem/vish'
+# 3    0x086db6ce: 'parser_sym_load_block + 0xce' in '/home/abhiram/intelFPGA_lite/20.1/modelsim_ase/linuxaloem/vish'
+# 4    0x0841d0f2: 'tclprim_ParserGetFullPath + 0x1d2' in '/home/abhiram/intelFPGA_lite/20.1/modelsim_ase/linuxaloem/vish'
+# 5    0x0820bc19: '<unknown (@0x820bc19)>'
+# 6    0x0857ec8b: 'TclInvokeStringCommand + 0x7b' in '/home/abhiram/intelFPGA_lite/20.1/modelsim_ase/linuxaloem/vish'
+# 7    0x0b9d5bb3: '<unknown (@0xb9d5bb3)>'
+# 8    0x0d2d7c9b: '<unknown (@0xd2d7c9b)>'
+# Current time Mon Jan 19 23:56:36 2026
+# ModelSim - Intel FPGA Edition Stack Trace
+# Program = vish
+# Id = "2020.1"
+# Version = "2020.02"
+# Date = "Feb 28 2020"
+# Platform = "linuxaloem"
