@@ -45,6 +45,11 @@ module PE_new #( parameter DATA_BITWIDTH = 16,
 	reg [ADDR_BITWIDTH-1:0] w_addr, r_addr;
 	reg [DATA_BITWIDTH-1:0]  w_data;
 	wire [DATA_BITWIDTH-1:0] r_data;
+	
+	// ECG wires
+	// ===== ECG wires =====
+	wire mac_gated_clk;
+	
 	SPad
 	#(
 		.DATA_BITWIDTH(DATA_BITWIDTH),
@@ -70,6 +75,19 @@ module PE_new #( parameter DATA_BITWIDTH = 16,
 	reg [DATA_BITWIDTH-1:0] filt_in_reg;
 	
 	reg mac_en;
+	
+	ECG #(
+		.IN_BITWIDTH(DATA_BITWIDTH)
+	) ecg_mac (
+		.a_in   (act_in_reg),
+		.w_in   (filt_in_reg),
+		.sum_in (sum_in),
+		.en     (mac_en),
+		.clk    (clk),
+		.reset  (reset),
+		.gated_clk (mac_gated_clk)
+	);
+	
 	//MAC Instantiation
 	
 	MAC  #( 
@@ -79,8 +97,8 @@ module PE_new #( parameter DATA_BITWIDTH = 16,
 				( .a_in(act_in_reg),
 				  .w_in(filt_in_reg),
 				  .sum_in(sum_in),
-				  .en(mac_en),
-				  .clk(clk),
+
+				  .clk(mac_gated_clk),
 				  .out(psum_reg)
 				);
 			
@@ -131,6 +149,14 @@ module PE_new #( parameter DATA_BITWIDTH = 16,
 							state <= READ_W;
 						end
 					end else begin
+/* 						if(load_en) begin
+							
+							w_addr <= W_LOAD_ADDR;  //***Loading of weights starts at index 0***
+							
+							w_data <= filt_in;
+							write_en <= 1;
+							filt_count <= 0;
+							state <= LOAD_W; */
 						if(load_en_wght) begin
 							w_addr <= W_LOAD_ADDR;  //***Loading of weights starts at index 0***
 							w_data <= filt_in;
