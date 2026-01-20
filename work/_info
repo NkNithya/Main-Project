@@ -10,7 +10,7 @@ z2
 cModel Technology
 Z0 d/home/abhiram/Projects/Nithya-Project/Noc_ModelSim
 vand2
-Z1 !s110 1768928881
+Z1 !s110 1768932037
 !i10b 1
 !s100 ]X04>i[mG6MN_hRo80_7A1
 Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
@@ -20,13 +20,13 @@ Z4 d/home/abhiram/Projects/Nithya-Project/Noc_Modelsim
 Z5 w1768927318
 Z6 8ECG.v
 Z7 FECG.v
-!i122 373
+!i122 374
 L0 100 7
 Z8 OV;L;2020.1;71
 r1
 !s85 0
 31
-Z9 !s108 1768928880.000000
+Z9 !s108 1768932036.000000
 !s107 uart_tx.v|uart_rx.v|uart_bram_interface.v|tb_uart_bram_interface.v|router_west_wght.v|router_west_psum.v|router_west_iact.v|router_weight.v|router_psum.v|router_iact.v|router_cluster_wpsum.v|pool_max_4x4_stream.v|mux2.v|lecg.v|glb_weight.v|glb_psum.v|glb_iact.v|feature_map_sram.v|activation.v|SPad.v|PE_new.v|PE_cluster_new.v|MAC.v|HMNOC_4cluster_wpsum_tb.v|HMNOC_4cluster_wpsum_mf_tb.v|HMNOC_4cluster_wpsum.v|HMNOC_4cluster_conv_bias_relu_top_mf_tb.v|HMNOC_4cluster_conv_bias_relu_top.v|HMNOC_1cluster_wpsum_tb.v|HMNOC_1cluster_wpsum.v|GLB_cluster_wpsum.v|ECG_tb.v|ECG.v|
 Z10 !s90 -reportprogress|300|ECG.v|ECG_tb.v|GLB_cluster_wpsum.v|HMNOC_1cluster_wpsum.v|HMNOC_1cluster_wpsum_tb.v|HMNOC_4cluster_conv_bias_relu_top.v|HMNOC_4cluster_conv_bias_relu_top_mf_tb.v|HMNOC_4cluster_wpsum.v|HMNOC_4cluster_wpsum_mf_tb.v|HMNOC_4cluster_wpsum_tb.v|MAC.v|PE_cluster_new.v|PE_new.v|SPad.v|activation.v|feature_map_sram.v|glb_iact.v|glb_psum.v|glb_weight.v|lecg.v|mux2.v|pool_max_4x4_stream.v|router_cluster_wpsum.v|router_iact.v|router_psum.v|router_weight.v|router_west_iact.v|router_west_psum.v|router_west_wght.v|tb_uart_bram_interface.v|uart_bram_interface.v|uart_rx.v|uart_tx.v|
 !i113 1
@@ -42,7 +42,7 @@ R4
 R5
 R6
 R7
-!i122 373
+!i122 374
 L0 124 11
 R8
 r1
@@ -64,7 +64,7 @@ R4
 R5
 8activation.v
 Factivation.v
-!i122 373
+!i122 374
 L0 1 14
 R8
 r1
@@ -86,7 +86,7 @@ R4
 R5
 R6
 R7
-!i122 373
+!i122 374
 L0 79 19
 R8
 r1
@@ -108,7 +108,7 @@ R4
 R5
 R6
 R7
-!i122 373
+!i122 374
 L0 108 14
 R8
 r1
@@ -130,7 +130,7 @@ R4
 R5
 R6
 R7
-!i122 373
+!i122 374
 L0 154 15
 R8
 r1
@@ -174,7 +174,7 @@ R4
 R5
 R6
 R7
-!i122 373
+!i122 374
 L0 7 57
 R8
 r1
@@ -197,7 +197,7 @@ R4
 R5
 8feature_map_sram.v
 Ffeature_map_sram.v
-!i122 373
+!i122 374
 L0 1 33
 R8
 r1
@@ -219,7 +219,7 @@ R4
 R5
 8GLB_cluster_wpsum.v
 FGLB_cluster_wpsum.v
-!i122 373
+!i122 374
 L0 3 109
 R8
 r1
@@ -242,7 +242,7 @@ R4
 R5
 8glb_iact.v
 Fglb_iact.v
-!i122 373
+!i122 374
 L0 3 41
 R8
 r1
@@ -264,7 +264,7 @@ R4
 R5
 8glb_psum.v
 Fglb_psum.v
-!i122 373
+!i122 374
 L0 4 92
 R8
 r1
@@ -286,7 +286,7 @@ R4
 R5
 8glb_weight.v
 Fglb_weight.v
-!i122 373
+!i122 374
 L0 4 41
 R8
 r1
@@ -308,7 +308,7 @@ R4
 R5
 8HMNOC_1cluster_wpsum.v
 FHMNOC_1cluster_wpsum.v
-!i122 373
+!i122 374
 L0 3 345
 R8
 r1
@@ -331,7 +331,7 @@ R4
 R5
 8HMNOC_1cluster_wpsum_tb.v
 FHMNOC_1cluster_wpsum_tb.v
-!i122 373
+!i122 374
 L0 3 404
 R8
 r1
@@ -402,7 +402,7 @@ R4
 R5
 8HMNOC_4cluster_wpsum.v
 FHMNOC_4cluster_wpsum.v
-!i122 373
+!i122 374
 L0 3 581
 R8
 r1
@@ -449,7 +449,7 @@ R4
 R5
 8HMNOC_4cluster_conv_bias_relu_top_mf_tb.v
 FHMNOC_4cluster_conv_bias_relu_top_mf_tb.v
-!i122 373
+!i122 374
 L0 3 653
 R8
 r1
@@ -538,10 +538,10 @@ R2
 IYTazdKL]cRV=;JSNQD`ZA1
 R3
 R4
-R5
+w1768930112
 8HMNOC_4cluster_conv_bias_relu_top.v
 FHMNOC_4cluster_conv_bias_relu_top.v
-!i122 373
+!i122 374
 L0 3 296
 R8
 r1
@@ -564,7 +564,7 @@ R4
 R5
 8HMNOC_4cluster_wpsum_mf_tb.v
 FHMNOC_4cluster_wpsum_mf_tb.v
-!i122 373
+!i122 374
 L0 3 687
 R8
 r1
@@ -587,7 +587,7 @@ R4
 R5
 8HMNOC_4cluster_wpsum_tb.v
 FHMNOC_4cluster_wpsum_tb.v
-!i122 373
+!i122 374
 L0 3 626
 R8
 r1
@@ -610,7 +610,7 @@ R4
 R5
 R6
 R7
-!i122 373
+!i122 374
 L0 66 12
 R8
 r1
@@ -632,7 +632,7 @@ R4
 R5
 R6
 R7
-!i122 373
+!i122 374
 L0 136 16
 R8
 r1
@@ -654,7 +654,7 @@ R4
 Z19 w1768928860
 Z20 8lecg.v
 Z21 Flecg.v
-!i122 373
+!i122 374
 L0 1 19
 R8
 r1
@@ -676,7 +676,7 @@ R4
 R19
 R20
 R21
-!i122 373
+!i122 374
 L0 21 10
 R8
 r1
@@ -695,10 +695,10 @@ R2
 ILza?0aKgD:RKWRhkOobJj1
 R3
 R4
-w1768928519
+w1768929022
 8MAC.v
 FMAC.v
-!i122 373
+!i122 374
 L0 3 17
 R8
 r1
@@ -721,7 +721,7 @@ R4
 R5
 8mux2.v
 Fmux2.v
-!i122 373
+!i122 374
 L0 3 11
 R8
 r1
@@ -743,7 +743,7 @@ R4
 R5
 8PE_cluster_new.v
 FPE_cluster_new.v
-!i122 373
+!i122 374
 L0 3 149
 R8
 r1
@@ -766,7 +766,7 @@ R4
 w1768928793
 8PE_new.v
 FPE_new.v
-!i122 373
+!i122 374
 L0 3 263
 R8
 r1
@@ -808,10 +808,10 @@ R2
 Ic@XciZmPg07gBjTh:?>4`1
 R3
 R4
-R5
+w1768930105
 8pool_max_4x4_stream.v
 Fpool_max_4x4_stream.v
-!i122 373
+!i122 374
 R22
 R8
 r1
@@ -833,7 +833,7 @@ R4
 R5
 8router_cluster_wpsum.v
 Frouter_cluster_wpsum.v
-!i122 373
+!i122 374
 L0 4 291
 R8
 r1
@@ -855,7 +855,7 @@ R4
 R5
 8router_iact.v
 Frouter_iact.v
-!i122 373
+!i122 374
 Z23 L0 3 90
 R8
 r1
@@ -877,7 +877,7 @@ R4
 R5
 8router_psum.v
 Frouter_psum.v
-!i122 373
+!i122 374
 L0 3 103
 R8
 r1
@@ -899,7 +899,7 @@ R4
 R5
 8router_weight.v
 Frouter_weight.v
-!i122 373
+!i122 374
 R23
 R8
 r1
@@ -921,7 +921,7 @@ R4
 R5
 8router_west_iact.v
 Frouter_west_iact.v
-!i122 373
+!i122 374
 L0 3 327
 R8
 r1
@@ -943,7 +943,7 @@ R4
 R5
 8router_west_psum.v
 Frouter_west_psum.v
-!i122 373
+!i122 374
 L0 3 124
 R8
 r1
@@ -965,7 +965,7 @@ R4
 R5
 8router_west_wght.v
 Frouter_west_wght.v
-!i122 373
+!i122 374
 L0 3 332
 R8
 r1
@@ -979,16 +979,16 @@ R11
 vSPad
 R1
 !i10b 1
-!s100 N=]zB;UTMMmV8nBMPhZ^51
+!s100 nCZ8IQG8lUkVClflSeB^E1
 R2
-Ib`XnT9]3CU0DQDhkBD^K02
+ITX[je^HL3YS7[AQ>[PCJ@0
 R3
 R4
-R5
-8SPad.v
-FSPad.v
-!i122 373
-L0 3 67
+Z24 w1768932000
+Z25 8SPad.v
+Z26 FSPad.v
+!i122 374
+L0 39 41
 R8
 r1
 !s85 0
@@ -999,6 +999,28 @@ R10
 !i113 1
 R11
 n@s@pad
+vsram_1p_sync
+R1
+!i10b 1
+!s100 1VlX6fm29JfJKC;GGm1oE1
+R2
+ILeLzKN7V_FK_G8PN]9i@C0
+R3
+R4
+R24
+R25
+R26
+!i122 374
+L0 9 23
+R8
+r1
+!s85 0
+31
+R9
+R12
+R10
+!i113 1
+R11
 vtb_ECG
 R1
 !i10b 1
@@ -1010,7 +1032,7 @@ R4
 R5
 8ECG_tb.v
 FECG_tb.v
-!i122 373
+!i122 374
 L0 3 78
 R8
 r1
@@ -1033,7 +1055,7 @@ R4
 R5
 8tb_uart_bram_interface.v
 Ftb_uart_bram_interface.v
-!i122 373
+!i122 374
 L0 2 81
 R8
 r1
@@ -1055,7 +1077,7 @@ R4
 R5
 8uart_bram_interface.v
 Fuart_bram_interface.v
-!i122 373
+!i122 374
 L0 2 115
 R8
 r1
@@ -1077,7 +1099,7 @@ R4
 R5
 8uart_rx.v
 Fuart_rx.v
-!i122 373
+!i122 374
 L0 2 59
 R8
 r1
@@ -1099,7 +1121,7 @@ R4
 R5
 8uart_tx.v
 Fuart_tx.v
-!i122 373
+!i122 374
 L0 2 53
 R8
 r1
