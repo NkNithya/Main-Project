@@ -1,0 +1,6 @@
+[submodule "OpenROAD-flow-scripts"]
+	path = OpenROAD-flow-scripts
+	url = https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts.git
+[submodule "skywater-pdk"]
+	path = skywater-pdk
+	url = https://github.com/google/skywater-pdk.git

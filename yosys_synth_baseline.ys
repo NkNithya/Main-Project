@@ -1,0 +1,32 @@
+########################################
+# Read RTL
+########################################
+read_verilog -sv "Baseline_Architecture_RTL/*.v"
+hierarchy -check -top HMNOC_4cluster_wpsum_bias_relu_top
+
+########################################
+# RTL → logic lowering
+########################################
+proc
+opt
+fsm
+opt
+memory
+opt
+memory_map
+opt
+flatten
+opt
+techmap
+opt
+
+dfflibmap -liberty skywater-pdk/libraries/sky130_fd_sc_hd/latest/timing/sky130_fd_sc_hd__tt_025C_1v80.lib 
+abc -liberty skywater-pdk/libraries/sky130_fd_sc_hd/latest/timing/sky130_fd_sc_hd__tt_025C_1v80.lib -dff
+
+opt_clean
+clean
+
+stat 
+
+write_verilog -noattr -noexpr -nodec -defparam Baseline_Architecture_RTL/synth.v
+
