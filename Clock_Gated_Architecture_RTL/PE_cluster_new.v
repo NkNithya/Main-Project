@@ -45,6 +45,14 @@ module PE_cluster_new #(parameter DATA_BITWIDTH = 16,
 		wire [DATA_BITWIDTH-1:0] mac_sum_in  [0:X_dim*Y_dim-1];
 		wire [DATA_BITWIDTH-1:0] mac_sum_out [0:X_dim*Y_dim-1];
 
+		wire gclk_mac;
+		
+		lecg u_lecg_mac(
+			.clk(clk),
+			.en(mac_valid[0]),
+			.gclk(gclk_mac)
+		);
+
 		
 		generate
 		genvar i;
@@ -86,7 +94,7 @@ module PE_cluster_new #(parameter DATA_BITWIDTH = 16,
 							);
 							
 							mac_unit #(.BW(DATA_BITWIDTH)) mac_i (
-								  .clk(clk),
+								  .clk(gclk_mac),
 								  .valid(mac_valid[idx]),
 								  .a(mac_a[idx]),
 								  .w(mac_w[idx]),

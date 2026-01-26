@@ -9,10 +9,8 @@ module mac_unit #(
   output reg [BW-1:0] sum_out
 );
 
-  always @(posedge clk) begin
-    if (valid)
+  always @(posedge clk)
       sum_out <= sum_in + a * w;
-  end
 
 endmodule
 
