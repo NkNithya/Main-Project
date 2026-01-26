@@ -152,7 +152,7 @@ end
 		$dumpfile("/home/abhiram/Projects/Nithya-Project/Power_Analysis/Simulations/HMNOC_4cluster_wpsum_bias_relu_mf_tb_gated.vcd");
 
 		// Dump entire testbench + DUT hierarchy
-		$dumpvars(0, HMNOC_4cluster_wpsum_bias_relu_gated_mf_tb);
+		$dumpvars(0, HMNOC_4cluster_wpsum_bias_relu_mf_tb);
 
 		// Optional: uncomment to reduce dump size
 		// $dumpvars(1, HMNOC_4cluster_0);

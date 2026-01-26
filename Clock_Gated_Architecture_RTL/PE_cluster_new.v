@@ -39,6 +39,13 @@ module PE_cluster_new #(parameter DATA_BITWIDTH = 16,
 		wire cluster_done[0 : X_dim*Y_dim-1];
 		wire cluster_load_done[0 : X_dim*Y_dim-1];
 		
+		wire mac_valid   [0:X_dim*Y_dim-1];
+		wire [DATA_BITWIDTH-1:0] mac_a       [0:X_dim*Y_dim-1];
+		wire [DATA_BITWIDTH-1:0] mac_w       [0:X_dim*Y_dim-1];
+		wire [DATA_BITWIDTH-1:0] mac_sum_in  [0:X_dim*Y_dim-1];
+		wire [DATA_BITWIDTH-1:0] mac_sum_out [0:X_dim*Y_dim-1];
+
+		
 		generate
 		genvar i;
 		for(i=0; i<X_dim; i=i+1) 
@@ -46,7 +53,7 @@ module PE_cluster_new #(parameter DATA_BITWIDTH = 16,
 				genvar j;
 				for(j=0; j<Y_dim; j=j+1)
 					begin:gen_Y
-					
+						localparam idx = i*Y_dim + j;
 						PE_new #( 	.DATA_BITWIDTH(DATA_BITWIDTH),
 								.ADDR_BITWIDTH(ADDR_BITWIDTH),
 								.kernel_size(kernel_size),
@@ -70,8 +77,23 @@ module PE_cluster_new #(parameter DATA_BITWIDTH = 16,
 								.start(start),
 								.pe_out(psum_out[i*Y_dim+j]),
 								.compute_done(cluster_done[i*Y_dim+j]),
-								.load_done(cluster_load_done[i*Y_dim+j])
+								.load_done(cluster_load_done[i*Y_dim+j]),
+								.mac_valid(mac_valid[idx]),
+								.mac_a(mac_a[idx]),
+								.mac_w(mac_w[idx]),
+								.mac_sum_in(mac_sum_in[idx]),
+								.mac_sum_out(mac_sum_out[idx])
 							);
+							
+							mac_unit #(.BW(DATA_BITWIDTH)) mac_i (
+								  .clk(clk),
+								  .valid(mac_valid[idx]),
+								  .a(mac_a[idx]),
+								  .w(mac_w[idx]),
+								  .sum_in(mac_sum_in[idx]),
+								  .sum_out(mac_sum_out[idx])
+								);
+
 					
 					end
 			end

@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module HMNOC_4cluster_wpsum_bias_relu_mf_tb();
+module HMNOC_4cluster_wpsum_bias_relu_baseline_mf_tb();
 
     parameter ADDR_BITWIDTH_GLB = 6;
     parameter ADDR_BITWIDTH_SPAD = 6;
@@ -152,7 +152,7 @@ end
 		$dumpfile("/home/abhiram/Projects/Nithya-Project/Power_Analysis/Simulations/HMNOC_4cluster_wpsum_bias_relu_mf_tb_baseline.vcd");
 
 		// Dump entire testbench + DUT hierarchy
-		$dumpvars(0, HMNOC_4cluster_wpsum_bias_relu_mf_tb);
+		$dumpvars(0, HMNOC_4cluster_wpsum_bias_relu_baseline_mf_tb);
 
 		// Optional: uncomment to reduce dump size
 		// $dumpvars(1, HMNOC_4cluster_0);
@@ -356,10 +356,10 @@ HMNOC_4cluster_0   // instance name can stay
 		$readmemb("/home/abhiram/Projects/Nithya-Project/Power_Analysis/lena_pixel.txt",mem);
 		// $display("memory 0 is %b",mem[0]);
 		// $readmemb("./lena_pixel.txt",mem);
-		handle_west_0=$fopen("/home/abhiram/Projects/Nithya-Project/Power_Analysis/lena_mf_west_0.txt");
-		handle_west_1=$fopen("/home/abhiram/Projects/Nithya-Project/Power_Analysis/lena_mf_west_1.txt");
-		handle_east_0=$fopen("/home/abhiram/Projects/Nithya-Project/Power_Analysis/lena_mf_east_0.txt");
-		handle_east_1=$fopen("/home/abhiram/Projects/Nithya-Project/Power_Analysis/lena_mf_east_1.txt");
+		handle_west_0=$fopen("/home/abhiram/Projects/Nithya-Project/Power_Analysis/lena_baseline_mf_west_0.txt");
+		handle_west_1=$fopen("/home/abhiram/Projects/Nithya-Project/Power_Analysis/lena_baseline_mf_west_1.txt");
+		handle_east_0=$fopen("/home/abhiram/Projects/Nithya-Project/Power_Analysis/lena_baseline_mf_east_0.txt");
+		handle_east_1=$fopen("/home/abhiram/Projects/Nithya-Project/Power_Analysis/lena_baseline_mf_east_1.txt");
 		desc_west_0=handle_west_0|1;
 		desc_west_1=handle_west_1|1;
 		desc_east_0=handle_east_0|1;

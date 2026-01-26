@@ -1,20 +1,18 @@
-`timescale 1ns / 1ps
+module mac_unit #(
+  parameter BW = 16
+)(
+  input clk,
+  input valid,
+  input [BW-1:0] a,
+  input [BW-1:0] w,
+  input [BW-1:0] sum_in,
+  output reg [BW-1:0] sum_out
+);
 
-module MAC #( parameter IN_BITWIDTH = 16,
-			  parameter OUT_BITWIDTH = 32 )
-			( input [IN_BITWIDTH-1 : 0] a_in,
-			  input [IN_BITWIDTH-1 : 0] w_in,
-			  input [IN_BITWIDTH-1 : 0] sum_in,
-			  input clk,
-			  output reg [OUT_BITWIDTH-1 : 0] out
-			);
-	
+  always @(posedge clk) begin
+    if (valid)
+      sum_out <= sum_in + a * w;
+  end
 
-	reg [OUT_BITWIDTH-1 : 0] mult_out;
-
-	always@(posedge clk) begin
-			mult_out <= a_in * w_in;
-			out <= mult_out + sum_in;
-	end
-	
 endmodule
+

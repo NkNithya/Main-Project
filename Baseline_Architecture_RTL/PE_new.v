@@ -131,7 +131,8 @@ module PE_new #( parameter DATA_BITWIDTH = 16,
 							state <= READ_W;
 						end
 					end else begin
-					if(load_en_wght) begin
+
+						if(load_en_wght) begin
 							w_addr <= W_LOAD_ADDR;  //***Loading of weights starts at index 0***
 							w_data <= filt_in;
 							write_en <= 1;

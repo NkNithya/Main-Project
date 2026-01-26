@@ -7,7 +7,7 @@ def main():
     png_parts = []
 
     for direction in cls:
-        fname = f"./lena_mf_{direction}.txt"
+        fname = f"./lena_gated_mf_{direction}.txt"
         if not os.path.exists(fname):
             print(f"[ERROR] File not found: {fname}")
             return

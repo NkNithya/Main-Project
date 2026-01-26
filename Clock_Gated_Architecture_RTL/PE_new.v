@@ -22,9 +22,15 @@ module PE_new #( parameter DATA_BITWIDTH = 16,
 			 input load_en_wght, load_en_act,
 			 // input [DATA_BITWIDTH-1:0] pe_before,
 			 input start,
+			 input  [DATA_BITWIDTH-1:0] mac_sum_out,
 			 output  [DATA_BITWIDTH-1:0] pe_out,
 			 output reg compute_done,
-			 output reg load_done
+			 output reg load_done,
+			 output reg mac_valid,
+			 output reg [DATA_BITWIDTH-1:0] mac_a,
+			 output reg [DATA_BITWIDTH-1:0] mac_w,
+			 output reg [DATA_BITWIDTH-1:0] mac_sum_in
+
     );
 
 
@@ -61,48 +67,9 @@ module PE_new #( parameter DATA_BITWIDTH = 16,
 		.r_data(r_data)
 		);
 					
-
-	wire [DATA_BITWIDTH-1:0] psum_reg;
-	wire [DATA_BITWIDTH-1:0] sum_in;
-	reg sum_in_mux_sel;
 	
 	reg [DATA_BITWIDTH-1:0] act_in_reg;
 	reg [DATA_BITWIDTH-1:0] filt_in_reg;
-	
-	reg mac_en;
-	
-	// =====================
-	// LECG for MAC clock
-	// =====================
-	wire mac_gclk;
-
-	lecg u_lecg_mac (
-		.clk  (clk),
-		.en   (mac_en),   // FSM-generated enable
-		.gclk (mac_gclk)
-	);
-
-	//MAC Instantiation
-	
-	MAC  #( 
-		.IN_BITWIDTH(DATA_BITWIDTH),
-		.OUT_BITWIDTH(DATA_BITWIDTH) )
-	mac_0
-				( .a_in(act_in_reg),
-				  .w_in(filt_in_reg),
-				  .sum_in(sum_in),
-				  .clk(mac_gclk),
-				  .out(psum_reg)
-				);
-			
-	mux2 #( .WIDTH(DATA_BITWIDTH) )
-	mux2_0 (
-			.a_in(psum_reg), 
-			.b_in({(DATA_BITWIDTH){1'b0}}), 
-			.sel(sum_in_mux_sel), 
-			.out(sum_in) 
-			);
-	
 	
 	reg [7:0] filt_count;
 	reg [2:0] iter;
@@ -113,7 +80,6 @@ module PE_new #( parameter DATA_BITWIDTH = 16,
 		if(reset) begin
 			//Initialize registers
 			filt_count <= 0;
-			sum_in_mux_sel = 0;
 			
 			//Initialize scratchpad inputs
 			w_addr <= W_READ_ADDR;
@@ -122,10 +88,13 @@ module PE_new #( parameter DATA_BITWIDTH = 16,
 			write_en <= 0;
 			read_en <= 0;
 			compute_done <= 0;
-			mac_en <= 0;
 			iter <= 0;
 			load_done <= 0;
 			state <= IDLE;
+			mac_valid  <= 0;
+			mac_a      <= 0;
+			mac_w      <= 0;
+			mac_sum_in <= 0;
 		end
 		else begin
 			case(state)
@@ -137,7 +106,6 @@ module PE_new #( parameter DATA_BITWIDTH = 16,
 						end else begin
 							r_addr <= A_READ_ADDR + iter*act_size;
 							filt_count <= 0;
-							sum_in_mux_sel = 0;
 							read_en <= 1;
 							state <= READ_W;
 						end
@@ -177,21 +145,24 @@ module PE_new #( parameter DATA_BITWIDTH = 16,
 					state <= READ_A;
 				end
 				
-				READ_A:begin
-					// $display("Act read: %d from address: %d", r_data, r_addr);
-					// $display("Read Enable: %d", read_en);
-					act_in_reg <= r_data;
-					read_en <= 1;
-					r_addr <= W_READ_ADDR + filt_count;
-					mac_en <= 1;
-					state <= COMPUTE;
+				READ_A: begin
+				  act_in_reg <= r_data;
+				  read_en <= 1;
+				  r_addr <= W_READ_ADDR + filt_count;
+				  mac_valid <= 0;   // important
+				  state <= COMPUTE;
 				end
+
 					
 				COMPUTE:begin
 				// $display("Weight in reg: %d  |  Act in reg: %d", filt_in_reg, act_in_reg);
 				// $display("MAC out: %d", psum_reg);
+					mac_valid  <= 1;
+					mac_a      <= act_in_reg;
+					mac_w      <= filt_in_reg;
+					mac_sum_in <= (filt_count == 1) ? 0 : mac_sum_out;
+
 				
-					mac_en <= 0;
 					if(filt_count == kernel_size) begin
 						act_in_reg <= r_data;
 						read_en <= 0;
@@ -199,18 +170,13 @@ module PE_new #( parameter DATA_BITWIDTH = 16,
 						write_en <= 1;
 						state <= WRITE;
 					end else begin
-						if(filt_count == 0) begin
-							sum_in_mux_sel = 0;
-						end else begin
-							sum_in_mux_sel = 1;	
-						end
 						r_addr <= A_READ_ADDR + filt_count + iter*act_size;
 						state <= READ_W;
 					end
 				end
 				
 				WRITE:begin
-					w_data <= psum_reg;
+					w_data <= mac_sum_out;
 					r_addr <= W_READ_ADDR;
 					read_en <= 1;
 					iter <= iter + 1;
@@ -260,6 +226,6 @@ module PE_new #( parameter DATA_BITWIDTH = 16,
 		end
 	end
 						
-	assign pe_out = psum_reg;
+	assign pe_out = mac_sum_out;
 
 endmodule

@@ -40,7 +40,7 @@
 		        cnt     <= 4'd0;
 		        data_out<= 'sd0;
 		    end
-		    else if (r_req) begin
+		    else begin
 		        // First sample of window
 		        if (cnt == 4'd0)
 		            max_reg <= data_in;
