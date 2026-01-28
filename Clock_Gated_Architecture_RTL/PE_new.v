@@ -51,6 +51,12 @@ module PE_new #( parameter DATA_BITWIDTH = 16,
 	reg [ADDR_BITWIDTH-1:0] w_addr, r_addr;
 	reg [DATA_BITWIDTH-1:0]  w_data;
 	wire [DATA_BITWIDTH-1:0] r_data;
+	
+	wire gclk_spad;
+	wire spad_clk_en;
+	
+	assign spad_clk_en = read_en | write_en;
+					
 	SPad
 	#(
 		.DATA_BITWIDTH(DATA_BITWIDTH),
@@ -66,7 +72,6 @@ module PE_new #( parameter DATA_BITWIDTH = 16,
 		.w_data(w_data),
 		.r_data(r_data)
 		);
-					
 	
 	reg [DATA_BITWIDTH-1:0] act_in_reg;
 	reg [DATA_BITWIDTH-1:0] filt_in_reg;

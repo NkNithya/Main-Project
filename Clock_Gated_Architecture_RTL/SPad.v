@@ -1,80 +1,39 @@
 `timescale 1ns / 1ps
 
-// ============================================================================
-// SRAM MODEL (single-port, synchronous)
-// - ASIC-style behavior
-// - 1-cycle read latency
-// - Write-first semantics
-// ============================================================================
-module sram_1p_sync #(
-    parameter DATA_BITWIDTH = 16,
-    parameter ADDR_BITWIDTH = 9
-)(
-    input  wire                     clk,
-    input  wire                     cs,      // chip select
-    input  wire                     we,      // write enable
-    input  wire [ADDR_BITWIDTH-1:0] addr,
-    input  wire [DATA_BITWIDTH-1:0] din,
-    output reg  [DATA_BITWIDTH-1:0] dout
-);
-
-    reg [DATA_BITWIDTH-1:0] mem [0:(1<<ADDR_BITWIDTH)-1];
-
-    always @(posedge clk) begin
-        if (cs) begin
-            if (we)
-                mem[addr] <= din;
-            dout <= mem[addr];
-        end
-    end
-
-endmodule
-
-
-// ============================================================================
-// SPad WRAPPER (interface preserved exactly)
-// - Drop-in replacement
-// - No changes needed in PE_new or elsewhere
-// ============================================================================
-module SPad #(
-    parameter DATA_BITWIDTH = 16,
-    parameter ADDR_BITWIDTH = 9
-)(
-    input  wire                     clk,
-    input  wire                     reset,
-    input  wire                     read_req,
-    input  wire                     write_en,
-    input  wire [ADDR_BITWIDTH-1:0] r_addr,
-    input  wire [ADDR_BITWIDTH-1:0] w_addr,
-    input  wire [DATA_BITWIDTH-1:0] w_data,
-    output wire [DATA_BITWIDTH-1:0] r_data
-);
-
-    // ------------------------------------------------------------------------
-    // Address / control mapping
-    // ------------------------------------------------------------------------
-    wire cs;
-    wire we;
-    wire [ADDR_BITWIDTH-1:0] addr;
-
-    assign cs   = read_req | write_en;
-    assign we   = write_en;
-    assign addr = write_en ? w_addr : r_addr;
-
-    // ------------------------------------------------------------------------
-    // SRAM instance
-    // ------------------------------------------------------------------------
-    sram_1p_sync #(
-        .DATA_BITWIDTH(DATA_BITWIDTH),
-        .ADDR_BITWIDTH(ADDR_BITWIDTH)
-    ) u_sram (
-        .clk  (clk),
-        .cs   (cs),
-        .we   (we),
-        .addr (addr),
-        .din  (w_data),
-        .dout (r_data)
+module SPad #( parameter DATA_BITWIDTH = 16,
+			 parameter ADDR_BITWIDTH = 9 )
+		   ( input clk,
+			 input reset,
+			 input read_req,
+			 input write_en,
+			 input [ADDR_BITWIDTH-1 : 0] r_addr,
+			 input [ADDR_BITWIDTH-1 : 0] w_addr,
+			 input [DATA_BITWIDTH-1 : 0] w_data,
+			 output  [DATA_BITWIDTH-1 : 0] r_data
     );
-
+	
+	reg [DATA_BITWIDTH-1 : 0] mem [0 : (1 << ADDR_BITWIDTH) - 1]; 
+		// default - 512(2^9) 16-bit memory. Total size = 1kB 
+	reg [DATA_BITWIDTH-1 : 0] data;
+	
+	always@(posedge clk)
+		begin : READ
+			if(reset)
+				data <= 0;
+			else
+				if(read_req) begin
+					data <= mem[r_addr];
+			end
+		end
+	
+	assign r_data = data;
+	
+	always@(posedge clk)
+		begin : WRITE
+		
+			if(write_en && !reset) begin
+				mem[w_addr] <= w_data;
+			end
+		end
+	
 endmodule
-

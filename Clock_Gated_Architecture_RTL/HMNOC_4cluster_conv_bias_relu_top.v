@@ -225,10 +225,10 @@ module HMNOC_4cluster_wpsum_bias_relu_top
     );
 
     /* ===== RELU ONLY (BIAS = 0) ===== */
-    bias_relu #(.BW(DATA_BITWIDTH)) relu_w0 (.in(psum_west_0_raw), .bias(w_bias_west_0), .en(1'b1), .out(relu_out_west_0));
-    bias_relu #(.BW(DATA_BITWIDTH)) relu_w1 (.in(psum_west_1_raw), .bias(w_bias_west_1), .en(1'b1), .out(relu_out_west_1));
-    bias_relu #(.BW(DATA_BITWIDTH)) relu_e0 (.in(psum_east_0_raw), .bias(w_bias_east_0), .en(1'b1), .out(relu_out_east_0));
-    bias_relu #(.BW(DATA_BITWIDTH)) relu_e1 (.in(psum_east_1_raw), .bias(w_bias_east_1), .en(1'b1), .out(relu_out_east_1));
+    bias_relu #(.BW(DATA_BITWIDTH)) relu_w0 (.in(psum_west_0_raw), .bias(w_bias_west_0), .en(r_req_psum_west_0), .out(relu_out_west_0));
+    bias_relu #(.BW(DATA_BITWIDTH)) relu_w1 (.in(psum_west_1_raw), .bias(w_bias_west_1), .en(r_req_psum_west_1), .out(relu_out_west_1));
+    bias_relu #(.BW(DATA_BITWIDTH)) relu_e0 (.in(psum_east_0_raw), .bias(w_bias_east_0), .en(r_req_psum_east_0), .out(relu_out_east_0));
+    bias_relu #(.BW(DATA_BITWIDTH)) relu_e1 (.in(psum_east_1_raw), .bias(w_bias_east_1), .en(r_req_psum_east_1), .out(relu_out_east_1));
 
     pool_max_4x4_stream #(
         .DATA_BITWIDTH(DATA_BITWIDTH)

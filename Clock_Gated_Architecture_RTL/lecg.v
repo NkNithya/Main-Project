@@ -33,15 +33,4 @@ module level_latch (
 
 endmodule
 
-/*
-module level_latch (
-    input  wire d,
-    input  wire en,   // latch enable
-    output reg  q
-);
-    always @(d or en) begin
-        if (en)
-            q = d;
-    end
-endmodule
-*/
+

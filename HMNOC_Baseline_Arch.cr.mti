@@ -152,20 +152,19 @@ Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 
 Top level modules:
 	PE_cluster_new
 
-} {} {}} /home/abhiram/Projects/Nithya-Project/Power_Analysis/Baseline_Architecture_RTL/SPad.v {1 {vlog -work baseline -stats=none /home/abhiram/Projects/Nithya-Project/Power_Analysis/Baseline_Architecture_RTL/SPad.v
-Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
--- Compiling module sram_1p_sync
--- Compiling module SPad
-
-Top level modules:
-	SPad
-
 } {} {}} /home/abhiram/Projects/Nithya-Project/Power_Analysis/Baseline_Architecture_RTL/router_weight.v {1 {vlog -work baseline -stats=none /home/abhiram/Projects/Nithya-Project/Power_Analysis/Baseline_Architecture_RTL/router_weight.v
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
 -- Compiling module router_weight
 
 Top level modules:
 	router_weight
+
+} {} {}} /home/abhiram/Projects/Nithya-Project/Power_Analysis/Baseline_Architecture_RTL/SPad.v {1 {vlog -work baseline -stats=none /home/abhiram/Projects/Nithya-Project/Power_Analysis/Baseline_Architecture_RTL/SPad.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module SPad
+
+Top level modules:
+	SPad
 
 } {} {}} /home/abhiram/Projects/Nithya-Project/Power_Analysis/Baseline_Architecture_RTL/glb_psum.v {1 {vlog -work baseline -stats=none /home/abhiram/Projects/Nithya-Project/Power_Analysis/Baseline_Architecture_RTL/glb_psum.v
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020

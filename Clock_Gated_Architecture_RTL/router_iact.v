@@ -26,7 +26,9 @@ module router_iact #( parameter DATA_BITWIDTH = 16,
 						output reg load_en_spad,
 						
 						//Input from control unit to load weights to spad
-						input load_spad_ctrl
+						input load_spad_ctrl,
+						
+						output gate_router_sig
 			
 					);
 				
@@ -39,18 +41,28 @@ module router_iact #( parameter DATA_BITWIDTH = 16,
 		localparam READ_GLB_0=3'b011;
 		reg [5:0] filt_count;
 		
+		reg load_pending;
+		
+		assign gate_ok = (!reset) && (state == IDLE) && (load_pending == 1'b0);
+		
 		always@(posedge clk) begin
 			// $display("State: %s,filt_count: %d", state.name(),filt_count);
 			if(reset) begin
+				load_pending <= 1'b0;
 				read_req_glb_iact <= 0;
 				r_addr_glb_iact <= 0;
 				load_en_spad <= 0;
 				filt_count <= 0;
 				state <= IDLE;
 			end else begin
+				// latch request so pulse is not missed
+				if (load_spad_ctrl)
+					load_pending <= 1'b1;
 				case(state)
-					IDLE:begin
-						if(load_spad_ctrl) begin
+					IDLE: begin
+						if(load_pending) begin
+							// consume pending request
+							load_pending <= 1'b0;
 							read_req_glb_iact <= 1;
 							r_addr_glb_iact <= A_READ_ADDR;
 							load_en_spad <= 0;
@@ -61,6 +73,7 @@ module router_iact #( parameter DATA_BITWIDTH = 16,
 							state <= IDLE;
 						end
 					end
+
 					
 					READ_GLB:begin
 						

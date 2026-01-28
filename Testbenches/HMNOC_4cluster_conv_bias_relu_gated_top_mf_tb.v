@@ -323,8 +323,8 @@ HMNOC_4cluster_0   // instance name can stay
 	end
 	
 	initial begin
-	for(m=0;m<size/6;m=m+1) begin
-			for(n=0;n<size/6;n=n+1) begin
+	for(m=0;m<size/30;m=m+1) begin
+			for(n=0;n<size/30;n=n+1) begin
 		reset = 1; #30;
 		reset = 0;
 		start = 0;
