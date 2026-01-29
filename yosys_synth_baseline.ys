@@ -20,8 +20,8 @@ opt
 techmap
 opt
 
-dfflibmap -liberty skywater-pdk/libraries/sky130_fd_sc_hd/latest/timing/sky130_fd_sc_hd__tt_025C_1v80.lib 
-abc -liberty skywater-pdk/libraries/sky130_fd_sc_hd/latest/timing/sky130_fd_sc_hd__tt_025C_1v80.lib -dff
+dfflibmap -liberty skywater-pdk/libraries/sky130_fd_sc_lp/latest/timing/sky130_fd_sc_lp__ss_100C_1v60.lib
+abc -liberty skywater-pdk/libraries/sky130_fd_sc_lp/latest/timing/sky130_fd_sc_lp__ss_100C_1v60.lib -dff
 
 opt_clean
 clean

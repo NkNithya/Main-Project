@@ -134,14 +134,6 @@ module router_west_iact
 			end
 	end
 	
-	wire gclk_iact;
-	wire iact_gate_en;
-	
-	lecg u_lecg_iact(
-		.clk(clk),
-		.en(iact_gate_en),
-		.gclk(gclk_iact)
-	);
 
 	router_iact
 	#(  .DATA_BITWIDTH(DATA_BITWIDTH),
@@ -158,15 +150,14 @@ module router_west_iact
 	)
 
 	router_iact_0
-	(	.clk(gclk_iact),
+	(	.clk(clk),
 		.reset(reset),
 		.r_data_glb_iact(data_out),
 		.r_addr_glb_iact(west_addr_read),
 		.read_req_glb_iact(west_req_read),
 		.w_data_spad(west_data_o),
 		.load_en_spad(west_enable_o),
-		.load_spad_ctrl(load_spad_ctrl),
-		.gate_router_sig(iact_gate_en)
+		.load_spad_ctrl(load_spad_ctrl)
 	);
 	
 	//reg for data out in destination ports based on routing_mode
