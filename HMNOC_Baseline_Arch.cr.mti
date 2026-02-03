@@ -75,19 +75,19 @@ Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 
 Top level modules:
 	MAC
 
-} {} {}} /home/abhiram/Projects/Nithya-Project/Power_Analysis/Baseline_Architecture_RTL/activation.v {1 {vlog -work baseline -stats=none /home/abhiram/Projects/Nithya-Project/Power_Analysis/Baseline_Architecture_RTL/activation.v
-Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
--- Compiling module bias_relu
-
-Top level modules:
-	bias_relu
-
 } {} {}} /home/abhiram/Projects/Nithya-Project/Power_Analysis/Baseline_Architecture_RTL/HMNOC_1cluster_wpsum.v {1 {vlog -work baseline -stats=none /home/abhiram/Projects/Nithya-Project/Power_Analysis/Baseline_Architecture_RTL/HMNOC_1cluster_wpsum.v
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
 -- Compiling module HMNOC_1cluster_wpsum
 
 Top level modules:
 	HMNOC_1cluster_wpsum
+
+} {} {}} /home/abhiram/Projects/Nithya-Project/Power_Analysis/Baseline_Architecture_RTL/activation.v {1 {vlog -work baseline -stats=none /home/abhiram/Projects/Nithya-Project/Power_Analysis/Baseline_Architecture_RTL/activation.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module bias_relu
+
+Top level modules:
+	bias_relu
 
 } {} {}} /home/abhiram/Projects/Nithya-Project/Power_Analysis/Baseline_Architecture_RTL/router_west_iact.v {1 {vlog -work baseline -stats=none /home/abhiram/Projects/Nithya-Project/Power_Analysis/Baseline_Architecture_RTL/router_west_iact.v
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
@@ -96,12 +96,12 @@ Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 
 Top level modules:
 	router_west_iact
 
-} {} {}} /home/abhiram/Projects/Nithya-Project/Power_Analysis/Baseline_Architecture_RTL/router_west_wght.v {1 {vlog -work baseline -stats=none /home/abhiram/Projects/Nithya-Project/Power_Analysis/Baseline_Architecture_RTL/router_west_wght.v
+} {} {}} /home/abhiram/Projects/Nithya-Project/Power_Analysis/Baseline_Architecture_RTL/mux2.v {1 {vlog -work baseline -stats=none /home/abhiram/Projects/Nithya-Project/Power_Analysis/Baseline_Architecture_RTL/mux2.v
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
--- Compiling module router_west_wght
+-- Compiling module mux2
 
 Top level modules:
-	router_west_wght
+	mux2
 
 } {} {}} /home/abhiram/Projects/Nithya-Project/Power_Analysis/Baseline_Architecture_RTL/glb_weight.v {1 {vlog -work baseline -stats=none /home/abhiram/Projects/Nithya-Project/Power_Analysis/Baseline_Architecture_RTL/glb_weight.v
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
@@ -110,19 +110,12 @@ Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 
 Top level modules:
 	glb_weight
 
-} {} {}} /home/abhiram/Projects/Nithya-Project/Power_Analysis/Baseline_Architecture_RTL/mux2.v {1 {vlog -work baseline -stats=none /home/abhiram/Projects/Nithya-Project/Power_Analysis/Baseline_Architecture_RTL/mux2.v
+} {} {}} /home/abhiram/Projects/Nithya-Project/Power_Analysis/Baseline_Architecture_RTL/router_west_wght.v {1 {vlog -work baseline -stats=none /home/abhiram/Projects/Nithya-Project/Power_Analysis/Baseline_Architecture_RTL/router_west_wght.v
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
--- Compiling module mux2
+-- Compiling module router_west_wght
 
 Top level modules:
-	mux2
-
-} {} {}} /home/abhiram/Projects/Nithya-Project/Power_Analysis/Baseline_Architecture_RTL/uart_rx.v {1 {vlog -work baseline -stats=none /home/abhiram/Projects/Nithya-Project/Power_Analysis/Baseline_Architecture_RTL/uart_rx.v
-Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
--- Compiling module uart_rx
-
-Top level modules:
-	uart_rx
+	router_west_wght
 
 } {} {}} /home/abhiram/Projects/Nithya-Project/Power_Analysis/Baseline_Architecture_RTL/router_cluster_wpsum.v {1 {vlog -work baseline -stats=none /home/abhiram/Projects/Nithya-Project/Power_Analysis/Baseline_Architecture_RTL/router_cluster_wpsum.v
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
@@ -131,19 +124,19 @@ Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 
 Top level modules:
 	router_cluster_wpsum
 
+} {} {}} /home/abhiram/Projects/Nithya-Project/Power_Analysis/Baseline_Architecture_RTL/uart_rx.v {1 {vlog -work baseline -stats=none /home/abhiram/Projects/Nithya-Project/Power_Analysis/Baseline_Architecture_RTL/uart_rx.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module uart_rx
+
+Top level modules:
+	uart_rx
+
 } {} {}} /home/abhiram/Projects/Nithya-Project/Power_Analysis/Baseline_Architecture_RTL/HMNOC_4cluster_conv_bias_relu_top.v {1 {vlog -work baseline -stats=none /home/abhiram/Projects/Nithya-Project/Power_Analysis/Baseline_Architecture_RTL/HMNOC_4cluster_conv_bias_relu_top.v
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
 -- Compiling module HMNOC_4cluster_wpsum_bias_relu_top
 
 Top level modules:
 	HMNOC_4cluster_wpsum_bias_relu_top
-
-} {} {}} /home/abhiram/Projects/Nithya-Project/Power_Analysis/Baseline_Architecture_RTL/uart_tx.v {1 {vlog -work baseline -stats=none /home/abhiram/Projects/Nithya-Project/Power_Analysis/Baseline_Architecture_RTL/uart_tx.v
-Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
--- Compiling module uart_tx
-
-Top level modules:
-	uart_tx
 
 } {} {}} /home/abhiram/Projects/Nithya-Project/Power_Analysis/Baseline_Architecture_RTL/PE_cluster_new.v {1 {vlog -work baseline -stats=none /home/abhiram/Projects/Nithya-Project/Power_Analysis/Baseline_Architecture_RTL/PE_cluster_new.v
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
@@ -152,12 +145,12 @@ Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 
 Top level modules:
 	PE_cluster_new
 
-} {} {}} /home/abhiram/Projects/Nithya-Project/Power_Analysis/Baseline_Architecture_RTL/router_weight.v {1 {vlog -work baseline -stats=none /home/abhiram/Projects/Nithya-Project/Power_Analysis/Baseline_Architecture_RTL/router_weight.v
+} {} {}} /home/abhiram/Projects/Nithya-Project/Power_Analysis/Baseline_Architecture_RTL/uart_tx.v {1 {vlog -work baseline -stats=none /home/abhiram/Projects/Nithya-Project/Power_Analysis/Baseline_Architecture_RTL/uart_tx.v
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
--- Compiling module router_weight
+-- Compiling module uart_tx
 
 Top level modules:
-	router_weight
+	uart_tx
 
 } {} {}} /home/abhiram/Projects/Nithya-Project/Power_Analysis/Baseline_Architecture_RTL/SPad.v {1 {vlog -work baseline -stats=none /home/abhiram/Projects/Nithya-Project/Power_Analysis/Baseline_Architecture_RTL/SPad.v
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
@@ -165,6 +158,13 @@ Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 
 
 Top level modules:
 	SPad
+
+} {} {}} /home/abhiram/Projects/Nithya-Project/Power_Analysis/Baseline_Architecture_RTL/router_weight.v {1 {vlog -work baseline -stats=none /home/abhiram/Projects/Nithya-Project/Power_Analysis/Baseline_Architecture_RTL/router_weight.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module router_weight
+
+Top level modules:
+	router_weight
 
 } {} {}} /home/abhiram/Projects/Nithya-Project/Power_Analysis/Baseline_Architecture_RTL/glb_psum.v {1 {vlog -work baseline -stats=none /home/abhiram/Projects/Nithya-Project/Power_Analysis/Baseline_Architecture_RTL/glb_psum.v
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020

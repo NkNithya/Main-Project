@@ -38,5 +38,7 @@ read_vcd Simulations/HMNOC_4cluster_wpsum_bias_relu_mf_tb_baseline.vcd
 # Report
 # =========================
 
-report_power
+report_power > Reports/power_report_baseline.txt
+
+exit
 

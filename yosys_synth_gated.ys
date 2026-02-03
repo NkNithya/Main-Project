@@ -26,7 +26,7 @@ abc -liberty skywater-pdk/libraries/sky130_fd_sc_lp/latest/timing/sky130_fd_sc_l
 opt_clean
 clean
 
-stat 
+tee -o Reports/synthesis_report_gated.txt stat
 
 write_verilog -noattr -noexpr -nodec -defparam Clock_Gated_Architecture_RTL/synth.v
 

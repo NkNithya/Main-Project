@@ -82,13 +82,6 @@ Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 
 Top level modules:
 	router_weight
 
-} {} {}} /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/activation.v {1 {vlog -work gated -stats=none /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/activation.v
-Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
--- Compiling module bias_relu
-
-Top level modules:
-	bias_relu
-
 } {} {}} /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/HMNOC_1cluster_wpsum.v {1 {vlog -work gated -stats=none /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/HMNOC_1cluster_wpsum.v
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
 -- Compiling module HMNOC_1cluster_wpsum
@@ -96,12 +89,12 @@ Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 
 Top level modules:
 	HMNOC_1cluster_wpsum
 
-} {} {}} /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/router_west_iact.v {1 {vlog -work gated -stats=none /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/router_west_iact.v
+} {} {}} /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/activation.v {1 {vlog -work gated -stats=none /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/activation.v
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
--- Compiling module router_west_iact
+-- Compiling module bias_relu
 
 Top level modules:
-	router_west_iact
+	bias_relu
 
 } {} {}} /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/lecg.v {1 {vlog -work gated -stats=none /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/lecg.v
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
@@ -111,19 +104,12 @@ Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 
 Top level modules:
 	lecg
 
-} {} {}} /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/router_west_wght.v {1 {vlog -work gated -stats=none /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/router_west_wght.v
+} {} {}} /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/router_west_iact.v {1 {vlog -work gated -stats=none /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/router_west_iact.v
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
--- Compiling module router_west_wght
+-- Compiling module router_west_iact
 
 Top level modules:
-	router_west_wght
-
-} {} {}} /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/glb_weight.v {1 {vlog -work gated -stats=none /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/glb_weight.v
-Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
--- Compiling module glb_weight
-
-Top level modules:
-	glb_weight
+	router_west_iact
 
 } {} {}} /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/mux2.v {1 {vlog -work gated -stats=none /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/mux2.v
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
@@ -132,12 +118,19 @@ Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 
 Top level modules:
 	mux2
 
-} {} {}} /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/router_psum.v {1 {vlog -work gated -stats=none /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/router_psum.v
+} {} {}} /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/glb_weight.v {1 {vlog -work gated -stats=none /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/glb_weight.v
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
--- Compiling module router_psum
+-- Compiling module glb_weight
 
 Top level modules:
-	router_psum
+	glb_weight
+
+} {} {}} /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/router_west_wght.v {1 {vlog -work gated -stats=none /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/router_west_wght.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module router_west_wght
+
+Top level modules:
+	router_west_wght
 
 } {} {}} /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/router_cluster_wpsum.v {1 {vlog -work gated -stats=none /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/router_cluster_wpsum.v
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
@@ -145,6 +138,13 @@ Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 
 
 Top level modules:
 	router_cluster_wpsum
+
+} {} {}} /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/router_psum.v {1 {vlog -work gated -stats=none /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/router_psum.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module router_psum
+
+Top level modules:
+	router_psum
 
 } {} {}} /home/abhiram/Projects/Nithya-Project/Power_Analysis/Testbenches/HMNOC_4cluster_conv_bias_relu_gated_top_mf_tb.v {1 {vlog -work gated -stats=none /home/abhiram/Projects/Nithya-Project/Power_Analysis/Testbenches/HMNOC_4cluster_conv_bias_relu_gated_top_mf_tb.v
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
