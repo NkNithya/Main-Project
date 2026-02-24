@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+`timescale 1ns / 1ns
 
 module HMNOC_4cluster_wpsum_bias_relu_baseline_mf_tb();
 

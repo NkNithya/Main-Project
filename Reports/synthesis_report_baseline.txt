@@ -1,90 +1,9 @@
-
-38. Printing statistics.
-
-=== HMNOC_4cluster_wpsum_bias_relu_top ===
-
-   Number of wires:             140558
-   Number of wire bits:         205326
-   Number of public wires:        5482
-   Number of public wire bits:   68570
-   Number of ports:                 73
-   Number of port bits:            429
-   Number of memories:               0
-   Number of memory bits:            0
-   Number of processes:              0
-   Number of cells:             139694
-     $scopeinfo                    205
-     sky130_fd_sc_lp__a2111o_1       4
-     sky130_fd_sc_lp__a2111oi_1     50
-     sky130_fd_sc_lp__a211o_1      103
-     sky130_fd_sc_lp__a211oi_1     706
-     sky130_fd_sc_lp__a21bo_1        1
-     sky130_fd_sc_lp__a21boi_1      46
-     sky130_fd_sc_lp__a21o_1       262
-     sky130_fd_sc_lp__a21oi_1     7173
-     sky130_fd_sc_lp__a221o_1       28
-     sky130_fd_sc_lp__a221oi_1    3773
-     sky130_fd_sc_lp__a22o_1       632
-     sky130_fd_sc_lp__a22oi_1     2610
-     sky130_fd_sc_lp__a2bb2oi_1    137
-     sky130_fd_sc_lp__a311o_1       10
-     sky130_fd_sc_lp__a311oi_1     165
-     sky130_fd_sc_lp__a31o_1        69
-     sky130_fd_sc_lp__a31oi_1      668
-     sky130_fd_sc_lp__a32o_1        16
-     sky130_fd_sc_lp__a32oi_1      220
-     sky130_fd_sc_lp__a41oi_1       55
-     sky130_fd_sc_lp__and2_1      1554
-     sky130_fd_sc_lp__and3_1       330
-     sky130_fd_sc_lp__and3b_1        6
-     sky130_fd_sc_lp__and4_1        94
-     sky130_fd_sc_lp__and4bb_1       1
-     sky130_fd_sc_lp__dfrtp_1     3181
-     sky130_fd_sc_lp__edfxbp_1   51264
-     sky130_fd_sc_lp__inv_1       2424
-     sky130_fd_sc_lp__maj3_1      2309
-     sky130_fd_sc_lp__mux2_2       604
-     sky130_fd_sc_lp__mux2i_lp    5492
-     sky130_fd_sc_lp__mux4_2     10587
-     sky130_fd_sc_lp__nand2_1     8289
-     sky130_fd_sc_lp__nand2b_1     690
-     sky130_fd_sc_lp__nand3_1      731
-     sky130_fd_sc_lp__nand3b_1      77
-     sky130_fd_sc_lp__nand4_1      170
-     sky130_fd_sc_lp__nand4b_1     261
-     sky130_fd_sc_lp__nor2_1      9355
-     sky130_fd_sc_lp__nor2b_1     1604
-     sky130_fd_sc_lp__nor3_1      1571
-     sky130_fd_sc_lp__nor3b_1       39
-     sky130_fd_sc_lp__nor4_1        62
-     sky130_fd_sc_lp__nor4b_1       11
-     sky130_fd_sc_lp__o2111ai_1     11
-     sky130_fd_sc_lp__o211a_1       15
-     sky130_fd_sc_lp__o211ai_1     461
-     sky130_fd_sc_lp__o21a_1       623
-     sky130_fd_sc_lp__o21ai_1     7063
-     sky130_fd_sc_lp__o21ba_1       22
-     sky130_fd_sc_lp__o21bai_1      58
-     sky130_fd_sc_lp__o221a_1       34
-     sky130_fd_sc_lp__o221ai_1    1405
-     sky130_fd_sc_lp__o22a_1        14
-     sky130_fd_sc_lp__o22ai_1     1312
-     sky130_fd_sc_lp__o2bb2ai_1    106
-     sky130_fd_sc_lp__o311a_1       12
-     sky130_fd_sc_lp__o311ai_1      76
-     sky130_fd_sc_lp__o31a_1       135
-     sky130_fd_sc_lp__o31ai_1      166
-     sky130_fd_sc_lp__o32a_1        29
-     sky130_fd_sc_lp__o32ai_1       48
-     sky130_fd_sc_lp__o41a_1         2
-     sky130_fd_sc_lp__o41ai_1       16
-     sky130_fd_sc_lp__or2_1        270
-     sky130_fd_sc_lp__or3_1        114
-     sky130_fd_sc_lp__or3b_1        14
-     sky130_fd_sc_lp__or4_1         35
-     sky130_fd_sc_lp__or4b_1        36
-     sky130_fd_sc_lp__xnor2_1     6720
-     sky130_fd_sc_lp__xnor3_1      108
-     sky130_fd_sc_lp__xor2_1      3142
-     sky130_fd_sc_lp__xor3_1         8
+==================================================
+   HMNOC 4-Cluster WPSUM + BIAS + RELU - POWER REPORT
+==================================================
+Design        : HMNOC_4cluster_wpsum_bias_relu_top
+Netlist       : Baseline_Architecture_RTL/synth.v
+Clock Period  : 10 ns
+Generated On  : Tue Feb 24 22:46:17 IST 2026
+==================================================
 

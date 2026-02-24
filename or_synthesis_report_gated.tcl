@@ -41,5 +41,6 @@ global_connect
 # Report
 # =========================
 
-report_design_area
+report_design_area 
 
+exit

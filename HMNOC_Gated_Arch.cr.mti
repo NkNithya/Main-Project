@@ -146,13 +146,6 @@ Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 
 Top level modules:
 	router_psum
 
-} {} {}} /home/abhiram/Projects/Nithya-Project/Power_Analysis/Testbenches/HMNOC_4cluster_conv_bias_relu_gated_top_mf_tb.v {1 {vlog -work gated -stats=none /home/abhiram/Projects/Nithya-Project/Power_Analysis/Testbenches/HMNOC_4cluster_conv_bias_relu_gated_top_mf_tb.v
-Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
--- Compiling module HMNOC_4cluster_wpsum_bias_relu_gated_mf_tb
-
-Top level modules:
-	HMNOC_4cluster_wpsum_bias_relu_gated_mf_tb
-
 } {} {}} /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/PE_cluster_new.v {1 {vlog -work gated -stats=none /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/PE_cluster_new.v
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
 -- Compiling module PE_cluster_new

@@ -37,8 +37,27 @@ read_vcd Simulations/HMNOC_4cluster_wpsum_bias_relu_mf_tb_baseline.vcd
 # =========================
 # Report
 # =========================
+# =========================
+# Report
+# =========================
 
-report_power > Reports/power_report_baseline.txt
+set rpt_file "Reports/power_report_baseline.txt"
+
+# Create file and write heading
+set fp [open $rpt_file "w"]
+puts $fp "=================================================="
+puts $fp "   HMNOC 4-Cluster WPSUM + BIAS + RELU - POWER REPORT"
+puts $fp "=================================================="
+puts $fp "Design        : $DESIGN"
+puts $fp "Netlist       : $NETLIST"
+puts $fp "Clock Period  : 10 ns"
+puts $fp "Generated On  : [clock format [clock seconds]]"
+puts $fp "=================================================="
+puts $fp ""
+close $fp
+
+# Append OpenROAD power report
+report_power >> $rpt_file
 
 exit
 

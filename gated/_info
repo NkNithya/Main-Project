@@ -10,7 +10,7 @@ z2
 cModel Technology
 Z0 d/home/abhiram/Projects/Nithya-Project/Power_Analysis
 vbias_relu
-Z1 !s110 1769700714
+Z1 !s110 1771952415
 !i10b 1
 !s100 L1J5^T_iD<6PVMY:5P?cG3
 Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
@@ -20,18 +20,18 @@ R0
 w1769267658
 8/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/activation.v
 F/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/activation.v
-!i122 1054
+!i122 1077
 L0 2 14
 Z4 OV;L;2020.1;71
 r1
 !s85 0
 31
-!s108 1769700713.000000
+Z5 !s108 1771952415.000000
 !s107 /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/activation.v|
 !s90 -reportprogress|300|-work|gated|-stats=none|/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/activation.v|
 !i113 1
-Z5 o-work gated
-Z6 tCvgOpt 0
+Z6 o-work gated
+Z7 tCvgOpt 0
 vGLB_cluster_wpsum
 R1
 !i10b 1
@@ -43,18 +43,18 @@ R0
 w1769422065
 8/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/GLB_cluster_wpsum.v
 F/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/GLB_cluster_wpsum.v
-!i122 1055
+!i122 1078
 L0 3 109
 R4
 r1
 !s85 0
 31
-Z7 !s108 1769700714.000000
+R5
 !s107 /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/GLB_cluster_wpsum.v|
 !s90 -reportprogress|300|-work|gated|-stats=none|/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/GLB_cluster_wpsum.v|
 !i113 1
-R5
 R6
+R7
 n@g@l@b_cluster_wpsum
 vglb_iact
 R1
@@ -67,18 +67,18 @@ R0
 Z8 w1768927318
 8/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/glb_iact.v
 F/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/glb_iact.v
-!i122 1056
+!i122 1079
 L0 3 41
 R4
 r1
 !s85 0
 31
-R7
+R5
 !s107 /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/glb_iact.v|
 !s90 -reportprogress|300|-work|gated|-stats=none|/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/glb_iact.v|
 !i113 1
-R5
 R6
+R7
 vglb_psum
 R1
 !i10b 1
@@ -90,18 +90,18 @@ R0
 w1769418322
 8/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/glb_psum.v
 F/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/glb_psum.v
-!i122 1057
+!i122 1080
 L0 4 74
 R4
 r1
 !s85 0
 31
-R7
+R5
 !s107 /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/glb_psum.v|
 !s90 -reportprogress|300|-work|gated|-stats=none|/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/glb_psum.v|
 !i113 1
-R5
 R6
+R7
 vglb_weight
 R1
 !i10b 1
@@ -113,18 +113,18 @@ R0
 R8
 8/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/glb_weight.v
 F/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/glb_weight.v
-!i122 1058
+!i122 1081
 L0 4 41
 R4
 r1
 !s85 0
 31
-R7
+R5
 !s107 /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/glb_weight.v|
 !s90 -reportprogress|300|-work|gated|-stats=none|/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/glb_weight.v|
 !i113 1
-R5
 R6
+R7
 vHMNOC_1cluster_wpsum
 R1
 !i10b 1
@@ -136,21 +136,21 @@ R0
 R8
 8/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/HMNOC_1cluster_wpsum.v
 F/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/HMNOC_1cluster_wpsum.v
-!i122 1059
+!i122 1082
 L0 3 345
 R4
 r1
 !s85 0
 31
-R7
+R5
 !s107 /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/HMNOC_1cluster_wpsum.v|
 !s90 -reportprogress|300|-work|gated|-stats=none|/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/HMNOC_1cluster_wpsum.v|
 !i113 1
-R5
 R6
+R7
 n@h@m@n@o@c_1cluster_wpsum
 vHMNOC_4cluster_wpsum
-R1
+Z9 !s110 1771952416
 !i10b 1
 !s100 oNgNcVQk=Xg=fOYl6Z7GR2
 R2
@@ -160,45 +160,45 @@ R0
 R8
 8/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/HMNOC_4cluster_wpsum.v
 F/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/HMNOC_4cluster_wpsum.v
-!i122 1061
+!i122 1084
 L0 3 581
 R4
 r1
 !s85 0
 31
-R7
+Z10 !s108 1771952416.000000
 !s107 /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/HMNOC_4cluster_wpsum.v|
 !s90 -reportprogress|300|-work|gated|-stats=none|/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/HMNOC_4cluster_wpsum.v|
 !i113 1
-R5
 R6
+R7
 n@h@m@n@o@c_4cluster_wpsum
 vHMNOC_4cluster_wpsum_bias_relu_gated_mf_tb
-Z9 !s110 1769700715
+Z11 !s110 1771952417
 !i10b 1
 !s100 `JlTdFojo;Xf1k=BahR__1
 R2
 I;?DLkf?8z_9f=aJGTBE4j3
 R3
 R0
-w1769433149
+w1771951777
 8/home/abhiram/Projects/Nithya-Project/Power_Analysis/Testbenches/HMNOC_4cluster_conv_bias_relu_gated_top_mf_tb.v
 F/home/abhiram/Projects/Nithya-Project/Power_Analysis/Testbenches/HMNOC_4cluster_conv_bias_relu_gated_top_mf_tb.v
-!i122 1076
+!i122 1099
 L0 3 653
 R4
 r1
 !s85 0
 31
-Z10 !s108 1769700715.000000
+Z12 !s108 1771952417.000000
 !s107 /home/abhiram/Projects/Nithya-Project/Power_Analysis/Testbenches/HMNOC_4cluster_conv_bias_relu_gated_top_mf_tb.v|
 !s90 -reportprogress|300|-work|gated|-stats=none|/home/abhiram/Projects/Nithya-Project/Power_Analysis/Testbenches/HMNOC_4cluster_conv_bias_relu_gated_top_mf_tb.v|
 !i113 1
-R5
 R6
+R7
 n@h@m@n@o@c_4cluster_wpsum_bias_relu_gated_mf_tb
 vHMNOC_4cluster_wpsum_bias_relu_top
-R1
+R9
 !i10b 1
 !s100 S8R70Z;b0>2C@l4?[513P3
 R2
@@ -208,67 +208,67 @@ R0
 w1769438907
 8/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/HMNOC_4cluster_conv_bias_relu_top.v
 F/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/HMNOC_4cluster_conv_bias_relu_top.v
-!i122 1060
+!i122 1083
 L0 3 296
 R4
 r1
 !s85 0
 31
-R7
+R5
 !s107 /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/HMNOC_4cluster_conv_bias_relu_top.v|
 !s90 -reportprogress|300|-work|gated|-stats=none|/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/HMNOC_4cluster_conv_bias_relu_top.v|
 !i113 1
-R5
 R6
+R7
 n@h@m@n@o@c_4cluster_wpsum_bias_relu_top
 vlecg
-R1
+R9
 !i10b 1
 !s100 b?9;`<=?a2@aGl7cMdF:L3
 R2
 IQTZ[cVIIIQOaNUZEeXOFF0
 R3
 R0
-Z11 w1769534535
-Z12 8/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/lecg.v
-Z13 F/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/lecg.v
-!i122 1062
+Z13 w1769534535
+Z14 8/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/lecg.v
+Z15 F/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/lecg.v
+!i122 1085
 L0 1 19
 R4
 r1
 !s85 0
 31
-R7
-Z14 !s107 /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/lecg.v|
-Z15 !s90 -reportprogress|300|-work|gated|-stats=none|/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/lecg.v|
+R10
+Z16 !s107 /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/lecg.v|
+Z17 !s90 -reportprogress|300|-work|gated|-stats=none|/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/lecg.v|
 !i113 1
-R5
 R6
+R7
 vlevel_latch
-R1
+R9
 !i10b 1
 !s100 <mCUYeGB`ObMTlS0bZn7T3
 R2
 II_LND8SBC6f^b1hNzUzi50
 R3
 R0
-R11
-R12
 R13
-!i122 1062
+R14
+R15
+!i122 1085
 L0 21 14
 R4
 r1
 !s85 0
 31
-R7
-R14
-R15
+R10
+R16
+R17
 !i113 1
-R5
 R6
+R7
 vmac_unit
-R1
+R9
 !i10b 1
 !s100 ?H14kc2;<DFh9FULaVd840
 R2
@@ -278,20 +278,20 @@ R0
 w1769430266
 8/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/MAC.v
 F/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/MAC.v
-!i122 1063
+!i122 1086
 L0 1 15
 R4
 r1
 !s85 0
 31
-R7
+R10
 !s107 /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/MAC.v|
 !s90 -reportprogress|300|-work|gated|-stats=none|/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/MAC.v|
 !i113 1
-R5
 R6
+R7
 vmux2
-R1
+R9
 !i10b 1
 !s100 T`=9`nf8CkF?jHf>RG`7]3
 R2
@@ -301,20 +301,20 @@ R0
 R8
 8/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/mux2.v
 F/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/mux2.v
-!i122 1064
+!i122 1087
 L0 3 11
 R4
 r1
 !s85 0
 31
-R7
+R10
 !s107 /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/mux2.v|
 !s90 -reportprogress|300|-work|gated|-stats=none|/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/mux2.v|
 !i113 1
-R5
 R6
+R7
 vPE_cluster_new
-R1
+R9
 !i10b 1
 !s100 B^<RJX5N:[jPkC7kdiGeC1
 R2
@@ -324,21 +324,21 @@ R0
 w1769430144
 8/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/PE_cluster_new.v
 F/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/PE_cluster_new.v
-!i122 1065
+!i122 1088
 L0 3 179
 R4
 r1
 !s85 0
 31
-R7
+R10
 !s107 /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/PE_cluster_new.v|
 !s90 -reportprogress|300|-work|gated|-stats=none|/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/PE_cluster_new.v|
 !i113 1
-R5
 R6
+R7
 n@p@e_cluster_new
 vPE_new
-R1
+R9
 !i10b 1
 !s100 `2o<UbFJnoJmgIKI]dLE`3
 R2
@@ -348,21 +348,21 @@ R0
 w1769435942
 8/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/PE_new.v
 F/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/PE_new.v
-!i122 1066
+!i122 1089
 L0 3 234
 R4
 r1
 !s85 0
 31
-R7
+R10
 !s107 /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/PE_new.v|
 !s90 -reportprogress|300|-work|gated|-stats=none|/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/PE_new.v|
 !i113 1
-R5
 R6
+R7
 n@p@e_new
 vpool_max_4x4_stream
-R1
+R9
 !i10b 1
 !s100 X5gYXkgYBFiVmlef5jGkS2
 R2
@@ -372,20 +372,20 @@ R0
 w1769422949
 8/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/pool_max_4x4_stream.v
 F/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/pool_max_4x4_stream.v
-!i122 1067
+!i122 1090
 L0 12 51
 R4
 r1
 !s85 0
 31
-R7
+R10
 !s107 /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/pool_max_4x4_stream.v|
 !s90 -reportprogress|300|-work|gated|-stats=none|/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/pool_max_4x4_stream.v|
 !i113 1
-R5
 R6
+R7
 vrouter_cluster_wpsum
-R1
+R9
 !i10b 1
 !s100 g`d6ZTlKFn<dZ3;EPd]3J1
 R2
@@ -395,20 +395,20 @@ R0
 R8
 8/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/router_cluster_wpsum.v
 F/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/router_cluster_wpsum.v
-!i122 1068
+!i122 1091
 L0 4 291
 R4
 r1
 !s85 0
 31
-R7
+R10
 !s107 /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/router_cluster_wpsum.v|
 !s90 -reportprogress|300|-work|gated|-stats=none|/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/router_cluster_wpsum.v|
 !i113 1
-R5
 R6
+R7
 vrouter_iact
-R1
+R9
 !i10b 1
 !s100 ?[Lj`?FSXP?8YL?4kL[BV3
 R2
@@ -418,18 +418,18 @@ R0
 w1769623563
 8/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/router_iact.v
 F/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/router_iact.v
-!i122 1069
-Z16 L0 3 90
+!i122 1092
+Z18 L0 3 90
 R4
 r1
 !s85 0
 31
-R7
+R10
 !s107 /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/router_iact.v|
 !s90 -reportprogress|300|-work|gated|-stats=none|/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/router_iact.v|
 !i113 1
-R5
 R6
+R7
 vrouter_psum
 R9
 !i10b 1
@@ -441,18 +441,18 @@ R0
 w1769539761
 8/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/router_psum.v
 F/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/router_psum.v
-!i122 1070
+!i122 1093
 L0 3 103
 R4
 r1
 !s85 0
 31
-R7
+R10
 !s107 /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/router_psum.v|
 !s90 -reportprogress|300|-work|gated|-stats=none|/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/router_psum.v|
 !i113 1
-R5
 R6
+R7
 vrouter_weight
 R9
 !i10b 1
@@ -464,8 +464,8 @@ R0
 w1769622102
 8/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/router_weight.v
 F/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/router_weight.v
-!i122 1071
-R16
+!i122 1094
+R18
 R4
 r1
 !s85 0
@@ -474,8 +474,8 @@ R10
 !s107 /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/router_weight.v|
 !s90 -reportprogress|300|-work|gated|-stats=none|/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/router_weight.v|
 !i113 1
-R5
 R6
+R7
 vrouter_west_iact
 R9
 !i10b 1
@@ -487,7 +487,7 @@ R0
 w1769623555
 8/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/router_west_iact.v
 F/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/router_west_iact.v
-!i122 1072
+!i122 1095
 L0 3 327
 R4
 r1
@@ -497,8 +497,8 @@ R10
 !s107 /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/router_west_iact.v|
 !s90 -reportprogress|300|-work|gated|-stats=none|/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/router_west_iact.v|
 !i113 1
-R5
 R6
+R7
 vrouter_west_psum
 R9
 !i10b 1
@@ -510,7 +510,7 @@ R0
 w1769539759
 8/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/router_west_psum.v
 F/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/router_west_psum.v
-!i122 1073
+!i122 1096
 L0 3 124
 R4
 r1
@@ -520,10 +520,10 @@ R10
 !s107 /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/router_west_psum.v|
 !s90 -reportprogress|300|-work|gated|-stats=none|/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/router_west_psum.v|
 !i113 1
-R5
 R6
+R7
 vrouter_west_wght
-R9
+R11
 !i10b 1
 !s100 =c0j_>Mg<iASB`mC^DF?B2
 R2
@@ -533,20 +533,20 @@ R0
 w1769618449
 8/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/router_west_wght.v
 F/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/router_west_wght.v
-!i122 1074
+!i122 1097
 L0 3 332
 R4
 r1
 !s85 0
 31
-R10
+R12
 !s107 /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/router_west_wght.v|
 !s90 -reportprogress|300|-work|gated|-stats=none|/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/router_west_wght.v|
 !i113 1
-R5
 R6
+R7
 vSPad
-R9
+R11
 !i10b 1
 !s100 f2fOQT=0V@OEBL8cb=J?81
 R2
@@ -554,20 +554,20 @@ ImWPg0UEKPif=1UFkhc9Ao2
 R3
 R0
 w1769434398
-Z17 8/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/SPad.v
-Z18 F/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/SPad.v
-!i122 1075
+Z19 8/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/SPad.v
+Z20 F/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/SPad.v
+!i122 1098
 L0 3 37
 R4
 r1
 !s85 0
 31
-R10
-Z19 !s107 /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/SPad.v|
-Z20 !s90 -reportprogress|300|-work|gated|-stats=none|/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/SPad.v|
+R12
+Z21 !s107 /home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/SPad.v|
+Z22 !s90 -reportprogress|300|-work|gated|-stats=none|/home/abhiram/Projects/Nithya-Project/Power_Analysis/Clock_Gated_Architecture_RTL/SPad.v|
 !i113 1
-R5
 R6
+R7
 n@s@pad
 vsram_1p_sync
 !s110 1769430517
@@ -578,8 +578,8 @@ I3bnB?D:C2VNSl_eYB62C:0
 R3
 R0
 w1768932000
-R17
-R18
+R19
+R20
 !i122 180
 L0 9 23
 R4
@@ -587,8 +587,8 @@ r1
 !s85 0
 31
 !s108 1769430516.000000
-R19
-R20
+R21
+R22
 !i113 1
-R5
 R6
+R7

@@ -1,3 +1,12 @@
+==================================================
+   HMNOC 4-Cluster WPSUM + BIAS + RELU - POWER REPORT
+==================================================
+Design        : HMNOC_4cluster_wpsum_bias_relu_top
+Netlist       : Baseline_Architecture_RTL/synth.v
+Clock Period  : 10 ns
+Generated On  : Tue Feb 24 22:41:09 IST 2026
+==================================================
+
 Group                  Internal  Switching    Leakage      Total
                           Power      Power      Power      Power (Watts)
 ----------------------------------------------------------------
