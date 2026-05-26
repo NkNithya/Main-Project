@@ -1,0 +1,31 @@
+########################################
+# Read RTL
+########################################
+read_verilog -sv "Clock_Gated_Architecture_RTL/*.v"
+hierarchy -check -top HMNOC_4cluster_wpsum_bias_relu_top
+
+########################################
+# RTL → logic lowering
+########################################
+proc
+opt
+fsm
+opt
+memory
+opt
+memory_map
+opt
+flatten
+opt
+techmap
+opt
+
+dfflibmap -liberty skywater-pdk/libraries/sky130_fd_sc_hd/latest/timing/sky130_fd_sc_hd__ss_100C_1v60.lib
+abc -liberty skywater-pdk/libraries/sky130_fd_sc_hd/latest/timing/sky130_fd_sc_hd__ss_100C_1v60.lib -dff
+
+opt_clean
+clean
+
+tee -o Reports/synthesis_report_gated_sc_hd.txt stat
+
+write_verilog -noattr -noexpr -nodec -defparam Clock_Gated_Architecture_RTL/synth_hd.v

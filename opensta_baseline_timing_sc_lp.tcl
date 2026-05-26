@@ -20,28 +20,38 @@ link_design $DESIGN
 # Create Clock
 # =========================
 create_clock -name clk -period 60 clk
-
-# Optional but safe
 set_clock_uncertainty 0.1 clk
 
 # =========================
-# Timing Reports
+# Report
 # =========================
+set rpt_file "Reports/timing_report_baseline_sc_lp.txt"
+
+set fp [open $rpt_file "w"]
+puts $fp "=================================================="
+puts $fp "   HMNOC 4-Cluster WPSUM + BIAS + RELU - TIMING REPORT (sc_lp)"
+puts $fp "=================================================="
+puts $fp "Design        : $DESIGN"
+puts $fp "Netlist       : $NETLIST"
+puts $fp "Library       : $LIB"
+puts $fp "Clock Period  : 60 ns"
+puts $fp "Generated On  : [clock format [clock seconds]]"
+puts $fp "=================================================="
+puts $fp ""
+close $fp
 
 puts "========== SETUP ANALYSIS =========="
-report_checks -path_delay max
+report_checks -path_delay max >> $rpt_file
 
 puts "========== HOLD ANALYSIS =========="
-report_checks -path_delay min
+report_checks -path_delay min >> $rpt_file
 
 puts "========== WNS =========="
-report_wns
+report_wns >> $rpt_file
 
 puts "========== TNS =========="
-report_tns
+report_tns >> $rpt_file
 
-report_checks -path_delay max -digits 3
-
+report_checks -path_delay max -digits 3 >> $rpt_file
 
 exit
-
